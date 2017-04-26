@@ -144,40 +144,105 @@ SharedPlan to provide guidance to both human and agent composers.
 %% main text
 \section{Introduction}
 \label{sec:introduction}
-  Should contain an overview of the problem to be addressed, the approach taken to   
+TODO  Should contain an overview of the problem to be addressed, the approach taken to   
   address that problem, and the results of that approach. Should provide the reader with a  
   road map for how your argument will be developed in the other sections of the paper.
 
-\section{Body of the Paper}
 
+RESEARCH TODO
 \begin{itemize}
-	\item {\bf  Experimental Design.} A description of the experiment that was run; enough detail should be provided   
-that the reader could reasonably duplicate the experiment. Results should not be 
-reported in this section.
-	\item {\bf Results.} A report of the results of the experiments, and their significance.
+\item Mark: talk to composers and incorporate their feedback and UI suggestions
+\item David: speak to David Greenberg to incorporate feedback and UI
 \end{itemize}
 
-\subsection{Citations}
+%
+%\section{Body of the Paper}
+%
+%\begin{itemize}
+%	\item {\bf  Experimental Design.} A description of the experiment that was run; enough detail should be provided   
+%that the reader could reasonably duplicate the experiment. Results should not be 
+%reported in this section.
+%	\item {\bf Results.} A report of the results of the experiments, and their significance.
+%\end{itemize}
 
-Here are two examples of how to cite a paper properly:
-\begin{itemize}
-	\item \citet{bernstein2000complexity} shows that ... 
-	\item Prior work has shown that ... \citep{bernstein2000complexity}.
-\end{itemize}
 
+%\subsection{Citations}
+
+%Here are two examples of how to cite a paper properly:
+%\begin{itemize}
+%	\item \citet{bernstein2000complexity} shows that ... 
+%	\item Prior work has shown that ... \citep{bernstein2000complexity}.
+%\end{itemize}
 
 %%  \citet{key}  ==>>  Jones et al. (1990)
 %%  \citep{key}  ==>>  (Jones et al., 1990)
 
 
 \section{Related Work}
-Discussion of previous important, similar work in the area with comparison to the particular approach taken and results of the paper. Avoid simply providing a laundry list of other work that is somehow related to the subject of the paper. This section should contain brief, in depth discussions of the work most similar to your project, i.e., to research that takes an approach to the problem or produces results with which your project should be compared. As is always the case with written work, throughout the paper you should have citations to work that you draw on. For example, if you have adapted a system, include a citation to the system when you first mention it; if you are extending a formalization, include a citation to the original on first mention. If you are unclear about whether a simple citation suffices or an extended discussion is needed in the Related Work section, look at the papers read for class this semester for models. If you are still unsure, check with the teaching staff.
+TODO Discussion of previous important, similar work in the area with comparison to the particular approach taken and results of the paper. Avoid simply providing a laundry list of other work that is somehow related to the subject of the paper. This section should contain brief, in depth discussions of the work most similar to your project, i.e., to research that takes an approach to the problem or produces results with which your project should be compared. As is always the case with written work, throughout the paper you should have citations to work that you draw on. For example, if you have adapted a system, include a citation to the system when you first mention it; if you are extending a formalization, include a citation to the original on first mention. If you are unclear about whether a simple citation suffices or an extended discussion is needed in the Related Work section, look at the papers read for class this semester for models. If you are still unsure, check with the teaching staff.
+
+\section{Workflow Overview}
+
+git + intention + algorithmic eval
+
+incorporate SharedPlans
+
+Current git / music solutions
+
+\section{Algorithmic Evaluator}
+
+Current design
+
+MIDI
+
+entropy discussion
+
+KL Divergence
+
+\section{Use Cases}
+
+\subsection{Individual User, Individual Composer}
+
+\subsection{Multiple Composers}
+
+TODO: include failure modes
+
+\subsection{Therapist with Agent - Human Composition Team}
+
+high volume necessity
+
+
+\section{Discussion}
+
+\subsection{Enhancing or Stifling Creativity}
+
+Notes: evaluation is optional. Can be ignored by committer.
+
+\subsection{Limitations}
+
+Collaboration is offline, not real-time
+
+Current music representation is discrete MIDI, not audio. Limits for vocals, ocean sounds
+
+Presume that reliable corpus-based genre and mood classification solutions exist, particularly information retrieval procedures
+
+
 
 \section{Conclusion}
-  Describes the insights that can be taken away from the work reported in the paper.
+ Two Novel Contributions:
+ \begin{itemize}
+\item Collaborative music composition system 
+Intentionality, SharedPlan and Agents
+\item Algorithmic evaluation of composition against intention
+\end{itemize}
 
 \section {Future work}
-  Suggests extensions or challenges raised by the project.
+\begin{itemize}
+\item Improved agent composition
+\item Intelligent ad hoc composition
+\item Facilitator of scalable music composition
+\item improved evaluator, possibly RNN based
+\end{itemize}
 
 
 %% The Appendices part is started with the command \appendix;
