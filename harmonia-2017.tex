@@ -209,66 +209,106 @@ Our systems relies on the ability to model musical structure in a way that suppo
 
 Our work builds on the the Information Dynamics Approach [Abdallah et al 2012]. Abdallah uses predictive information rate, a entropy/divergence based metric that measures how a listener's mid-piece distribution over future musical events is continually revised as new information is presented, to compute a curve that summarizes aspects of surprise in redundancy in a piece of music. Our work assumes that musical structure can be effectively summarized by this criteria. We assume that pieces from a particular genre/mood are defined by characteristic balances of surprise and redundancy over time, with peaks of information content (communicated by the composer) in genre-specific locations. We leverage this metric as the foundation of our automatic analysis system, which compares a collaborative work-so-far against the characteristic curves for the genre and mood specified by the mutual plan for the piece, and suggests edits to the composers to keep them in line with their goal.
 
-In the manifesto, Widner recalls key points made by Cohen in the 1950s, that an information theory approach for describing music must expand in two uncovered territories: 1) there must be a theory of intearctions for multiple streams of musical information, for example for the way in which rhythmic information may make harmonic events more or less certain. Composers do not decide all of music's parameters separately. 2) there must be theory for account for multiple levels of structural hierarchy coming at once from a stream of musical information. Rhythms constitute a local time feel but also accelerate a piece toward new sections.
+% THESE ARE EXTENSIONS TO HOW WE COULD IMPROVE THE ANALYSIS (DO NOT DELETE)
 
-Recently explored challenges in information theory may provide ways to explore these important qualities of music. These include the generalization of mutual information to several variables. Multivariate mutual information is used to describe the extent to which the knowledge of one event can reduce the entropy in several other variables [V.d. Cruys 2011]. 
+%In the manifesto, Widner recalls key points made by theorist Cohen in the 1950s, that an information approach for describing music must develop to account for two things crucial to music but not included in information heory (at Cohen's time but still hardly so half a century later) 1) there must be a theory of interactions for multiple streams of musical information, for example for the way in which rhythmic information may make harmonic events more or less certain. Composers do not decide all of music's parameters separately. 2) there must be theory for account for multiple levels of structural hierarchy coming at once from a single stream of musical information. Rhythms constitute a local time feel but also accelerate a piece toward new sections. Recent directions in information theory may provide insight. 
 
+%The first point requires a generalization of mutual information to multiple random variables, which has been difficult to interpret and met with confusion over several coexistent approaches [V.d. Cruys 2011]. Multivariate mutual information is used to describe the extent to which the knowledge of one event can reduce the entropy in several other variables. To our knowledge, the second point has not yet been explored.
 
-
-
-1. ?the basic [assumption] is that statistical probability... corresponds to the listener's expectations... the average surprisal value... represents the listener's state of uncertainty?
-2. ?Another... is that one portion of the cultural sign system can be legitimately abstracted from the whole, and that values based on this abstraction will have the same worth as when the portion is a part of the whole.?
-3. ?A further assumption... a sequence of musical events is experienced on only one architectonic level: in melodic analyses, on the level of notes or intervals; in rhythmic analyses, on the level of the pulse pattern... theory will have to take account of the interaction among levels.?
-We need to consider several streams of info. and their interactions: rhythm, pitch, harmony, timbre. Even within one type of information stream, say pitch, we need to consider several hierarchical levels at once: 
-
-
+%Cohen Quotes
+%1. the basic [assumption] is that statistical probability... corresponds to the listener's expectations... the average surprisal value... represents the listener's state of uncertainty?
+%2. ?Another... is that one portion of the cultural sign system can be legitimately abstracted from the whole, and that values based on this abstraction will have the same worth as when the portion is a part of the whole.?
+%3. ?A further assumption... a sequence of musical events is experienced on only one architectonic level: in melodic analyses, on the level of notes or intervals; in rhythmic analyses, on the level of the pulse pattern... theory will have to take account of the interaction among levels.?
+%We need to consider several streams of info. and their interactions: rhythm, pitch, harmony, timbre. Even within one type of information stream, say pitch, we need to consider several hierarchical levels at once: 
 
 
 
 
-\section{Workflow Overview}
+
+
+\section{System Design}
+
+[perhaps include a workflow image and a MIDI image side-by-side here]
+
+\subsection{Workflow Overview}
+
+someone creates a shared plan (individual or composers)
+
+information retrieval system gets characteristic metrics using as much of the sharedplan info as it can
+
+composers iteratively work on the piece
+
+Within a particular composer/system interaction, automated analysis is run on the piece as it is.
+suggests some actions to the composer, particularly suggesting to switch two parts of a piece.
+Composer can follow suggestions or do their own modifications, or do nothing and finish.
+
+\subsection{GIT}
+
+git + intention, attributing credit, version control not available in existing midi systems
+
+\subsection{Genre + Mood}
+
+existing information retrieval systems
+
+
+\subsection{MIDI and actions to be taken on piece of music}
+
+
+\subsection{Shared Plan + Metadata, inter-composer communication}
 
 git + intention + algorithmic eval
-
-use of genre + mood
-
-Other metadata
-
-incorporate SharedPlans
-
-Current git / music solutions
 
 How do composers or users express intentions?
 
 What sharing of information occurs between users and composers? Decoupling (be explicit)
 
-How to avoid revision wars
+failure mode: how to avoid revision wars
 
-\section{Algorithmic Evaluator}
+\section{User Interface}
 
-Current design
+TODO
 
-MIDI
 
-entropy discussion
+
+
+
+
+
+
+\section{Automated Analysis of Musical Structure}
+
+\subsection{Brief information theory background}
+
+Entropy
 
 KL Divergence
+
+Mutual Information
+
+\subsection{Current Design}
+
 
 \section{Use Cases}
 
 \subsection{Individual User, Individual Composer}
 
+Our first use case considers the following scenario: a listener who may be a non-musician would like a new piece of music, perhaps to use for a function such as study music. We consider the case that the listener specifies a new project defined by a mood and genre. At this point, multiple composers could collaborate on the music specification, but we first consider the case that a single composer iterates over the piece with assistance from our system until the requester is happy.
+
+
 \subsection{Multiple Composers}
+
+Our second use case considers the case where multiple composers create a music specification together, and then collaboratively compose music that stays on track with the original specification.
 
 TODO: include failure modes
 
 \subsection{Therapist with Agent - Human Composition Team}
 
+Our third case considers the situation where a music therapist would like music to use with their patients. These pieces may have a more highly-refined specification than music for casual listening. The specification may follow a treatment plan and may require a specific tempo or special therapeutic timbres (sound qualities).
+
 high volume necessity
 
-\section{User Interface}
+given the detailed specification, an artificially intelligent agent may do a large amount of work, which is then checked by a human composer
 
-TODO
 
 \section{Discussion}
 
