@@ -126,6 +126,9 @@
 \begin{abstract}
 %% Text of abstract
 
+
+NOTE: WE SHOULD USE THAT FEATURE THAT LETS YOU SAY "SEE SECTION ANALYSIS ", and it automatically adds in the right section numbers\\
+
 Increasing productivity of music composition has many positive benefits. Listeners
 would appreciate individually tailored music to their emotional needs and context.
 Composers would be facilitated by greater and more diverse cooperation yielding more
@@ -261,6 +264,14 @@ existing information retrieval systems
 
 \subsection{MIDI and actions to be taken on piece of music}
 TODO: [Mark]
+
+Our system represents music in MIDI format. MIDI is a protocol for communicating discrete information about the pitch, duration, and dynamics of individual notes, and provides a way to describe the vertical arrangement of individual notes as chords and their horizontal arrangement over time. Most familiar software for music notation and music production build user interfaces on top of a basic MIDI file editor.
+
+Through the use of additional metadata (next section), composers are able to segment MIDI files that represent a piece of music into separate segments. For example, a piece may be subdivided into several sections. Segmentation may represent intentions about musical form, for example one may segment part of a composition into an exposition and a development section.
+
+During an interaction with the system, a composer is able to change a composition by editing the MIDI in several low-level or high-level ways. Composers can add a new block of material, edit an existing block, remove an existing block, swap the order of two blocks, merge two blocks, or split a block into two.
+
+At each iteration of editing, the system suggests an option that may bring the work in progress closer to what is specified by the SharedPlan. This is primarily in the form of "switch blocks A and B?" (See Section on Automatic Evaluation)
 
 \subsection{Shared Plan + Metadata, inter-composer communication}
 
