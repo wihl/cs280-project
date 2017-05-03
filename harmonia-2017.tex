@@ -51,7 +51,7 @@
 
 \usepackage[margin=1.25in]{geometry}
 
-
+\usepackage{epigraph}
 \usepackage{setspace}
 \onehalfspacing
 
@@ -86,7 +86,7 @@
 
 % \biboptions{}
 
-\journal{cs280r - Final Project Report}
+\journal{cs280r, Spring 2017 - Final Project Report}
 
 \begin{document}
 
@@ -113,7 +113,7 @@
 %% \address{Address\fnref{label3}}
 %% \fntext[label3]{}
 
-\title{CS280r Final Project Report \\ $A \rho \mu o \nu \acute{\iota} \alpha$ (Harmonia): A System for Collaborative Music Composition}
+\title{CS280r Spring 2017 - Final Project Report \\ $A \rho \mu o \nu \acute{\iota} \alpha$ (Harmonia): A System for Collaborative Music Composition}
 
 %% use optional labels to link authors explicitly to addresses:
 %% \author[label1,label2]{<author name>}
@@ -147,9 +147,27 @@ SharedPlan to provide guidance to both human and agent composers.
 %% main text
 \section{Introduction}
 \label{sec:introduction}
-TODO: [David]  Should contain an overview of the problem to be addressed, the approach taken to   
-  address that problem, and the results of that approach. Should provide the reader with a  
-  road map for how your argument will be developed in the other sections of the paper.
+
+\epigraph{It is my design to render it manifest that no one point in its composition is referrible either to accident or intuition -- that the work proceeded, step by step, to its completion with the precision and rigid consequence of a mathematical problem.}{\textit{Edgar Allen Poe \\ The Philosophy of Composition}}
+
+Music composition has historically been an individual endeavor, which is counterintuitive when music is
+mostly played and experienced in a group. Part of this is due to the singular nature of creative 
+expression, but a large part is also due to a dearth of viable tools to enable collaborative efforts
+between composers. Most modern composition is performed using digital workstation tools, yet composers do not generally
+have access to the collaborative tools and evaluation processes available to an entry level software engineer.
+
+Deep Learning networks are being used for creation of new visual[ref], narrative[ref] and now musical works[ref].
+These more sophisticated tools can assist human composers both in terms of idea exploration as well as 
+objective evaluation against intent of the composition and expression of originality.
+
+We propose a system for music composition that addresses collaborative music composition inspired by
+tools used for software teamwork, course-sourced ideation, and mathematical evaluation of the work in progress,
+while integrating original contributions by Deep Learning networks.
+We will first examine related work for intentionality, collaboration and mathematical evaluation of music.  We will
+then provide a specification for music composition workflow. This will be
+followed by a specification of algorithmic evaluation of the work in order to validate against intentionality.
+We will present three use cases for the entire system including possible failure modes. We will then 
+conclude with a discussion of the proposal including limitations we have identified and potential future work.
 
 
 RESEARCH TODO
