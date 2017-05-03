@@ -52,6 +52,7 @@
 \usepackage[margin=1.25in]{geometry}
 
 \usepackage{epigraph}
+\usepackage{graphicx}
 \usepackage{setspace}
 \onehalfspacing
 
@@ -86,7 +87,7 @@
 
 % \biboptions{}
 
-\journal{cs280r, Spring 2017 - Final Project Report}
+\journal{cs280r, Spring 2017 - Final Project Report, Goldstein and Wihl}
 
 \begin{document}
 
@@ -154,7 +155,7 @@ Music composition has historically been an individual endeavor, which is counter
 mostly played and experienced in a group. Part of this is due to the singular nature of creative 
 expression, but a large part is also due to a dearth of viable tools to enable collaborative efforts
 between composers. Most modern composition is performed using digital workstation tools, yet composers do not generally
-have access to the collaborative tools and evaluation processes available to an entry level software engineer.
+have access to the collaborative tools and evaluation processes available to an analogous entry level software engineer.
 
 Deep Learning networks are being used for creation of new visual[ref], narrative[ref] and now musical works[ref].
 These more sophisticated tools can assist human composers both in terms of idea exploration as well as 
@@ -253,6 +254,14 @@ Our work builds on the the Information Dynamics Approach [Abdallah et al 2012]. 
 
 \subsection{Workflow Overview}
 
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.4]{workflow.pdf}
+	\caption{Overall workflow: a non-musical user or a composer define a SharedPlan. Composer 1 (red) starts
+	iterating and commits a work-in-progress. Composer 2 (blue) continues iterating until the original user is
+	satisified.}
+	\label{fig:workflow}
+\end{figure}
 TODO [David]
 
 someone creates a shared plan (individual or composers)
