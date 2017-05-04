@@ -54,6 +54,9 @@
 \usepackage{epigraph}
 \usepackage{graphicx}
 \usepackage{setspace}
+\usepackage{hyperref}
+\renewcommand{\sectionautorefname}{\S}
+\renewcommand{\subsectionautorefname}{\S}
 \onehalfspacing
 
 %% The amsthm package provides extended theorem environments
@@ -126,10 +129,6 @@
 
 \begin{abstract}
 %% Text of abstract
-
-
-NOTE: WE SHOULD USE THAT FEATURE THAT LETS YOU SAY "SEE SECTION ANALYSIS ", and it automatically adds in the right section numbers!\\
-
 Increasing productivity of music composition has many positive benefits. Listeners
 would appreciate individually tailored music to their emotional needs and context.
 Composers would be facilitated by greater and more diverse cooperation yielding more
@@ -231,22 +230,6 @@ Our systems relies on the ability to model musical structure in a way that suppo
 
 Our work builds on the the Information Dynamics Approach [Abdallah et al 2012]. Abdallah uses predictive information rate, a entropy/divergence based metric that measures how a listener's mid-piece distribution over future musical events is continually revised as new information is presented, to compute a curve that summarizes aspects of surprise in redundancy in a piece of music. Our work assumes that musical structure can be effectively summarized by this criteria. We assume that pieces from a particular genre/mood are defined by characteristic balances of surprise and redundancy over time, with peaks of information content (communicated by the composer) in genre-specific locations. We leverage this metric as the foundation of our automatic analysis system, which compares a collaborative work-so-far against the characteristic curves for the genre and mood specified by the mutual plan for the piece, and suggests edits to the composers to keep them in line with their goal.
 
-% THESE ARE EXTENSIONS TO HOW WE COULD IMPROVE THE ANALYSIS (DO NOT DELETE)
-
-%In the manifesto, Widner recalls key points made by theorist Cohen in the 1950s, that an information approach for describing music must develop to account for two things crucial to music but not included in information heory (at Cohen's time but still hardly so half a century later) 1) there must be a theory of interactions for multiple streams of musical information, for example for the way in which rhythmic information may make harmonic events more or less certain. Composers do not decide all of music's parameters separately. 2) there must be theory for account for multiple levels of structural hierarchy coming at once from a single stream of musical information. Rhythms constitute a local time feel but also accelerate a piece toward new sections. Recent directions in information theory may provide insight. 
-
-%The first point requires a generalization of mutual information to multiple random variables, which has been difficult to interpret and met with confusion over several coexistent approaches [V.d. Cruys 2011]. Multivariate mutual information is used to describe the extent to which the knowledge of one event can reduce the entropy in several other variables. To our knowledge, the second point has not yet been explored.
-
-%Cohen Quotes
-%1. the basic [assumption] is that statistical probability... corresponds to the listener's expectations... the average surprisal value... represents the listener's state of uncertainty?
-%2. ?Another... is that one portion of the cultural sign system can be legitimately abstracted from the whole, and that values based on this abstraction will have the same worth as when the portion is a part of the whole.?
-%3. ?A further assumption... a sequence of musical events is experienced on only one architectonic level: in melodic analyses, on the level of notes or intervals; in rhythmic analyses, on the level of the pulse pattern... theory will have to take account of the interaction among levels.?
-%We need to consider several streams of info. and their interactions: rhythm, pitch, harmony, timbre. Even within one type of information stream, say pitch, we need to consider several hierarchical levels at once: 
-
-
-
-
-
 
 \section{System Design}
 
@@ -281,20 +264,18 @@ git + intention, attributing credit, version control not available in existing m
 TODO [David]: reference splice.com and blend.io
 
 
-
 \subsection{Genre + Mood}
 
 TODO: [Mark]
 
 existing information retrieval systems
 
-
 \subsection{MIDI and actions to be taken on piece of music}
 TODO: [Mark]
 
-Our system represents music in MIDI format. MIDI is a protocol for communicating discrete information about the pitch, duration, and dynamics of individual notes, and provides a way to describe the vertical arrangement of individual notes as chords and their horizontal arrangement over time. Most familiar software for music notation and music production build user interfaces on top of a basic MIDI file editor.
+Our system represents music in MIDI format. MIDI is a protocol for communicating discrete information about the pitch, duration, and dynamics of individual notes. A musical work is described by specifying the vertical arrangement of individual notes as chords and their horizontal arrangement over time. Most familiar software for music notation and music production build user interfaces on top of a basic MIDI file editor. Extensions to this protocol include MusicXML, which allows for the specification of additional parameters such as expression markings and articulation information. In our system, a simple MIDI editor is sufficient for now.
 
-Through the use of additional metadata (next section), composers are able to segment MIDI files that represent a piece of music into separate segments. For example, a piece may be subdivided into several sections. Segmentation may represent intentions about musical form, for example one may segment part of a composition into an exposition and a development section.
+Through the use of additional metadata (next section), composers are able to segment MIDI files into separate segments. For example, a piece may be subdivided into several sections. Segmentation may represent intentions about musical form, for example one may segment part of a composition into an exposition and a development section.
 
 During an interaction with the system, a composer is able to change a composition by editing the MIDI in several low-level or high-level ways. Composers can add a new block of material, edit an existing block, remove an existing block, swap the order of two blocks, merge two blocks, or split a block into two.
 
@@ -310,16 +291,11 @@ How do composers or users express intentions?
 
 What sharing of information occurs between users and composers? Decoupling (be explicit)
 
-failure mode: how to avoid revision wars
+failure mode: how to avoid revision wars? It can be expected that one composers moves the piece along in the direction that another composer does not approve of, regardless of whether the change happens make the block-box auto eval system say "this is closer to the goal".
 
 \section{User Interface}
 
 TODO: [David]
-
-
-
-
-
 
 
 
@@ -337,6 +313,7 @@ Mutual Information
 
 \subsection{Current Design}
 
+blahblahblah
 
 \section{Use Cases}
 
@@ -365,6 +342,11 @@ high volume necessity
 given the detailed specification, an artificially intelligent agent may do a large amount of work, which is then checked by a human composer
 
 
+\section{Evaluation Methodology}
+
+this will probably be a small study on trained musicians rather than a large-scale crowdsourced study
+
+
 \section{Discussion}
 
 TODO: [David + Mark]
@@ -382,7 +364,6 @@ Current music representation is discrete MIDI, not audio. Limits for vocals, oce
 Presume that reliable corpus-based genre and mood classification solutions exist, particularly information retrieval procedures
 
 
-
 \section{Conclusion}
  Two Novel Contributions:
  \begin{itemize}
@@ -395,11 +376,27 @@ Intentionality, SharedPlan and Agents
 TODO: [David]
 
 \begin{itemize}
+\item MusicXML for additional expression of musical ideas
 \item Improved agent composition
 \item Intelligent ad hoc composition
 \item Facilitator of scalable music composition
 \item improved evaluator, possibly RNN based
 \end{itemize}
+
+
+% THESE ARE EXTENSIONS TO HOW WE COULD IMPROVE THE ANALYSIS (DO NOT DELETE)
+
+%In the manifesto, Widner recalls key points made by theorist Cohen in the 1950s, that an information approach for describing music must develop to account for two things crucial to music but not included in information theory (at Cohen's time but still hardly so half a century later) 1) there must be a theory of interactions for multiple streams of musical information, for example for the way in which rhythmic information may make harmonic events more or less certain. Composers do not decide all of music's parameters separately. 2) there must be theory for account for multiple levels of structural hierarchy coming at once from a single stream of musical information. Rhythms constitute a local time feel but also accelerate a piece toward new sections. Recent directions in information theory may provide insight. 
+
+%The first point requires a generalization of mutual information to multiple random variables, which has been difficult to interpret and met with confusion over several coexistent approaches [V.d. Cruys 2011]. Multivariate mutual information is used to describe the extent to which the knowledge of one event can reduce the entropy in several other variables. To our knowledge, the second point has not yet been explored.
+
+%Cohen Quotes
+%1. the basic [assumption] is that statistical probability... corresponds to the listener's expectations... the average surprisal value... represents the listener's state of uncertainty?
+%2. ?Another... is that one portion of the cultural sign system can be legitimately abstracted from the whole, and that values based on this abstraction will have the same worth as when the portion is a part of the whole.?
+%3. ?A further assumption... a sequence of musical events is experienced on only one architectonic level: in melodic analyses, on the level of notes or intervals; in rhythmic analyses, on the level of the pulse pattern... theory will have to take account of the interaction among levels.?
+%We need to consider several streams of info. and their interactions: rhythm, pitch, harmony, timbre. Even within one type of information stream, say pitch, we need to consider several hierarchical levels at once: 
+
+
 
 \section{References}
 Meyer, L.B., 1956. Emotion and Meaning in Music. Chicago University Press, Chicago, IL.
