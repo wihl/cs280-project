@@ -302,9 +302,42 @@ TODO: [David]
 
 TODO: [Mark]
 
-Harmonia facilitates collaborative composition in two ways. First, the interface as a whole, including the revision system an the shared metadata associated with each composition, helps with practical aspects of communication and coordination. Second, the analysis system lets composers know how close their work-in-progress is to their goal, as measured by similarity to characteristic pieces relevant to their goal. The analysis system also suggests structural edits such as swapping the order of existing material, or deleting material, that could further improve the piece. In this section, we describe the automated analysis of musical structure that is used by our system.
+Harmonia facilitates collaborative composition in two ways. First, the interface as a whole, including the revision system an the shared metadata associated with each composition, helps with practical aspects of communication and coordination. Second, the analysis system lets composers know how close their work-in-progress is to their goal, as measured by similarity to characteristic pieces relevant to their goal. The analysis system also suggests structural edits such as swapping the order of existing material, or deleting material, that could further improve the piece. In this section, we describe the automated analysis of musical structure that is used by our system. Crucial to our system, our computational approach models the structure of a piece of music in relation to the expected trajectory of surprise and redundancy that a listener experiences.
 
- \subsection{Brief information theory background}
+
+ \subsection{Information theory background}
+ 
+ Let $X$ be a discrete random variable that takes on values from the set $\mathcal{X}$. For example, $X$ may represent the next chord that a listener hears in a piece of music. $X=x$ indicates that the listener heard $X$ take on the value of a specific chord $x$. Let $p_X(x) = p(x)$ denote the probability that $X$ will take on value $x$, \textit{before} the listener hears the chord, as estimated by a distribution that the listener brings with them from prior musicial experiences, as well as from what they have heard in the piece so far. $-logp(x)$ then corresponds to the \textit{surprise} of the event, because the more the listener expects the event, the lower the surprise, where the log is taken for convenience (it is monotonic in the $p(x)$). Remembering that $X$ represents the event that the listener is about to experience (e.g. the chord they are about to hear), we can represent the expected surprise of $X$ averaged over all possible values:
+ 
+ $$ H(X) = - \sum_{x \in \mathcal{X}} p(x) logp(x)$$
+ 
+\noindent which corresponds to the Entropy of $X$, $H(X)$. Intuitively, this means that the listener does not know what the coming event will be, but from context (from their current state of listening as represented by their current distribution over future events), they expect a certain extent of surprise from the next event.
+
+Because we are interested in representing musical structure in terms of the dynamics of the surprise experienced by the listener, it is necessary to describe the way in which the listener's distribution over future events changes as they hear each realization. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+
+ 
+ Taking the log of the surprise (which preserves monotonicity), we see that 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 
 Entropy
 
