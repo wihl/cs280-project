@@ -296,6 +296,16 @@ What sharing of information occurs between users and composers? Decoupling (be e
 
 failure mode: how to avoid revision wars? It can be expected that one composers moves the piece along in the direction that another composer does not approve of, regardless of whether the change happens make the block-box auto eval system say "this is closer to the goal".
 
+NOTE FROM MARK: Talked to Pao about this a little. Finding out a nice way for composers to share their intentions about an added passage will help because it will distinguish between two kinds of disagreements
+
+1. composer agrees with another composer's intention about an edit, but disagrees with the actual implementation
+2. composer fundamentally disagrees with the intention
+
+
+
+
+
+
 \section{User Interface}
 
 TODO: [David]
@@ -310,11 +320,11 @@ Harmonia facilitates collaborative composition in two ways. First, the interface
 
  \subsection{Entropy of Musical Events and Divergence}
  
- Let $X$ be a discrete random variable that takes on values from the set $\mathcal{X}$. For example, $X$ may represent the next chord that a listener hears in a piece of music. $X=x$ indicates that the listener heard $X$ take on the value of a specific chord $x$. Let $p_X(x) = p(x)$ denote the probability that $X$ will take on value $x$, \textit{before} the listener hears the chord, as estimated by a distribution that the listener brings with them from prior musicial experiences, as well as from what they have heard in the piece so far. $-logp(x)$ then corresponds to the \textit{surprise} of the event, because the more the listener expects the event, the lower the surprise, where the log is taken for convenience (it is monotonic in the $p(x)$). Remembering that $X$ represents the event that the listener is about to experience (e.g. the chord they are about to hear), we can represent the expected surprise of $X$ averaged over all possible values:
+Let $X$ be a discrete random variable that takes on values from the set $\mathcal{X}$. For example, $X$ may represent the next chord that a listener hears in a piece of music. $X=x$ indicates that the listener heard $X$ take on the value of a specific chord $x$. Let $p_X(x) = p(x)$ denote the probability that $X$ will take on value $x$, \textit{before} the listener hears the chord, as estimated by a distribution that the listener brings with them from prior musical experiences, as well as from what they have heard in the piece so far. $-logp(x)$ then corresponds to the \textit{surprise} of the event, because the more the listener expects the event, the lower the surprise, where the log is taken for convenience (it is monotonic in the $p(x)$). Since $X$ represents the event that the listener is about to experience (e.g. the chord they are about to hear), we can represent the expected surprise of $X$ averaged over all possible values as:
  
  $$ H(X) = - \sum_{x \in \mathcal{X}} p(x) logp(x)$$
  
-\noindent which corresponds to the Entropy of $X$, $H(X)$. Intuitively, this means that the listener does not know what the coming event will be, but from context (from their current state of listening as represented by their current distribution over future events), they expect a certain extent of surprise from the next event.
+\noindent which corresponds to the Entropy of $X$, $H(X)$. Intuitively, this means that the listener does not know what the next even, but from context (from their current state of listening as represented by their current distribution over future events), they expect a certain extent of surprise from the next event.
 
 Because we choose to represent musical structure in terms of the dynamics of the surprise experienced by the listener, it is necessary to describe the way in which the listener's distribution over future events changes as they hear each realization of whichever series of events they are following, for example the chord progression in the running example. Here it is necessary to describe the ``difference" between the distribution over future events before the listener hears the realization of $X$ at the current time-step and after the event is heard. The Kullback-Leibler Divergence of one distribution from another captures this notion of distance:
 
