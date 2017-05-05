@@ -314,10 +314,13 @@ $$ D_{KL}(X'\textrm{ }|| \textrm{ } X) =  \sum_{x \in \mathcal{X}} p_{X'}(x) log
 
 \subsection{Current Design}
 
-Where we describe how composers receive feedback and interact with the automatic analysis.
-Comparison of curves of characteristic piece to work-in-progress.
+Harmonia ...
 
-blahblahblah
+We assume that music information retrieval systems exist to facilitate calculating PIR on sample pieces of music queried by genre, mood, and other metadata keywords. Because we currently analyze MIDI representation of music, this retrieval would be done on a corpus of MIDI or sheet music rather than audio recordings. Some examples of existing systems include BLAH BLAH and BLAH. We calculate the PIR for the the most popular $\theta \%$ of pieces matching a specified query, and average the PIR curves to create a "characteristic curve" that represents the typical structure of a piece of music fitting the metadata criteria.
+
+Comparing the characteristic curve with the PIR curve of the work in progress, our system can estimate some notion of distance from the musical goal specified in the SharedPlan. This comparison support several important features of our system. First, not considering any musical edit suggestions made by our system, a composer may simply see whether their latest edit brings the piece of music closer to or further from the shared goal. Composers may prefer to go with edits that increase the score of the piece, or may choose to stick with their edit even if it decreases the score. Reasons for going with a ``worsening" action include choosing to lay down material that further edits will re-contextualize. In this case, it is important for a composer to commit their intentions over the new edit as metadata in the SharedPlan.
+
+Also using these PIR scores, our system may...
 
 \section{Use Cases}
 
