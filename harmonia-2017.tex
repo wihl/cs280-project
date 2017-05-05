@@ -207,7 +207,9 @@ Our work builds on the the Information Dynamics Approach [Abdallah et al 2012]. 
 
 \section{System Design}
 
- \todo[inline]{Mark: brief intro to system design section here}
+\todo[inline]{Mark: Need to rephrase this}
+After reviewing the typical workflow of a editing a piece of music as part of a team of composers, we describe the details of our system design. The design is centered around addressing two aspects of collaborative composition. The first includes the composition interface, the representation of music, the editing capabilities of composers, and the version control system used to track musical revisions. These all focus on issues of communication and coordination in collaboration over a shared artifact of a specfied format, and with a specification of editing actions. Then we discuss the automated music analysis used in our system for giving feedback and suggestions to composers. This facilitates the collaborative composition process by helping composers assess the affect of their edits on the movement of the work in progress toward the goal, and is specific to the domain of music. We discuss how these two system functions in combination help composers by guiding aspects of revision on a shared musical artifact, and by providing an interface that makes such revisions convenient, modular, and amenable to collaboration. %This includes special metadata associated with each composition by the system, which describes the intentions for the work, for example the goal genre and mood of the piece. This metadata is kept together with the composition, and is updated throughout the collaborative process to include further information on composer intent as edits are made.  
+
 
 \subsection{Workflow Overview}
 
@@ -231,13 +233,6 @@ Within a particular composer/system interaction, automated analysis is run on th
 suggests some actions to the composer, particularly suggesting to switch two parts of a piece.
 Composer can follow suggestions or do their own modifications, or do nothing and finish.
 
-\subsection{GIT}
-
-git + intention, attributing credit, version control not available in existing midi systems
-
- \todo[inline]{David: reference splice.com and blend.io}
-
-
 \begin{figure}
 \vspace*{-3cm}
 	\includegraphics[scale=0.4]{midi.pdf}
@@ -254,6 +249,12 @@ Our system represents music in MIDI format. MIDI is a protocol for communicating
  \todo[inline]{Mark: clean up language about segmentation}
 
 During an interaction with the system, a composer is able to change a composition by editing the MIDI in several low-level or high-level ways. Composers can add a new block of material, edit an existing block, remove an existing block, swap the order of two blocks, merge two blocks, or split a block into two. At each iteration of editing, the system suggests an option that may bring the work in progress closer to what is specified by the SharedPlan. This is primarily in the form of "switch blocks A and B?" (See Section on Automatic Evaluation).
+
+\subsection{GIT}
+
+git + intention, attributing credit, version control not available in existing midi systems
+
+ \todo[inline]{David: reference splice.com and blend.io}
 
 \subsection{Shared Plan + Metadata, inter-composer communication}
 
@@ -364,9 +365,14 @@ Notes: evaluation is optional. Can be ignored by committer.
  \todo[inline]{David}
 Collaboration is offline, not real-time
 
+\todo[inline]{Mark}
+Are there any generalizations of the automated analysis? It's a special case of semantic analysis that is specific to temporal structure. What would it be like to work on a story? The focus should be on considering things that do not rely on external crowdsourced work (point made in IdeaHound).
+
+\todo[inline]{Mark}
 Current music representation is discrete MIDI, not audio. Limits for vocals, ocean sounds
 MIDI not Music XML. Sure, MIDI blocks could be used as placeholders for later-inserted, real-audio sounds, but it would be nice to avoid the need for future post-production work. Would be nice for composers to collaborate and have a finished piece art the end of the collaboration.
 
+\todo[inline]{Mark + David}
 Presume that reliable corpus-based genre and mood classification solutions exist, particularly information retrieval procedures
 
 \section {Future work}
