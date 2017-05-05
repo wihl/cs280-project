@@ -49,6 +49,7 @@
 
 %% The amssymb package provides various useful mathematical symbols
 \usepackage{amssymb}
+\usepackage{amsmath}
 
 %%\usepackage[margin=1.25in]{geometry}
 
@@ -151,10 +152,9 @@ SharedPlan to provide guidance to both human and agent composers.
 \section{Introduction}
 \label{sec:introduction}
 
-% NOTE: WE COULD PUT THIS QUOTE ON THE COVER AND NOT LOSE THE SPACE FOR OUR PAPER CONTENT
-
 \epigraph{It is my design to render it manifest that no one point in its composition is referrible either to accident or intuition -- that the work proceeded, step by step, to its completion with the precision and rigid consequence of a mathematical problem.}{\textit{Edgar Allen Poe \\ The Philosophy of Composition}}
 
+\todo[inline]{Fix references from section to section}
 Music composition has historically been an individual endeavor, which is counterintuitive when music is
 mostly played and experienced in a group. Part of this is due to the singular nature of creative 
 expression, but a large part is also due to a dearth of viable tools to enable collaborative efforts
@@ -173,34 +173,6 @@ then provide a specification for music composition workflow. This will be
 followed by a specification of algorithmic evaluation of the work in order to validate against intentionality.
 We will present three use cases for the entire system including possible failure modes. We will then 
 conclude with a discussion of the proposal including limitations we have identified and potential future work.
-
-
-%
-%\section{Body of the Paper}
-%
-%\begin{itemize}
-%	\item {\bf  Experimental Design.} A description of the experiment that was run; enough detail should be provided   
-%that the reader could reasonably duplicate the experiment. Results should not be 
-%reported in this section.
-%	\item {\bf Results.} A report of the results of the experiments, and their significance.
-%\end{itemize}
-
-
-%\subsection{Citations}
-
-% MUST ADD ENTRY TO BIB FILE FIRST
-
-%Here are two examples of how to cite a paper properly:
-%\begin{itemize}
-%	\item \citet{bernstein2000complexity} shows that ... 
-%	\item Prior work has shown that ... \citep{bernstein2000complexity}.
-%\end{itemize}
-
-%%  \citet{key}  ==>>  Jones et al. (1990)
-%%  \citep{key}  ==>>  (Jones et al., 1990)
-
-
-
 
 
 %TODO Discussion of previous important, similar work in the area with comparison to the particular approach taken and results of the paper. Avoid simply providing a laundry list of other work that is somehow related to the subject of the paper. This section should contain brief, in depth discussions of the work most similar to your project, i.e., to research that takes an approach to the problem or produces results with which your project should be compared. As is always the case with written work, throughout the paper you should have citations to work that you draw on. For example, if you have adapted a system, include a citation to the system when you first mention it; if you are extending a formalization, include a citation to the original on first mention. If you are unclear about whether a simple citation suffices or an extended discussion is needed in the Related Work section, look at the papers read for class this semester for models. If you are still unsure, check with the teaching staff.
@@ -224,7 +196,7 @@ Computer agents with the ability to facilitate and take part in music compositio
 
 In systems that create music, the interest is to assist human composers, rather than replace them. Perhaps a composer has good ``seeds" ideas, but the system may recommend variations of ideas, or re-orderings of ideas, to make them more conveying. Such system knowledge often comes from large-scale corpus analysis that mines patterns common to a collection of music. ChordRipple [Huang 2016] is a recent system that takes as input a progression of musical chords from a composer, and suggests substitutions of intermediate chords that preserve the original semantics of the input while serving to replace conventional choices with more interesting ones. If the composer agrees to make one of the recommended changes, the system assists the composer in interpolating between original and substituted material before and after the initial substitution, resulting in further mixing of human and system generated music.
 
-While our current work seeks primarily to assist teams of human composers to enrich and organize their work, we intend to design the system such that intelligent computer agent composers may be further in the loop. The Google Brian team has recently launched the Magenta Project for exploring machine intelligence in music. Magenta is an integrated environment of software tools and music-related datasets. Recently, Magenta released AI Duet, a computer system that reacts to human improvised gestures. Improvisation is an important part of composition. Even in steps where a human is composing, it may be beneficial to have an agent for the human to go back-and-forth on ideas with, much like two friends would iteratively vary and refine their ideas. In settings where a piece is defined by a specific enough set of guidelines, such as in a therapy use case where a listener may need music at a certain tempo and with a simple beat [See section INSERT SECTION] , powerful information retrieval systems make effective machine composition agents possible. Human composers may be placed at later steps of collaboration to ensure that the piece meets requirements in a humanly perceptible way.
+While our current work seeks primarily to assist teams of human composers to enrich and organize their work, we intend to design the system such that intelligent computer agent composers may be further in the loop. Last year, Google Brian launched the Magenta Project for exploring machine intelligence in music \footnote{\texttt{https://magenta.tensorflow.org/welcome-to-magenta}}. Magenta is an integrated environment of software tools and music-related datasets. Recently, Magenta released AI Duet \footnote{\texttt{https://aiexperiments.withgoogle.com/ai-duet}}, a computer system that reacts to human improvised gestures. Improvisation is an important part of composition. Even in steps where a human is composing, it may be beneficial to have an agent for the human to go back-and-forth on ideas with, much like two friends would iteratively vary and refine their ideas. In settings where a piece is defined by a specific enough set of guidelines, such as in a therapy use case where a listener may need music at a certain tempo and with a simple beat [See section INSERT SECTION] , powerful information retrieval systems make effective machine composition agents possible. Human composers may be placed at later steps of collaboration to ensure that the piece meets requirements in a humanly perceptible way.
 
 \subsection{Information Theory and Music Analysis}
 
@@ -235,18 +207,9 @@ Our work builds on the the Information Dynamics Approach [Abdallah et al 2012]. 
 
 \section{System Design}
 
-[perhaps include a workflow image and a MIDI image side-by-side here]
+ \todo[inline]{Mark: brief intro to system design section here}
 
 \subsection{Workflow Overview}
-
-%\begin{figure}
-%	\centering
-%	\includegraphics[scale=0.4]{workflow.pdf}
-%	\caption{Overall workflow: a non-musical user or a composer define a SharedPlan. Composer 1 (red) starts
-%	iterating and commits a work-in-progress. Composer 2 (blue) continues iterating until the original user is
-%	satisified.}
-%	\label{fig:workflow}
-%\end{figure}
 
 \begin{figure}
 	\includegraphics[scale=0.35]{workflow.pdf}
@@ -278,7 +241,7 @@ git + intention, attributing credit, version control not available in existing m
 \begin{figure}
 \vspace*{-3cm}
 	\includegraphics[scale=0.4]{midi.pdf}
-	\caption{WHY DOES THIS LOOK LIKE THIS}
+	\caption{WHY DOES THIS LOOK LIKE THIS. Top: MIDI. Bottom: MusicXML}
 	\label{fig:midi}
 \end{figure}
 
@@ -338,9 +301,10 @@ $$ D_{KL}(X'\textrm{ }|| \textrm{ } X) =  \sum_{x \in \mathcal{X}} p_{X'}(x) log
 
 Harmonia uses predictive information rate to calculate the proximity of a musical work in progress to a characteristic piece from the category specified by the SharedPlan. Using these measures, the system gives feedback to a composer with respect to the composer's editing decisions, and provides suggestions that may bring a piece closer to the goal. It is this analysis and suggestion loop, along with interaction with the SharedPlan metadata, that characterize the main experience for an individual composer. This experienced is further enriched by the fact that each time the composer enters the feedback loop, the piece and aspects of SharedPlan may have changed by other composers.
 
-We assume that music information retrieval systems exist to facilitate calculating PIR on sample pieces of music queried by genre, mood, and other metadata keywords (HipHop, Chill, Slow, Study)[footnote to youtube link]. Because we currently analyze MIDI representation of music, this retrieval is done on a corpus of MIDI and score representations of music rather than audio recordings. Some examples of existing query systems include BLAH BLAH and BLAH. We calculate the PIR for the the most popular $\beta \%$ of pieces matching a specified query, and average the PIR curves to create a ``characteristic curve" that represents the typical structure of a piece of music fitting the metadata criteria. [ HUGE PROBLEM $\#1$ HOW IS THIS AVERAGE CREATED? ]
-
-Comparing the characteristic curve with the PIR curve of the work in progress, our system can estimate some notion of distance from the musical goal specified in the SharedPlan. [ HUGE PROBLEM $\#2$ HOW IS THIS DIFFERENCE CALCULATED? ]. Let the difference be denoted as $\Delta$. This comparison supports several important features of our system. First, not considering any edit suggestions made by our system, a composer may simply see whether their latest edit brings the piece of music closer to (lower $\Delta$) or further from (higher $\Delta$) the SharedPlan.
+We assume that music information retrieval systems exist to facilitate calculating PIR on sample pieces of music queried by genre, mood, and other metadata keywords (HipHop, Chill, Slow, Study)[footnote to youtube link]. Because we currently analyze MIDI representation of music, this retrieval is done on a corpus of MIDI and score representations of music rather than audio recordings. Some examples of existing query systems include BLAH BLAH and BLAH. We calculate the PIR for the the most popular $\boldsymbol{\beta}\%$ of pieces matching a specified query, and average the PIR curves to create a ``characteristic curve" that represents the typical structure of a piece of music fitting the metadata criteria. 
+\todo[inline]{Mark: Is the method for calculating rate clear?}
+\todo[inline]{Mark: HUGE PROBLEM $\#1$ HOW IS THIS AVERAGE CREATED?}
+Comparing the characteristic curve with the PIR curve of the work in progress, our system can estimate some notion of distance from the musical goal specified in the SharedPlan. Let the difference be denoted as $\Delta$. This comparison supports several important features of our system. First, not considering any edit suggestions made by our system, a composer may simply see whether their latest edit brings the piece of music closer to (lower $\Delta$) or further from (higher $\Delta$) the SharedPlan. \todo[inline]{Mark: HUGE PROBLEM $\#2$ HOW IS THIS DIFFERENCE CALCULATED?} 
 
 Composers may prefer to go with edits that decrease $\Delta$, or may choose to stick with their edit even if it increases $\Delta$. Reasons for going with a ``worsening" action include choosing to lay down material that further edits will re-contextualize, whether by the same composer or by others. In this case, it is important for a composer to commit their intention for the new edit (as concise text) into the SharedPlan metadata. Future work involves specifying this format more explicitly, so that an automated agent may be able to act in response to this intention. It is also the case that unstructured, non-concise description of intentions by one composer may be difficult or overwhelming for another composer to deal with.
 
@@ -410,25 +374,22 @@ Presume that reliable corpus-based genre and mood classification solutions exist
  \todo[inline]{David + Mark}
  
 \begin{itemize}
-\item MusicXML for additional expression of musical ideas [mark] makes auto eval more difficult
+
+
+\item MusicXML
+\todo[inline]{Mark: MusicXML instead of MIDI. Makes automatic evaluation more difficult} 
+
 \item Improved agent composition
+\todo[inline]{David: 1. maybe re-mention here how could work when human agents communicate their intentions concisely and formally. 2. reinforcement learning} 
+
 \item Intelligent ad hoc composition
+\todo[inline]{David: what would this be?} 
+
 \item Facilitator of scalable music composition
-\item improved evaluator, possibly RNN based
-\end{itemize}
+\todo[inline]{David: How is this different? What what change? is it the ``scalable" aspect?} 
 
-\section{Conclusion}
-
- \todo[inline]{David + Mark}
- 
- Two Novel Contributions:
- \begin{itemize}
-\item Collaborative music composition system 
-Intentionality, SharedPlan and Agents
-\item Algorithmic evaluation of composition against intention
-\end{itemize}
-
-
+\item improved evaluator
+\todo[inline]{Mark: Improved evaluator. Multiple mutual information for interacting parameters of music.} 
 
 % THESE ARE EXTENSIONS TO HOW WE COULD IMPROVE THE ANALYSIS (DO NOT DELETE)
 
@@ -441,11 +402,23 @@ Intentionality, SharedPlan and Agents
 %2. ?Another... is that one portion of the cultural sign system can be legitimately abstracted from the whole, and that values based on this abstraction will have the same worth as when the portion is a part of the whole.?
 %3. ?A further assumption... a sequence of musical events is experienced on only one architectonic level: in melodic analyses, on the level of notes or intervals; in rhythmic analyses, on the level of the pulse pattern... theory will have to take account of the interaction among levels.?
 %We need to consider several streams of info. and their interactions: rhythm, pitch, harmony, timbre. Even within one type of information stream, say pitch, we need to consider several hierarchical levels at once: 
+\end{itemize}
 
+\section{Conclusion}
+
+ \todo[inline]{David + Mark}
+ 
+ \todo[inline]{Mark: Probably important to mention again how this is an extention to things like SoundCloud and Blend}
+  
+ Two Novel Contributions:
+ \begin{itemize}
+\item Collaborative music composition system 
+Intentionality, SharedPlan and Agents
+\item Algorithmic evaluation of composition against intention
+\end{itemize}
 
 
 \section{References}
-
 
  \todo[inline]{David + Mark: clean this up, add proper citations in text}
  
@@ -482,6 +455,26 @@ Pierce, Letter Scientific American 1956
 Youngblood, Style as information 1958 Journal of Music Theory
 
 The mathematical theory of communication. Shannon, Claude Elwood 1948. Bell Tel Labs Monograph
+
+
+
+
+
+%\subsection{Citations}
+
+% MUST ADD ENTRY TO BIB FILE FIRST
+
+%Here are two examples of how to cite a paper properly:
+%\begin{itemize}
+%	\item \citet{bernstein2000complexity} shows that ... 
+%	\item Prior work has shown that ... \citep{bernstein2000complexity}.
+%\end{itemize}
+
+%%  \citet{key}  ==>>  Jones et al. (1990)
+%%  \citep{key}  ==>>  (Jones et al., 1990)
+
+
+
 
 
 %% The Appendices part is started with the command \appendix;
