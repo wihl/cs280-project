@@ -52,6 +52,8 @@
 
 %%\usepackage[margin=1.25in]{geometry}
 
+
+\usepackage{todonotes}
 \usepackage{epigraph}
 \usepackage{graphicx}
 \usepackage{setspace}
@@ -207,7 +209,7 @@ Our work builds on several areas of research related to music, computer science,
 music systems that facilitate human composition and improvisation, and related work in Music Information Retrieval (MIR). Finally we describe previous work that applies information theory to the analysis of musical structure.
 
 \subsection{Shared Plans}
-TODO: [David]
+ \todo[inline]{David}
 
 \subsection{Collaborative Ideation}
 
@@ -254,7 +256,7 @@ Our work builds on the the Information Dynamics Approach [Abdallah et al 2012]. 
 	\label{fig:workflow}
 \end{figure}
 
-TODO [David]
+ \todo[inline]{David}
 
 someone creates a shared plan (individual or composers)
 
@@ -270,7 +272,7 @@ Composer can follow suggestions or do their own modifications, or do nothing and
 
 git + intention, attributing credit, version control not available in existing midi systems
 
-TODO [David]: reference splice.com and blend.io
+ \todo[inline]{David: reference splice.com and blend.io}
 
 
 \begin{figure}
@@ -282,13 +284,17 @@ TODO [David]: reference splice.com and blend.io
 
 \subsection{MIDI and Edit Actions}
 
-Our system represents music in MIDI format. MIDI is a protocol for communicating discrete information about the pitch, duration, and dynamics of individual notes. A musical work is described by specifying the vertical arrangement of individual notes as chords and their horizontal arrangement over time. Most familiar software for music notation and music production build user interfaces on top of a basic MIDI file editor. Extensions to this protocol include MusicXML, which allows for the specification of additional parameters such as expression markings and articulation information. In our system, a simple MIDI editor is sufficient for now. Through the use of additional metadata (next section), composers are able to segment MIDI files into separate segments. For example, a piece may be subdivided into several sections. Segmentation may represent intentions about musical form, for example one may segment part of a composition into an exposition and a development section. [TODO clean up language about segmentation].
+ \todo[inline]{Mark: fix above image spacing}
+
+Our system represents music in MIDI format. MIDI is a protocol for communicating discrete information about the pitch, duration, and dynamics of individual notes. A musical work is described by specifying the vertical arrangement of individual notes as chords and their horizontal arrangement over time. Most familiar software for music notation and music production build user interfaces on top of a basic MIDI file editor. Extensions to this protocol include MusicXML, which allows for the specification of additional parameters such as expression markings and articulation information. In our system, a simple MIDI editor is sufficient for now. Through the use of additional metadata (next section), composers are able to segment MIDI files into separate segments. For example, a piece may be subdivided into several sections. Segmentation may represent intentions about musical form, for example one may segment part of a composition into an exposition and a development section. 
+
+ \todo[inline]{Mark: clean up language about segmentation}
 
 During an interaction with the system, a composer is able to change a composition by editing the MIDI in several low-level or high-level ways. Composers can add a new block of material, edit an existing block, remove an existing block, swap the order of two blocks, merge two blocks, or split a block into two. At each iteration of editing, the system suggests an option that may bring the work in progress closer to what is specified by the SharedPlan. This is primarily in the form of "switch blocks A and B?" (See Section on Automatic Evaluation).
 
 \subsection{Shared Plan + Metadata, inter-composer communication}
 
-TODO: [David]
+ \todo[inline]{David}
 
 git + intention + algorithmic eval
 
@@ -307,7 +313,7 @@ failure mode: how to avoid revision wars? It can be expected that one composers 
 
 \section{User Interface}
 
-TODO: [David]
+ \todo[inline]{David}
 
 \section{Automated Analysis of Musical Structure}
 
@@ -344,20 +350,21 @@ Also using these PIR scores, our system may give edit suggestions. As specified 
 
 \subsection{Individual User, Individual Composer}
 
-TODO: [David]
+ \todo[inline]{David}
 
 Our first use case considers the following scenario: a listener who may be a non-musician would like a new piece of music, perhaps to use for a function such as study music. We consider the case that the listener specifies a new project defined by a mood and genre. At this point, multiple composers could collaborate on the music specification, but we first consider the case that a single composer iterates over the piece with assistance from our system until the requester is happy.
 
 \subsection{Multiple Composers}
-TODO: [Mark]
+
+
+ \todo[inline]{Mark: include failure modes}
 
 Our second use case considers the case where multiple composers create a music specification together, and then collaboratively compose music that stays on track with the original specification.
 
-TODO: include failure modes
 
 \subsection{Therapist with Agent - Human Composition Team}
 
-TODO: [David]
+ \todo[inline]{David}
 
 Our third case considers the situation where a music therapist would like music to use with their patients. These pieces may have a more highly-refined specification than music for casual listening. The specification may follow a treatment plan and may require a specific tempo or special therapeutic timbres (sound qualities).
 
@@ -367,7 +374,7 @@ given the detailed specification, an artificially intelligent agent may do a lar
 
 \section{Evaluation Methodology}
 
-TODO [Mark]
+ \todo[inline]{Mark}
 
 % testing this is quite lengthy. It involves people writing a piece! That said, clearly computer scientists must find ways to evaluate success on long term studies. There are plenty of things in life that computers can facilitate, that aren't easy or quick to evaluate.
 
@@ -383,14 +390,14 @@ TODO [Mark]
 
 \section{Discussion}
 
-TODO: [David + Mark]
+ \todo[inline]{David + Mark}
 \subsection{Enhancing or Stifling Creativity}
 
 Notes: evaluation is optional. Can be ignored by committer.
 
 \subsection{Limitations}
 
-TODO: [David]
+ \todo[inline]{David}
 Collaboration is offline, not real-time
 
 Current music representation is discrete MIDI, not audio. Limits for vocals, ocean sounds
@@ -399,8 +406,9 @@ MIDI not Music XML. Sure, MIDI blocks could be used as placeholders for later-in
 Presume that reliable corpus-based genre and mood classification solutions exist, particularly information retrieval procedures
 
 \section {Future work}
-TODO: [David]
 
+ \todo[inline]{David + Mark}
+ 
 \begin{itemize}
 \item MusicXML for additional expression of musical ideas [mark] makes auto eval more difficult
 \item Improved agent composition
@@ -410,6 +418,9 @@ TODO: [David]
 \end{itemize}
 
 \section{Conclusion}
+
+ \todo[inline]{David + Mark}
+ 
  Two Novel Contributions:
  \begin{itemize}
 \item Collaborative music composition system 
@@ -435,6 +446,9 @@ Intentionality, SharedPlan and Agents
 
 \section{References}
 
+
+ \todo[inline]{David + Mark: clean this up, add proper citations in text}
+ 
 IdeaHound Pao, Gajos
 
 ChordRipple Anna Huang, Gajos
