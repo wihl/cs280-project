@@ -262,15 +262,12 @@ TODO [David]: reference splice.com and blend.io
 
 
 \subsection{MIDI and actions to be taken on piece of music}
-TODO: [Mark]
 
 Our system represents music in MIDI format. MIDI is a protocol for communicating discrete information about the pitch, duration, and dynamics of individual notes. A musical work is described by specifying the vertical arrangement of individual notes as chords and their horizontal arrangement over time. Most familiar software for music notation and music production build user interfaces on top of a basic MIDI file editor. Extensions to this protocol include MusicXML, which allows for the specification of additional parameters such as expression markings and articulation information. In our system, a simple MIDI editor is sufficient for now.
 
 Through the use of additional metadata (next section), composers are able to segment MIDI files into separate segments. For example, a piece may be subdivided into several sections. Segmentation may represent intentions about musical form, for example one may segment part of a composition into an exposition and a development section.
 
-During an interaction with the system, a composer is able to change a composition by editing the MIDI in several low-level or high-level ways. Composers can add a new block of material, edit an existing block, remove an existing block, swap the order of two blocks, merge two blocks, or split a block into two.
-
-At each iteration of editing, the system suggests an option that may bring the work in progress closer to what is specified by the SharedPlan. This is primarily in the form of "switch blocks A and B?" (See Section on Automatic Evaluation)
+During an interaction with the system, a composer is able to change a composition by editing the MIDI in several low-level or high-level ways. Composers can add a new block of material, edit an existing block, remove an existing block, swap the order of two blocks, merge two blocks, or split a block into two. At each iteration of editing, the system suggests an option that may bring the work in progress closer to what is specified by the SharedPlan. This is primarily in the form of "switch blocks A and B?" (See Section on Automatic Evaluation).
 
 \subsection{Shared Plan + Metadata, inter-composer communication}
 
@@ -286,19 +283,16 @@ What sharing of information occurs between users and composers? Decoupling (be e
 
 failure mode: how to avoid revision wars? It can be expected that one composers moves the piece along in the direction that another composer does not approve of, regardless of whether the change happens make the block-box auto eval system say "this is closer to the goal".
 
-NOTE FROM MARK: Talked to Pao about this a little. Finding out a nice way for composers to share their intentions about an added passage will help because it will distinguish between two kinds of disagreements
+%NOTE FROM MARK: Talked to Pao about this a little. Finding out a nice way for composers to share their intentions about an added passage will help because it will distinguish between two kinds of disagreements
 
-1. composer agrees with another composer's intention about an edit, but disagrees with the actual implementation
-2. composer fundamentally disagrees with the intention
-
+%1. composer agrees with another composer's intention about an edit, but disagrees with the actual implementation
+%2. composer fundamentally disagrees with the intention
 
 \section{User Interface}
 
 TODO: [David]
 
 \section{Automated Analysis of Musical Structure}
-
-TODO: [Mark]
 
 Harmonia facilitates collaborative composition in two ways. First, the interface as a whole, including the revision system an the shared metadata associated with each composition, helps with practical aspects of communication and coordination. Second, the analysis system lets composers know how close their work-in-progress is to their goal, as measured by similarity to characteristic pieces relevant to their goal. The analysis system also suggests structural edits such as swapping the order of existing material, or deleting material, that could further improve the piece. In this section, we describe the automated analysis of musical structure that is used by our system. Crucial to our system, our computational approach models the structure of a piece of music in relation to the expected trajectory of surprise and redundancy that a listener experiences.
 
