@@ -24,7 +24,9 @@
 %% $Id: elsarticle-template-harv.tex 4 2009-10-24 08:22:58Z rishi $
 %%
 %%
-\documentclass[final,authoryear,11pt,times]{elsarticle}
+
+
+%% WHAT WE WERE USING \documentclass[final,authoryear,11pt,times]{elsarticle}
 
 %% Use the option review to obtain double line spacing
 %% \documentclass[authoryear,preprint,review,12pt]{elsarticle}
@@ -32,11 +34,11 @@
 %% Use the options 1p,twocolumn; 3p; 3p,twocolumn; 5p; or 5p,twocolumn
 %% for a journal layout:
 %% \documentclass[final,authoryear,1p,times]{elsarticle}
-%% \documentclass[final,authoryear,1p,times,twocolumn]{elsarticle}
-%% \documentclass[final,authoryear,3p,times]{elsarticle}
-%% \documentclass[final,authoryear,3p,times,twocolumn]{elsarticle}
+%%\documentclass[final,authoryear,1p,times,twocolumn]{elsarticle}
+%%\documentclass[final,authoryear,3p,times]{elsarticle}
+%%\documentclass[final,authoryear,3p,times,twocolumn]{elsarticle}
 
-%% \documentclass[final,authoryear,5p,times,twocolumn]{elsarticle}
+\documentclass[final,authoryear,5p,times,twocolumn]{elsarticle}
 
 %% if you use PostScript figures in your article
 %% use the graphics package for simple commands
@@ -49,7 +51,7 @@
 %% The amssymb package provides various useful mathematical symbols
 \usepackage{amssymb}
 
-\usepackage[margin=1.25in]{geometry}
+%%\usepackage[margin=1.25in]{geometry}
 
 \usepackage{epigraph}
 \usepackage{graphicx}
@@ -128,7 +130,7 @@
 \address{\{markgoldstein,davidwihl\}@g.harvard.edu}
 
 \begin{abstract}
-%% Text of abstract
+
 Increasing productivity of music composition has many positive benefits. Listeners
 would appreciate individually tailored music to their emotional needs and context.
 Composers would be facilitated by greater and more diverse cooperation yielding more
@@ -209,9 +211,8 @@ TODO: [David]
 
 Collaborative Ideation (CI) seeks to improve the productivity of individuals and groups in generating ideas through collaboration. The people involved are interested in creating related objects (e.g., we all want to brainstorm solutions to social problems) and seek either feedback or examples of others' work to enhance their individual process. Collaboration is centered around a shared workspace, physical or virtual, that allows for communication and sharing of ideas. The ideas produced may be for individual use, or ideators may work on shared artifacts such as an essay or piece of art. The dynamics of collaboration may be real-time or not, though increasingly, today's settings are real-time and virtual. A simple CI setting is one where each ideator brainstorms solutions to a problem common to all participants, and each participant can see all other's ideas. While such approaches have been used naturally in human culture for millennia, the design of intelligent computer systems today aims to facilitate these activities to allow for increased creativity and productivity. 
 
-IdeaHound [Siangliulue 2016] addresses at-scale collaboration in this setting. Siangliulue's work claims that only a small subset of the idea pool may be relevant and inspiring to a single ideator, that it is overwhelming for each ideator to view all participant's ideas. The system creates a semantic map of all generated ideas that allows each ideator to easily view their work in the context of the entire solution space. The map is automatically generated. Each user is prompted to interact with a personal ``whiteboard`` where they can cluster their ideas and separate them by semantic distance, and the global map is computed from the collection of whiteboards. This approach bypasses the need for external workers to power semantic analysis of ideas.  Using this map, IdeaHound recommends diverse suggestions to each ideator, eliminating the cognitive load of idea search. Our work is largely influenced by IdeaHound, but several challenges specific to collaborative music composition require new interventions. First, the generated objects are structured rather than unordered collections of ideas. Second, ideators need to build over each other's ideas rather than only seek inspiration.
-
-CI has surfaced in a setting closer to ours, in the space of online blogs and services designed to share visual art and music. Ideas range from small, unfinished efforts seeking directions to finished pieces seeking critique. Artists improve upon their ideas using the large-scale feedback. SoundCloud is an example of a hybrid music streaming service and CI platform. Though much of the hosted music is presented in finished form, people also post incomplete projects. Artists sometimes share ``stems" to their music, which are individual sound files that feature isolated instrumental tracks, with the intention that others seeking inspiration remix their pieces into new work. A newer platform, Blend, makes the sharing of source files explicit. By default, artists share their works in progress in the format of music production software source files, which allows others to quickly pick up on their work and take it in new directions. This setting is closer to our area of application and supports building on one another's ideas.  What changes when several ideators intend to create a single shared piece? With SoundCloud and Blend, one may take another's piece in a totally different direction. In our work, a collaborative composition has a goal associated with it through the duration of its existence. It is up to the composers and the system to keep a piece of music close to its shared plan.
+IdeaHound [Siangliulue 2016] addresses at-scale collaboration in this setting. Siangliulue's work claims that only a small subset of the idea pool may be relevant and inspiring to a single ideator, that it is overwhelming for each ideator to view all participant's ideas. The system creates a semantic map of all generated ideas that allows each ideator to easily view their work in the context of the entire solution space. The map is automatically generated. Each user is prompted to interact with a personal ``whiteboard`` where they can cluster their ideas and separate them by semantic distance, and the global map is computed from the collection of whiteboards. This approach bypasses the need for external workers to power semantic analysis of ideas.  Using this map, IdeaHound recommends diverse suggestions to each ideator, eliminating the cognitive load of idea search. Our work is largely influenced by IdeaHound, but several challenges specific to collaborative music composition require new interventions. First, the generated objects are structured rather than unordered collections of ideas. Second, ideators need to build over each other's ideas rather than only seek inspiration.\\
+\indent CI has surfaced in a setting closer to ours, in the space of online blogs and services designed to share visual art and music. Ideas range from small, unfinished efforts seeking directions to finished pieces seeking critique. Artists improve upon their ideas using the large-scale feedback. SoundCloud is an example of a hybrid music streaming service and CI platform. Though much of the hosted music is presented in finished form, people also post incomplete projects. Artists sometimes share ``stems" to their music, which are individual sound files that feature isolated instrumental tracks, with the intention that others seeking inspiration remix their pieces into new work. A newer platform, Blend, makes the sharing of source files explicit. By default, artists share their works in progress in the format of music production software source files, which allows others to quickly pick up on their work and take it in new directions. This setting is closer to our area of application and supports building on one another's ideas.  What changes when several ideators intend to create a single shared piece? With SoundCloud and Blend, one may take another's piece in a totally different direction. In our work, a collaborative composition has a goal associated with it through the duration of its existence. It is up to the composers and the system to keep a piece of music close to its shared plan.
 
 \subsection{Computer Facilitated Composition and Improvisation}
 
@@ -234,14 +235,23 @@ Our work builds on the the Information Dynamics Approach [Abdallah et al 2012]. 
 
 \subsection{Workflow Overview}
 
+%\begin{figure}
+%	\centering
+%	\includegraphics[scale=0.4]{workflow.pdf}
+%	\caption{Overall workflow: a non-musical user or a composer define a SharedPlan. Composer 1 (red) starts
+%	iterating and commits a work-in-progress. Composer 2 (blue) continues iterating until the original user is
+%	satisified.}
+%	\label{fig:workflow}
+%\end{figure}
+
 \begin{figure}
-	\centering
-	\includegraphics[scale=0.4]{workflow.pdf}
+	\includegraphics[scale=0.35]{workflow.pdf}
 	\caption{Overall workflow: a non-musical user or a composer define a SharedPlan. Composer 1 (red) starts
 	iterating and commits a work-in-progress. Composer 2 (blue) continues iterating until the original user is
 	satisified.}
 	\label{fig:workflow}
 \end{figure}
+
 TODO [David]
 
 someone creates a shared plan (individual or composers)
@@ -261,11 +271,16 @@ git + intention, attributing credit, version control not available in existing m
 TODO [David]: reference splice.com and blend.io
 
 
+\begin{figure}
+\vspace*{-3cm}
+	\includegraphics[scale=0.4]{midi.pdf}
+	\caption{WHY DOES THIS LOOK LIKE THIS}
+	\label{fig:midi}
+\end{figure}
+
 \subsection{MIDI and Edit Actions}
 
-Our system represents music in MIDI format. MIDI is a protocol for communicating discrete information about the pitch, duration, and dynamics of individual notes. A musical work is described by specifying the vertical arrangement of individual notes as chords and their horizontal arrangement over time. Most familiar software for music notation and music production build user interfaces on top of a basic MIDI file editor. Extensions to this protocol include MusicXML, which allows for the specification of additional parameters such as expression markings and articulation information. In our system, a simple MIDI editor is sufficient for now.
-
-Through the use of additional metadata (next section), composers are able to segment MIDI files into separate segments. For example, a piece may be subdivided into several sections. Segmentation may represent intentions about musical form, for example one may segment part of a composition into an exposition and a development section.
+Our system represents music in MIDI format. MIDI is a protocol for communicating discrete information about the pitch, duration, and dynamics of individual notes. A musical work is described by specifying the vertical arrangement of individual notes as chords and their horizontal arrangement over time. Most familiar software for music notation and music production build user interfaces on top of a basic MIDI file editor. Extensions to this protocol include MusicXML, which allows for the specification of additional parameters such as expression markings and articulation information. In our system, a simple MIDI editor is sufficient for now. Through the use of additional metadata (next section), composers are able to segment MIDI files into separate segments. For example, a piece may be subdivided into several sections. Segmentation may represent intentions about musical form, for example one may segment part of a composition into an exposition and a development section. [TODO clean up language about segmentation].
 
 During an interaction with the system, a composer is able to change a composition by editing the MIDI in several low-level or high-level ways. Composers can add a new block of material, edit an existing block, remove an existing block, swap the order of two blocks, merge two blocks, or split a block into two. At each iteration of editing, the system suggests an option that may bring the work in progress closer to what is specified by the SharedPlan. This is primarily in the form of "switch blocks A and B?" (See Section on Automatic Evaluation).
 
