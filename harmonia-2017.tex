@@ -329,6 +329,8 @@ There are multiple potential failure circumstances of the proposed design:
 \item[Fail to Evaluate] there may not be sufficient training data for a given genre / mood combination so the Evaluation may fail to provide sufficiently useful recommendations.
 \end{description}
 
+None of these failure modes results in a castastrophic collapse of the system. Failures result in a specific SharedPlan not advancing but does not preclude other SharedPlans from continuing to evolve.
+
 \section{User Interface}
 
 There are three aspects to the user interface: for non-musical users, for composers performing workflow and for composers actively editing the musical score.
@@ -413,7 +415,7 @@ Our second use case considers the case where multiple composers create a music s
 
 \begin{figure}
 	\includegraphics[scale=0.35]{clinical.pdf}
-	\caption{Use Case 3: A clinician defines a SharedPlan with more complex metadata for theraputic use. An agent performs the initial composition which consists of the bulk of the work.	A human composer reviews the work and make minor adjustments. The clinician approves the work and provides the result to the patient for treatment.}
+	\caption{Use Case 3: A clinician defines a SharedPlan with more complex metadata for theraputic use. An agent performs the initial composition which consists of the bulk of the work.	A human composer reviews the work and makes minor adjustments. The clinician approves the work and provides the result to the patient for treatment.}
 	\label{fig:clinical}
 \end{figure}
 
@@ -447,18 +449,23 @@ Notes: evaluation is optional. Can be ignored by committer.
 
 \subsection{Limitations}
 
- \todo[inline]{David}
-Collaboration is offline, not real-time
+There are several limitations in this proposal that are inherent in the design. This is purposeful as addressing these limitations may result in undo expansion of intent, scope, or problem tractability. Nevertheless, it is important to be explicit about known limitations.
 
-\todo[inline]{Mark}
-Are there any generalizations of the automated analysis? It's a special case of semantic analysis that is specific to temporal structure. What would it be like to work on a story? The focus should be on considering things that do not rely on external crowdsourced work (point made in IdeaHound).
+\textit{No explicit improvisation support.} The collaborative design is inspired from software engineering teamwork, which is a solidary activity. Unlike software, in music very fruitful results may occur in real-time improvisation by several musicians. The design does not preclude improvisation but does not account for it either. There may be interesting paths to explore discovered during improvisation that would not be captured by this design. A composer would have to create separate branches and record improvisation sections in each branch. The design does not account for partial interchange between branches.
 
-\todo[inline]{Mark}
-Current music representation is discrete MIDI, not audio. Limits for vocals, ocean sounds
-MIDI not Music XML. Sure, MIDI blocks could be used as placeholders for later-inserted, real-audio sounds, but it would be nice to avoid the need for future post-production work. Would be nice for composers to collaborate and have a finished piece art the end of the collaboration.
+\textit{Model may not generalize.} While we are confident that SharedPlans, software revision control and algorithmic evaluation is applicable to music composition, it is uncertain that the overall framework can be generalized to other domains. For example, it is difficult to imagine using this design for creating visual artwork. Revision control on binary formats is not very useful. Algorithmic evaluation of intent of a painting appears to be far more difficult than music. Music has a historically long interplay with mathematics making algorithmic evaluation more tractable. 
 
-\todo[inline]{Mark + David}
-Presume that reliable corpus-based genre and mood classification solutions exist, particularly information retrieval procedures
+\textit{Representation is discrete MIDI, not sounds. Vocals are not supported.} MIDI is far easier to generate and maintain under version control. This implies that many interesting sounds such as vocals, ocean waves and many experimental musical forms cannot be expressed in the current design. MusicXML is another text-based format that is more flexible than MIDI while still being amenable to revision control. However, it does not support vocals and more sophisticated sounds either. 
+
+\textit{Corpus based shared beliefs may not be robust.} One of the key assumptions is that genre / mood permutations generate a reasonable representation of the intent of the music. This representation is corpus based. This assumption presumes that genre and mood classification solutions exist, particularly for information retrieval procedures and that the representation is robust enough for the evaluation function to provide useful guidance. Since this has not been built and validated, the certainty of this assumption remains a source of further investigation.
+
+
+%\todo[inline]{Mark}
+%Are there any generalizations of the automated analysis? It's a special case of semantic analysis that is specific to temporal structure. What would it be like to work on a story? The focus should be on considering things that do not rely on external crowdsourced work (point made in IdeaHound).
+
+%\todo[inline]{Mark}
+%Current music representation is discrete MIDI, not audio. Limits for vocals, ocean sounds. MIDI not Music XML. Sure, MIDI blocks could be used as placeholders for later-inserted, real-audio sounds, but it would be nice to avoid the need for future post-production work. Would be nice for composers to collaborate and have a finished piece art the end of the collaboration.
+
 
 \section {Future work}
 
