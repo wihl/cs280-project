@@ -148,13 +148,11 @@ SharedPlan to provide guidance to both human and agent composers.
 
 % \linenumbers
 
-%% main text
 \section{Introduction}
 \label{sec:introduction}
 
-\epigraph{It is my design to render it manifest that no one point in its composition is referrible either to accident or intuition -- that the work proceeded, step by step, to its completion with the precision and rigid consequence of a mathematical problem.}{\textit{Edgar Allen Poe \\ The Philosophy of Composition}}
+\epigraph{It is my design to render it manifest that no one point in its composition is referrible either to accident or intuition -- that the work proceeded, step by step, to its completion with the precision and rigid consequence of a mathematical problem.}{\textit{Edgar Allen Poe, The Philosophy of Composition}}
 
-\todo[inline]{Fix references from section to section}
 Music composition has historically been an individual endeavor, which is counterintuitive when music is
 mostly played, improvised, and experienced in a group. Part of this is due to the singular nature of creative 
 expression, but a large part is also due to a dearth of viable tools to enable collaborative efforts
@@ -162,16 +160,20 @@ between composers. Most modern composition is performed using digital workstatio
 
 \todo[inline]{Mark: I think some word about building on collaborative ideation for the shared artifact setting is important here}
 
-Deep Neural Networks are being used for the creation of new visual[ref to Sketch paper], narrative[ref] and now musical works[wavenet? magenta ref?]. These more sophisticated tools can assist human composers both in terms of idea exploration as well as  objective evaluation against intent of the composition and expression of originality.
+Deep Neural Networks are being used for the creation of new visual[ref to Sketch paper], narrative[ref] and now musical works[wavenet? magenta ref?]. These sophisticated tools can assist a human composer with idea exploration and generation, as well as with idea evaluation (e.g. a composer may evaluate the likelihood of a musical sample against a corpus).
+
+\todo[inline]{Marl: Need a connection here from DNNs to how they may function in our system}
 
 We propose a system for music composition that addresses collaborative music composition inspired by
-tools used for software teamwork, collaborative ideation, and musical structure analysis. This system leaves many components open for integration with neural networks. We will first examine related work for intentionality, collaboration and mathematical evaluation of music.  We will then provide a specification for music composition workflow. This will be followed by a specification of algorithmic evaluation of the work in order to validate against intentionality. We will present three use cases for the entire system including possible failure modes. We will then  conclude with a discussion of the proposal including limitations we have identified and potential future work.
+tools used for software teamwork, collaborative ideation, and musical structure analysis. This system defines an interface for collaboration over a shared creative artifact, including a procedure for editing a work in progress, receiving automated system feedback about edits, and framework for communicating with collaborators about the intention of an edit. Crucially, the system assists collaborators with the task of staying on track with an \textit{a priori} specified goal for the turnout of the piece. This system is composed of several modules of functionality, some of which are openly int
 
-Our work builds on several areas of research related to music, computer science, and creative cognition. First we discuss related work in collaborative ideation, both in general and specifically in music. Next we discuss intelligent 
-music systems that facilitate human composition and improvisation, and related work in Music Information Retrieval (MIR). Finally we describe previous work that applies information theory to the analysis of musical structure.
+We first examine previous work related to shared intentionality, collaboration and group ideation, intelligent music systems, and modeling the structure of music. Next, we describe the details of the overall usage workflow as well as the individual components of our system. This includes a specification of an automated approach for giving composers feedback on the relevance of their ideas to a specified collaborative goal. We present three use cases for our system, where collaborating composers create music ranging in purpose from casual listening to clinical therapy. We conclude with a discussion of our system proposal , ncluding limitations we have identified and potential future work.
 
 \section{Related Work}
+
 %TODO Discussion of previous important, similar work in the area with comparison to the particular approach taken and results of the paper. Avoid simply providing a laundry list of other work that is somehow related to the subject of the paper. This section should contain brief, in depth discussions of the work most similar to your project, i.e., to research that takes an approach to the problem or produces results with which your project should be compared. As is always the case with written work, throughout the paper you should have citations to work that you draw on. For example, if you have adapted a system, include a citation to the system when you first mention it; if you are extending a formalization, include a citation to the original on first mention. If you are unclear about whether a simple citation suffices or an extended discussion is needed in the Related Work section, look at the papers read for class this semester for models. If you are still unsure, check with the teaching staff.
+
+Our work builds on several areas of research related to music, computer science, and creative cognition. First we discuss related work regarding shared intentionality in multi-agent settings. Then we discuss collaborative ideation, both in general and specifically in music. Next we discuss intelligent music systems that facilitate human composition and improvisation, and related work in Music Information Retrieval (MIR). Finally we describe previous work that applies information theory to the analysis of musical structure.
 
 \subsection{Shared Plans}
 
@@ -495,6 +497,7 @@ Youngblood, Style as information 1958 Journal of Music Theory
 
 The mathematical theory of communication. Shannon, Claude Elwood 1948. Bell Tel Labs Monograph
 
+\todo[inline]{Fix references from section to section}
 
 
 
