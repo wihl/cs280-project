@@ -317,6 +317,18 @@ During an interaction with the system, a composer is able to change a compositio
 
 The piece can be produced as an electronic piece of music by importing the MIDI into any music production software, specifying which MIDI track should be played by which sound or synthetic instrument, and exporting a sound file. If desired, composers may take additional actions on that finished work that are external to the system, such as produce the piece of music with live musicians or extended software instruments, but this is beyond our scope, which is mainly to facilitate collaboration during the composition process.
 
+\subsection{Design Failure Modes}
+
+There are multiple potential failure circumstances of the proposed design:
+
+\begin{description}
+\item[Failure to compose] No composer may elect to work on a given SharedPlan.
+\item[Failure to satisfy] The creator of the original SharedPlan may never approve or reject the produced work, leaving it in an undefined state.
+\item[Sub-plan not released]A sub-plan may be defined but no composer ever completes the sub-plan so the work stays in an incomplete state.
+\item[Evaluation not converging] The evaluation process may continue to offer suggestions that are rejected by the composer. Note that the evaluation process only makes recommendations but is not a gatekeeper for the composer to release. However, if the Evaluation mechanism repeatedly gives undesired or unhelpful suggestions, composers will cease future use.
+\item[Fail to Evaluate] there may not be sufficient training data for a given genre / mood combination so the Evaluation may fail to provide sufficiently useful recommendations.
+\end{description}
+
 \section{User Interface}
 
 There are three aspects to the user interface: for non-musical users, for composers performing workflow and for composers actively editing the musical score.
@@ -325,7 +337,7 @@ There are three aspects to the user interface: for non-musical users, for compos
 
 There are four commands possible in this context: \textbf{EditPlan} (including create/edit/delete), \textbf{Approve, Reject}. Since the user may not have any musical background, this user interface should be accessible to as large a population as possible. Ideally, this would be a simple looking, reactive web-based interface that would work equally well on mobile devices as well as desktops. Music apps such as Spotify may wish to integrate this functionality so a web-based API should also be accessible.
 
-For an unsophisticated user, \textbf{Approve} and \textbf{Reject} may be considered implicit. If the user listens to the composition past a certain point, such as 80\% of the total length of the work, it may be deemed implicitly approved. Similarly, if the user advances to another song within the first 20\%, the composition is implicited rejected. Implicit rejection does not provide any causal reason for the rejection, so try and error analogous to reinforcement learning must be used to discover the hidden reasons why a work was implicitly rejected. Other user actions do not provide enough signal to determine implicit actions so the work's acceptance status remains unknown.
+For an unsophisticated user, \textbf{Approve} and \textbf{Reject} may be considered implicit. If the user listens to the composition past a certain point, such as 80\% of the total length of the work, it may be deemed implicitly approved. Similarly, if the user advances to another song within the first 20\%, the composition is implicitly rejected. Implicit rejection does not provide any causal reason for the rejection, so trial and error analogous to reinforcement learning must be used to discover the hidden reasons why a work was implicitly rejected. Other user actions (such as stopping all music in the middle of play) do not provide enough signal to determine implicit actions so the work's acceptance status remains unknown.
 
 \subsection{Sub-plan Workflow User Interface}
 
@@ -381,27 +393,34 @@ Also using these PIR scores, our system may give edit suggestions. As specified 
 
 \subsection{Individual User, Individual Composer}
 
- \todo[inline]{David}
-
-Our first use case considers the following scenario: a listener who may be a non-musician would like a new piece of music, perhaps to use for a function such as study music. We consider the case that the listener specifies a new project defined by a mood and genre. At this point, multiple composers could collaborate on the music specification, but we first consider the case that a single composer iterates over the piece with assistance from our system until the requester is happy.
+Our first use case considers the following scenario: a listener who may be a non-musician would like a new piece of music, perhaps for a very specific function such as study music. We consider the case that the listener specifies a new project defined by a mood and genre. In this simple case, we consider a single composer iterates over the piece with assistance from our system until the requester is implicitly satisfied by listening to at least 80\% of the piece.
 
 \subsection{Multiple Composers}
 
+\begin{figure}
+	\includegraphics[scale=0.35]{multicomposer.pdf}
+	\caption{Use Case 2: Multiple composers define a SharedPlan. Composer 1 (\textcolor{red}{red}) starts
+	iterating, commits a work-in-progress and defines a sub-plan. Composer 2 (\textcolor{blue}{blue}) retrieves the sub-plan and continues iterating until the original composers are
+	satisified. Composer 2 maintains a separate branch for personal investigation.}
+	\label{fig:multicomposer}
+\end{figure}
 
- \todo[inline]{Mark: include failure modes}
+ \todo[inline]{Mark}
 
 Our second use case considers the case where multiple composers create a music specification together, and then collaboratively compose music that stays on track with the original specification.
 
-
 \subsection{Therapist with Agent - Human Composition Team}
 
- \todo[inline]{David}
+\begin{figure}
+	\includegraphics[scale=0.35]{clinical.pdf}
+	\caption{Use Case 3: A clinician defines a SharedPlan with more complex metadata for theraputic use. An agent performs the initial composition which consists of the bulk of the work.	A human composer reviews the work and make minor adjustments. The clinician approves the work and provides the result to the patient for treatment.}
+	\label{fig:clinical}
+\end{figure}
 
-Our third case considers the situation where a music therapist would like music to use with their patients. These pieces may have a more highly-refined specification than music for casual listening. The specification may follow a treatment plan and may require a specific tempo or special therapeutic timbres (sound qualities).
+Our third case considers the situation where a music therapist treats their patients using newly composed music, specific to a given patient's needs. Music therapy is used in many contexts such as the treatment of autism. This SharedPlan may have a more highly-refined specification than music for casual listening, such as a specific tempo or special therapeutic timbres (sound qualities). 
 
-high volume necessity
+In this case, due to high volume of personal treatment plans, the initial SharedPlan is executed by an agent which performs the bulk of the composition. The agent's composition is then reviewed by a human who may make only small modifications to make the music more warm or less mechanical. The clinician makes the final approval and then provides the music to the patient for treatment.
 
-given the detailed specification, an artificially intelligent agent may do a large amount of work, which is then checked by a human composer
 
 \section{Evaluation Methodology}
 
