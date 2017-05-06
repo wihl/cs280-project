@@ -244,40 +244,69 @@ Composer can follow suggestions or do their own modifications, or do nothing and
 
  \todo[inline]{Mark: fix above image spacing}
 
-Our system represents music in MIDI format. MIDI is a protocol for communicating discrete information about the pitch, duration, and dynamics of individual notes. A musical work is described by specifying the vertical arrangement of individual notes as chords and their horizontal arrangement over time. Most familiar software for music notation and music production build user interfaces on top of a basic MIDI file editor. Extensions to this protocol include MusicXML, which allows for the specification of additional parameters such as expression markings and articulation information. In our system, a simple MIDI editor is sufficient for now. Through the use of additional metadata (next section), composers are able to segment MIDI files into separate segments. For example, a piece may be subdivided into several sections. Segmentation may represent intentions about musical form, for example one may segment part of a composition into an exposition and a development section. 
+Our system represents music in MIDI format. MIDI is a protocol for communicating discrete information about the pitch, duration, and dynamics of individual notes. A musical work is described by specifying the vertical arrangement of individual notes as chords and their horizontal arrangement over time. Additionally, there is a standard MIDI soundbank that maps integers to specific synthetic instruments. For example, one can specify that this MIDI part is meant to be played by sound $0$, grand piano or sound $x$, xylophone. Most familiar software for music notation and music production build user interfaces on top of a basic MIDI file editor. Extensions to this protocol include MusicXML, which allows for the specification of additional parameters such as expression markings and articulation information. In our system, a simple MIDI editor is sufficient for now. Through the use of additional metadata (next section), composers are able to segment MIDI files into separate segments. For example, a piece may be subdivided into several sections. Segmentation may represent intentions about musical form, for example one may segment part of a composition into an exposition and a development section. 
 
  \todo[inline]{Mark: clean up language about segmentation}
+During an interaction with the system, a composer is able to change a composition by editing the MIDI in several low-level or high-level ways. Composers can add a new block of material, edit an existing block, remove an existing block, swap the order of two blocks, merge two blocks, or split a block into two. At each iteration of editing, the system suggests an option that may bring the work in progress closer to what is specified by the SharedPlan. This is primarily in the form of "switch blocks A and B?" (See Section on Automatic Evaluation). The final product of collaboration is a MIDI file that represents the pitches, rhythms, and dynamics of musical events, as well as a collection of metadata that concisely states additional information, such as tempo and instrumentation. 
 
-During an interaction with the system, a composer is able to change a composition by editing the MIDI in several low-level or high-level ways. Composers can add a new block of material, edit an existing block, remove an existing block, swap the order of two blocks, merge two blocks, or split a block into two. At each iteration of editing, the system suggests an option that may bring the work in progress closer to what is specified by the SharedPlan. This is primarily in the form of "switch blocks A and B?" (See Section on Automatic Evaluation).
+This final product can be produced as an electronic piece of music by importing the MIDI into any music production software and specifying which MIDI track should be played by which sound or synthetic instrument. If desired, composers may take additional actions on that finished work that are external to the system, such as produce the piece of music with live musicians, but this is beyond our scope, which is mainly to facilitate collaboration during the composition process.
 
 \subsection{GIT}
 
-git + intention, attributing credit, version control not available in existing midi systems
+ \todo[inline]{David}
 
- \todo[inline]{David: reference splice.com and blend.io}
+\begin{itemize}
+
+\item git + intention
+
+\item version control not available in existing MIDI systems, along with tracking additional metadata
+
+\item attributing credit
+
+\item reference splice.com and blend.io
+
+\end{itemize}
+
 
 \subsection{Shared Plan + Metadata, inter-composer communication}
 
  \todo[inline]{David}
+ 
+ \begin{itemize}
+ 
+ \item genre and mood specification
+ 
+ \item tempo specification optional
+ 
+ \item don't discuss information retrieval much here
+ 
+ \item how do composers or users express intentions concisely?
+ 
+ \item What sharing of information occurs between users and composers, and among composers? Decoupling (be explicit)
+ 
+ \item added metadata when composer adds a block and wants to communicate what else should be done to it
+ 
+\item NOTE FROM MARK: I talked to Pao about this a little. Finding out a nice way for composers to share their intentions about an added passage will help because it will distinguish between two kinds of disagreements
+\begin{enumerate}
+\item composer agrees with another composer's intention about an edit, but disagrees with the actual implementation
+\item composer fundamentally disagrees with the intention
+\end{enumerate}
 
-git + intention + algorithmic eval
-
-Genre + Mood, but don't discuss retrieval too much. Just mention that it is specified. This is to be discussed more in the automatic analysis section
-
-How do composers or users express intentions?
-
-What sharing of information occurs between users and composers? Decoupling (be explicit)
-
-failure mode: how to avoid revision wars? It can be expected that one composers moves the piece along in the direction that another composer does not approve of, regardless of whether the change happens make the block-box auto eval system say "this is closer to the goal".
-
-%NOTE FROM MARK: Talked to Pao about this a little. Finding out a nice way for composers to share their intentions about an added passage will help because it will distinguish between two kinds of disagreements
-
-%1. composer agrees with another composer's intention about an edit, but disagrees with the actual implementation
-%2. composer fundamentally disagrees with the intention
+ \item should discussion of inter-composer communication be separate? Maybe parts relevant to each part of the system specification should be mentioned, but the discussion of their synthesis as an inter-composer system should be saved for discussion section?
+ 
+ \item should failure modes for inter-composer communication go here, or elsewhere?
+%failure mode: how to avoid revision wars? It can be expected that one composers moves the piece along in the direction that another composer does not approve of, regardless of whether the change happens make the block-box auto eval system say "this is closer to the goal".
+ 
+ \end{itemize}
 
 \section{User Interface}
 
  \todo[inline]{David}
+ 
+ 
+ \begin{itemize}
+ 
+ \end{itemize}
 
 \section{Automated Analysis of Musical Structure}
 
