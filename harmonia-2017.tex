@@ -195,7 +195,7 @@ Mutual beliefs are expressed in the trust of the algorithmic evaluation of genre
 
 There is but one complex action and one Full SharedPlan in this scenario: production of a score that meets the intention. Each composer may divide the complex action into a series of sub-actions [See section xxx]. If a composer is unable to complete all actions necessary to achieve the intention, a sub-plan is created stating the Intention-To for a future composer. This is primary means that composers communicate with each other.
 
-We use the term composer in the singular form, however a single composer may consist of several collaborating humans to produce a single action on the score. Any such informal communication or experimentation is beyond the scope of our proposal. After collaborating, a single human would execute an action or set of actions to advance the composition towards the intented goal. For example, a human composer may ``jam" with colleagues to explore several alternatives of a sub-plan. Once a consensus is achieved that section meets artistic and SharedPlan goals, the one composer performs one action on the SharedPlan. 
+We use the term composer in the singular form, however a single composer may consist of several collaborating humans to produce a single action on the score. Any such informal communication or experimentation is beyond the scope of our proposal. After collaborating, a single human would execute an action or set of actions to advance the composition towards the intented goal. For example, a human composer may improvise with colleagues to explore several alternatives of a sub-plan. Once a consensus is achieved that section meets artistic and SharedPlan goals, the one composer performs one action on the SharedPlan. 
 
 
 %\begin{itemize}
@@ -224,7 +224,7 @@ Computer agents with the ability to facilitate and take part in music compositio
 In systems that create music, the interest is to assist human composers, rather than replace them. Perhaps a composer has good ``seeds" ideas, but the system may recommend variations of ideas, or re-orderings of ideas, to make them more conveying. Such system knowledge often comes from large-scale corpus analysis that mines patterns common to a collection of music. ChordRipple [Huang 2016] is a recent system that takes as input a progression of musical chords from a composer, and suggests substitutions of intermediate chords that preserve the original semantics of the input while serving to replace conventional choices with more interesting ones. If the composer agrees to make one of the recommended changes, the system assists the composer in interpolating between original and substituted material before and after the initial substitution, resulting in further mixing of human and system generated music.
 
 % Magenta and AI Duet
-While our current work seeks primarily to assist teams of human composers to enrich and organize their work, we intend to design the system such that intelligent computer agent composers may be further in the loop. Last year, Google Brian launched the Magenta Project for exploring machine intelligence in music \footnote{\texttt{https://magenta.tensorflow.org/welcome-to-magenta}}. Magenta is an integrated environment of software tools and music-related datasets. Recently, Magenta released AI Duet \footnote{\texttt{https://aiexperiments.withgoogle.com/ai-duet}}, a computer system that reacts to human improvised gestures. Improvisation is an important part of composition. Even in steps where a human is composing, it may be beneficial to have an agent for the human to go back-and-forth on ideas with, much like two friends would iteratively vary and refine their ideas. In settings where a piece is defined by a specific enough set of guidelines, such as in a therapy use case where a listener may need music at a certain tempo and with a simple beat [See section INSERT SECTION] , powerful information retrieval systems make effective machine composition agents possible. Human composers may be placed at later steps of collaboration to ensure that the piece meets requirements in a humanly perceptible way.
+While our current work seeks primarily to assist teams of human composers to enrich and organize their work, we intend to design the system such that intelligent computer agent composers may fully participate without requiring human intervention. Last year, Google Brian launched the Magenta Project for exploring machine intelligence in music \footnote{\texttt{https://magenta.tensorflow.org/welcome-to-magenta}}. Magenta is an integrated environment of software tools and music-related datasets. Recently, Magenta released AI Duet \footnote{\texttt{https://aiexperiments.withgoogle.com/ai-duet}}, a computer system that reacts to human improvised gestures. Improvisation is an important part of composition. Even in steps where a human is composing, it may be beneficial to have an agent for the human to go back-and-forth on ideas with, much like two friends would iteratively vary and refine their ideas. In settings where a piece is defined by a specific enough set of guidelines, such as in a therapy use case where a listener may need music at a certain tempo and with a simple beat [See section INSERT SECTION] , powerful information retrieval systems make effective machine composition agents possible. Human composers may be placed at later steps of collaboration to ensure that the piece meets requirements in a humanly perceptible way.
 
 \subsection{Information Theory and Music Analysis}
 
@@ -242,8 +242,8 @@ After reviewing the typical workflow of a editing a piece of music as part of a 
 
 \begin{figure}
 	\includegraphics[scale=0.35]{workflow.pdf}
-	\caption{Overall workflow: a non-musical user or a composer define a SharedPlan. Composer 1 (red) starts
-	iterating and commits a work-in-progress. Composer 2 (blue) continues iterating until the original user is
+	\caption{Overall workflow: a non-musical user or a composer define a SharedPlan. Composer 1 (\textcolor{red}{red}) starts
+	iterating and commits a work-in-progress. Composer 2 (\textcolor{blue}{blue}) continues iterating until the original user is
 	satisified.}
 	\label{fig:workflow}
 \end{figure}
@@ -266,7 +266,18 @@ Our system represents music in MIDI format. MIDI is a protocol for communicating
 
 During an interaction with the system, a composer is able to change a composition by editing the MIDI in several low-level or high-level ways. Composers can add a new block of material, edit an existing block, remove an existing block, swap the order of two blocks, merge two blocks, or split a block into two. At each iteration of editing, the system suggests an option that may bring the work in progress closer to what is specified by the SharedPlan. This is primarily of the form of "switch blocks A and B?" (See Section on Automatic Evaluation). The final product of collaboration is a MIDI file that represents the pitches, rhythms, and dynamics of musical events, as well as a collection of metadata that concisely states additional information, such as tempo and instrumentation. 
 
-\todo[inline]{David TODO: add summary of atomic operations. }
+\begin{table}
+    \begin{tabular}{|l|l|}
+    	\hline
+    	\textbf{Action} & \textbf{Description} \\
+    	\hline
+    	\textit{Exchange} & Rearrange order of two blocks \\
+    	\textit{Insert,Delete,Replace} & Add, remove or replace a block \\
+    	\textit{Split, Merge} & Divide or combine a block \\
+    	\hline
+    \end{tabular}
+	\caption{Summary of Atomic Edit Actions}
+\end{table}
 
 The piece can be produced as an electronic piece of music by importing the MIDI into any music production software, specifying which MIDI track should be played by which sound or synthetic instrument, and exporting a sound file. If desired, composers may take additional actions on that finished work that are external to the system, such as produce the piece of music with live musicians or extended software instruments, but this is beyond our scope, which is mainly to facilitate collaboration during the composition process.
 
