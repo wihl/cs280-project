@@ -264,14 +264,18 @@ Software based version control systems are excellent for basic version control o
 
 In addition to \texttt{git}'s extensive functionality, we propose the following additional commands for the workflow:
 
+\noindent For users and composers:
 \begin{description}
-\item [CreatePlan] - create a SharedPlan that includes intentionality and other metadata.
-\item [Evaluate] - prior to committing a revision, perform an analysis of the current score against intentionality.
-\item [CreateSubplan] - create a sub-plan, specifying the inter-composer communication.
-\item [EditSubplan] - revise an existing sub-plan
-\item [Release] - after a commit, mark a plan or sub-plan as ready for review by the creator of the SharedPlan. This implicitly closes the sub-plan.
-\item [Approve] - the SharedPlan creator denotes a SharedPlan as satisfactorily executed
-\item [Reject] - the SharedPlan creator denotes a SharedPlan as unsatisfactorily executed
+    \item [EditPlan] - create, revise or delete a SharedPlan that includes intentionality and other metadata.
+    \item [Approve] - the SharedPlan creator denotes a SharedPlan as satisfactorily executed
+    \item [Reject] - the SharedPlan creator denotes a SharedPlan as unsatisfactorily executed
+\end{description}
+
+\noindent For composers only:
+\begin{description}
+    \item [Evaluate] - prior to committing a revision, perform an analysis of the current score against intentionality.
+    \item [EditSubplan] - create, revise or delete a sub-plan. Creating or editing a sub-plan would establish the hierarchical context to the SharedPlan.
+    \item [Release] - after a commit, mark a plan or sub-plan as ready for review by the creator of the SharedPlan. This implicitly closes the sub-plan.
 \end{description}
 
 The versioning aspect is particularly relevant in the music context, as intellectual property and originality is often the source of extensive lawsuits. By maintaining version control, an examination of the history would assist in the identification of derivative works and originality of authorship.
@@ -303,8 +307,8 @@ During an interaction with the system, a composer is able to change a compositio
     	\hline
     	\textbf{Action} & \textbf{Description} \\
     	\hline
-    	\textit{Exchange} & Rearrange order of two blocks \\
     	\textit{Insert,Delete,Replace} & Add, remove or replace a block \\
+    	\textit{Move} & Rearrange order of a block \\
     	\textit{Split, Merge} & Divide or combine a block \\
     	\hline
     \end{tabular}
@@ -315,15 +319,29 @@ The piece can be produced as an electronic piece of music by importing the MIDI 
 
 \section{User Interface}
 
- \todo[inline]{David}
- 
- \begin{itemize}
+There are three aspects to the user interface: for non-musical users, for composers performing workflow and for composers actively editing the musical score.
 
- \item must have intuitive layout for joining and splitting segments, like click and drag several and click join. Or, select scissors tool and click within a segment to split it.
+\subsection{SharedPlan Workflow User Interface}
+
+There are four commands possible in this context: \textbf{EditPlan} (including create/edit/delete), \textbf{Approve, Reject}. Since the user may not have any musical background, this user interface should be accessible to as large a population as possible. Ideally, this would be a simple looking, reactive web-based interface that would work equally well on mobile devices as well as desktops. Music apps such as Spotify may wish to integrate this functionality so a web-based API should also be accessible.
+
+For an unsophisticated user, \textbf{Approve} and \textbf{Reject} may be considered implicit. If the user listens to the composition past a certain point, such as 80\% of the total length of the work, it may be deemed implicitly approved. Similarly, if the user advances to another song within the first 20\%, the composition is implicited rejected. Implicit rejection does not provide any causal reason for the rejection, so try and error analogous to reinforcement learning must be used to discover the hidden reasons why a work was implicitly rejected. Other user actions do not provide enough signal to determine implicit actions so the work's acceptance status remains unknown.
+
+\subsection{Sub-plan Workflow User Interface}
+
+The market reality is the most modern composers use an existing Digital Audio Workstation (DAW) such as Ableton or LogicPro. Rather than replacing the composer's primary user interface, integration should be performed within the menu system of the most common DAWs. There are only two commands required in this context: \textbf{EditSubplan} (including create/edit/delete) and \textbf{Release}. 
+
+%  how do composers view metadata? How specifically do they view metadata associated with a particular block. Maybe when they click a block, any existing metadata about it opened. So if I click a block with a melody, I may see that the melody composer asked to add a chord under the melody. Do these notes go away? Can the second editor close the request? Does the original poster need to approve? Maybe the second editor can close it, and the original editor can add a new note later if they are still not happy?  David's response: I think the Release command effectively closes the sub-plan. Anyone working on the SharedPlan can create or release a sub-plan.
+
+
+\subsection{Composer Edit / Evaluation User Interface}
+
+This is most complex and demanding user interface as it requires the highest degree of interactivity. Rather re-implementing the multitude of music editing features of a mature DAW, integration to existing DAWs is again preferable over creating a \textit{de novo} user interface. 
+
+The most novel aspect would be the integration of the evaluation to the editing task. Ideally the evaluation result would decorate and annotate the score enabling the composer to address results of the evaluation while remaining in a known editing context, analogous to seeing and resolving comments in Microsoft Word or a Google Doc.
+
  
- \item how do composers view metadata? How specifically do they view metadata associated with a particular block. Maybe when they click a block, any existing metadata about it opened. So if I click a block with a melody, I may see that the melody composer asked to add a chord under the melody. Do these notes go away? Can the second editor close the request? Does the original poster need to approve? Maybe the second editor can close it, and the original editor can add a new note later if they are still not happy?
  
- \end{itemize}
 
 \section{Automated Analysis of Musical Structure}
 
@@ -430,6 +448,8 @@ Presume that reliable corpus-based genre and mood classification solutions exist
 \begin{itemize}
 
 \item Originality Evaluation, derivative work - do new compositions potentially expose intellectual property infringement.
+
+\item integration with existing DAW, especially for layering notion of blocks over an existing piece.
 
 \item MusicXML
 \todo[inline]{Mark: MusicXML instead of MIDI. Makes automatic evaluation more difficult} 
