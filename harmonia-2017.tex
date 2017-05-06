@@ -285,30 +285,9 @@ This final product can be produced as an electronic piece of music by importing 
  
 When a composition task is created, it exists as a SharedPlan that contains a goal specification, as well as a \texttt{NULL} score. The initial specification must meet a minimal criteria, which is that a genre and a mood must be specified. However, additional descriptive keywords may be included, of the style that typically comes in the form of tags on Youtube or Soundcloud ($\#$USA, $\#$lo-fi, $\#$chill, $\#$electronic, $\#120BPM$). These tags power an automated comparison between work-in-progress and goal, and helps composers pick edits that may bring a composition closer to a sound characterized by the goal keywords. In particular, we assume that an information retrieval system for querying large amounts of music by keyword exists, and retrieves MIDI scores to be analyzed by our system.
 
+In addition to containing initial goal-describing information, the SharedPlan is responsible for mediating any inter-composer communication that takes place aside from the edits to the shared musical work itself. The SharedPlan may be updated actively as the piece is revised. A composer may wish to express the intention of a particular edit to justify its presence or to elicit specific future directions for their material. For example, a composer may add a block of music containing an exposed melody, but may want to communicate that another composer should add a harmonic accompaniment to that section.
 
-
- \begin{itemize}
- 
- 
- 
- \item how do composers or users express intentions concisely?
- 
- \item What sharing of information occurs between users and composers, and among composers? Decoupling (be explicit)
- 
- \item added metadata when composer adds a block and wants to communicate what else should be done to it
- 
-\item NOTE FROM MARK: I talked to Pao about this a little. Finding out a nice way for composers to share their intentions about an added passage will help because it will distinguish between two kinds of disagreements
-\begin{enumerate}
-\item composer agrees with another composer's intention about an edit, but disagrees with the actual implementation
-\item composer fundamentally disagrees with the intention
-\end{enumerate}
-
- \item should discussion of inter-composer communication be separate? Maybe parts relevant to each part of the system specification should be mentioned, but the discussion of their synthesis as an inter-composer system should be saved for discussion section?
- 
- \item should failure modes for inter-composer communication go here, or elsewhere?
-%failure mode: how to avoid revision wars? It can be expected that one composers moves the piece along in the direction that another composer does not approve of, regardless of whether the change happens make the block-box auto eval system say "this is closer to the goal".
- 
- \end{itemize}
+It is ideal for such communication to be concise and structured. It may be detrimental to collaborative work for one participant to expect all other participants to read five paragraphs of unstructured goal descriptions for a particular section of music. Such a message may require too high of a cognitive load for the others to carefully read and understand, and the intending composer may not have their ideas respected. We have not yet designed a structured language for including block-specific comments enabling composers to share local intents per-edit, but our system allows small free-form comments to be included. A structured language may help support automated agent collaborators in the future. This is discussed further in the Therapy case study (See section BLAH). Providing a mechanism for composers to share there intentions per-edit is crucial because it can help to distinguish between two kinds of composer misunderstandings/disagreements. The first scenario is where a composer agrees with another composer's intention about an edit, but disagrees with the actual implementation. This may lead to the second composer editing the first composer's material with care to preserve the original sound, or replacing it with something of similar affect. The second scenario is where a composer fundamentally disagrees with the artistic intention of another. An effective SharedPlan communication system may disambiguate these cases.
 
 \section{User Interface}
 
