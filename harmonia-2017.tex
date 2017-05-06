@@ -164,7 +164,7 @@ There are many additional issues that surround collaboration over structured, sh
 Collaborative Ideation (CI) studies investigate the effect of various idea-sharing tactics on the creativity, productivity and scope of individual idea generating participants. Such techniques may include showing each participant in a pool of brainstorms the collection of all participants' brainstormed ideas. In the case of collaborative ideation for the creation of shared (as opposed to individual) objects or solutions such as composition, it may be the case that certain interfaces for collaboration, certain automated, filtered idea sharing mechanisms among collaborators, and certain feedback from the system may help facilitate group creativity and productivity toward a shared goal.
 
 We propose a system for music composition that addresses collaborative music composition inspired by
-tools used for software teamwork, collaborative ideation, and musical structure analysis. This system defines an interface for collaboration over a shared creative artifact, including a procedure for editing a work in progress, receiving automated system feedback about edits, and framework for communicating with collaborators about the intention of an edit. Crucially, the system assists collaborators with the task of staying on track with an \textit{a priori} specified goal for the turnout of the piece. 
+tools used for software teamwork, collaborative ideation, and musical structure analysis. This system defines an interface for collaboration over a shared creative artifact, including a procedure for editing a work in progress and receiving automated system feedback about edits. Crucially, the system assists collaborators with the task of staying on track with an \textit{a priori} specified goal for the turnout of the piece, and also provides a framework for communication among collaborators about the intention of edits.
 
 We first examine previous work related to shared intentionality, collaboration and group ideation, intelligent music systems, and modeling the structure of music. Next, we describe the details of the overall usage workflow as well as the individual components of our system. This includes a specification of an automated approach for giving composers feedback on the relevance of their ideas to a specified collaborative goal. We present three use cases for our system, where collaborating composers create music ranging in purpose from casual listening to clinical therapy. We conclude with a discussion of our system proposal , including limitations we have identified and potential future work.
 
@@ -182,7 +182,13 @@ Our work builds on several areas of research related to music, computer science,
 
  \todo[inline]{David}
 
-decompose sets of tasks among multiple agents. Commitment among agents. Typically used in a concurrent cooperative setting where agents act on many resources and accomplish a goal. In our case there are many agents, potentially taking turns, working on one structure. 
+\begin{itemize}
+
+\item decompose sets of tasks among multiple agents
+\item commitment among agents
+\item Typically used in a concurrent cooperative setting where agents act on many resources and accomplish a goal. 
+\item In our case there are many agents, potentially taking turns, working on one structure. 
+\end{itemize}
 
 \subsection{Collaborative Ideation}
 % Collaborative Ideation In General
@@ -227,25 +233,10 @@ After reviewing the typical workflow of a editing a piece of music as part of a 
 	\label{fig:workflow}
 \end{figure}
 
- \todo[inline]{David}
- 
- \begin{itemize}
- 
- \item someone creates a shared plan (individual or composers), which is special metadata associated with each composition in the system that describes the intentions for the work, for example the goal genre and mood of the piece.
- 
- \item information retrieval system gets characteristic metrics using as much of the sharedplan info as it can
- 
- \item composers iteratively work on the piece. Within a particular composer/system interaction, automated analysis is run on the piece as it is.
-suggests some actions to the composer, particularly suggesting to switch two parts of a piece.
-Composer can follow suggestions or do their own modifications, or do nothing and finish.
- 
- \item Metadata is kept together with the composition, and is updated throughout the collaborative process to include further information on composer intent as edits are made.  
- 
- \item Piece is finished when the requester(s) is/are satisfied. The finished product is a MIDI score for a piece of music.
- 
- \end{itemize}
+The generic use case that we consider is that a listener (musician or not) requests a new piece of music of a specified genre and mood, and perhaps other related keywords. A new, blank score is associated with a metadata file that stores the information about the goal keywords, and additional information later. An information retrieval system uses as much of the metadata keywords as it can to retrieves MIDI scores for existing related works. The system then computes a summary of characteristic musical structure of the retrieved body of work.
 
-
+As composers begin to work on the piece, they iterate adding and editing material, and receiving feedback from the system about their edits. The system computes the similarity of the structure of the composition-in-progress to the characteristic goal structure, and helps composers choose which edits are most relevant. The system also suggests edits that align with bringing the composition closer to the goal, for example switching the order of two parts of the composition. Composer can follow suggestions or do their own modifications, or do nothing and finish an iteration. During this process, composers commit additional metadata describing the intentions of local edits, such that others can pick up on their material and preserve these intentions. The composers collaborate to bring the composition to a state of completion such that it matches the originally specified goals. Composers iterate on the composition until the music requester(s) is/are satisfied. The finished product is a MIDI score for a piece of music.
+ 
 \begin{figure}
 \vspace*{-3cm}
 	\includegraphics[scale=0.4]{midi.pdf}
@@ -257,10 +248,9 @@ Composer can follow suggestions or do their own modifications, or do nothing and
 
 Our system represents music in MIDI format. MIDI is a protocol for communicating discrete information about the pitch, duration, and dynamics of individual notes. A musical work is described by specifying the vertical arrangement of individual notes as chords and their horizontal arrangement over time. Additionally, there is a General MIDI Soundbank that maps integers to specific electronic instrument sounds. For example, one can specify that this MIDI part is meant to be played by sound $0$, grand piano or Ocarina, sound $80$. Most familiar software for music notation and music production build user interfaces on top of a basic MIDI file editor. Extensions to this protocol include MusicXML, which allows for the specification of additional parameters such as expression markings and articulation information. In our system, a simple MIDI editor is sufficient for now. Through the use of additional metadata (next section), composers are able to segment MIDI files into separate segments. For example, a piece may be subdivided into several sections. Segmentation may represent intentions about musical form, for example one may segment part of a composition into an exposition and a development section. 
 
- \todo[inline]{Mark: clean up language about segmentation}
-During an interaction with the system, a composer is able to change a composition by editing the MIDI in several low-level or high-level ways. Composers can add a new block of material, edit an existing block, remove an existing block, swap the order of two blocks, merge two blocks, or split a block into two. At each iteration of editing, the system suggests an option that may bring the work in progress closer to what is specified by the SharedPlan. This is primarily in the form of "switch blocks A and B?" (See Section on Automatic Evaluation). The final product of collaboration is a MIDI file that represents the pitches, rhythms, and dynamics of musical events, as well as a collection of metadata that concisely states additional information, such as tempo and instrumentation. 
+During an interaction with the system, a composer is able to change a composition by editing the MIDI in several low-level or high-level ways. Composers can add a new block of material, edit an existing block, remove an existing block, swap the order of two blocks, merge two blocks, or split a block into two. At each iteration of editing, the system suggests an option that may bring the work in progress closer to what is specified by the SharedPlan. This is primarily of the form of "switch blocks A and B?" (See Section on Automatic Evaluation). The final product of collaboration is a MIDI file that represents the pitches, rhythms, and dynamics of musical events, as well as a collection of metadata that concisely states additional information, such as tempo and instrumentation. 
 
-This final product can be produced as an electronic piece of music by importing the MIDI into any music production software and specifying which MIDI track should be played by which sound or synthetic instrument. If desired, composers may take additional actions on that finished work that are external to the system, such as produce the piece of music with live musicians, but this is beyond our scope, which is mainly to facilitate collaboration during the composition process.
+The piece can be produced as an electronic piece of music by importing the MIDI into any music production software, specifying which MIDI track should be played by which sound or synthetic instrument, and exporting a sound file. If desired, composers may take additional actions on that finished work that are external to the system, such as produce the piece of music with live musicians or extended software instruments, but this is beyond our scope, which is mainly to facilitate collaboration during the composition process.
 
 \subsection{GIT}
 
