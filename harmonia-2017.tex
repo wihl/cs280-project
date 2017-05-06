@@ -193,7 +193,7 @@ Intentions are expressed by a minimum of two criteria: genre and mood. Genre and
   
 Mutual beliefs are expressed in the trust of the algorithmic evaluation of genre / mood combination as well as the algorithmic evaluation of the musical structure. This extends the notion of beliefs in SharedPlans to a predictable instrumentation of common understanding, simplifying integration of both human and agent composers. 
 
-There is but one complex action and one Full SharedPlan in this scenario: production of a score that meets the intention. Each composer may divide the complex action into a series of sub-actions [See section xxx]. If a composer is unable to complete all actions necessary to achieve the intention, a sub-plan is created stating the Intention-To for a future composer. This is primary means that composers communicate with each other.
+There is but one complex action and one Full SharedPlan in this scenario: production of a score that meets the intention. Each composer may divide the complex action into a series of sub-actions [See section xxx]. If a composer is unable to complete all actions necessary to achieve the intention, a sub-plan is created stating the Intention-To for a future composer. This is primary means that composers communicate with each other. We do not define a means of using recipes in this context.
 
 We use the term composer in the singular form, however a single composer may consist of several collaborating humans to produce a single action on the score. Any such informal communication or experimentation is beyond the scope of our proposal. After collaborating, a single human would execute an action or set of actions to advance the composition towards the intented goal. For example, a human composer may improvise with colleagues to explore several alternatives of a sub-plan. Once a consensus is achieved that section meets artistic and SharedPlan goals, the one composer performs one action on the SharedPlan. 
 
@@ -250,8 +250,40 @@ After reviewing the typical workflow of a editing a piece of music as part of a 
 
 The generic use case that we consider is that a listener (musician or not) requests a new piece of music of a specified genre and mood, and perhaps other related keywords. A new, blank score is associated with a metadata file that stores the information about the goal keywords, and additional information later. An information retrieval system uses as much of the metadata keywords as it can to retrieves MIDI scores for existing related works. The system then computes a summary of characteristic musical structure of the retrieved body of work.
 
-As composers begin to work on the piece, they iterate adding and editing material, and receiving feedback from the system about their edits. The system computes the similarity of the structure of the composition-in-progress to the characteristic goal structure, and helps composers choose which edits are most relevant. The system also suggests edits that align with bringing the composition closer to the goal, for example switching the order of two parts of the composition. Composer can follow suggestions or do their own modifications, or do nothing and finish an iteration. During this process, composers commit additional metadata describing the intentions of local edits, such that others can pick up on their material and preserve these intentions. The composers collaborate to bring the composition to a state of completion such that it matches the originally specified goals. Composers iterate on the composition until the music requester(s) is/are satisfied. The finished product is a MIDI score for a piece of music.
+As composers begin to work on the piece, they iterate adding and editing material, and receiving feedback from the system about their edits. The system computes the similarity of the structure of the composition-in-progress to the characteristic intent structure, and helps composers choose which edits are most relevant. The system also suggests edits that align with bringing the composition closer to the goal, for example switching the order of two parts of the composition. Composer can follow suggestions or do their own modifications, or do nothing and finish an iteration. During this process, composers commit additional metadata describing the intentions of local edits, such that others can pick up on their material and preserve these intentions. The composers collaborate to bring the composition to a state of completion such that it matches the originally specified goals. Composers iterate on the composition until the music requester(s) is/are satisfied. The finished product is a MIDI score for a piece of music.
  
+
+
+\subsection{Version Control}
+
+Version control has become an essential part of team-based software development. However, the tools for managing
+revisions of other creative work, including music composition, are non-existant or limited in comparison. There are
+two commercial version control systems for music: the aforementioned Blend and Splice.com \footnote{\texttt{https://splice.com/}}. \texttt{git} [Torvalds] has been referenced elsewhere [Wolf] as a viable means for musical score version control, especially in the MIDI format.
+
+Software based version control systems are excellent for basic version control operations such as branching, committing and viewing history, there are lacking several primitive necessary for integration in our proposed workflow. In the interest of brevity, we do not specify the entire subset of major \texttt{git} commands necessary for version control.
+
+In addition to \texttt{git}'s extensive functionality, we propose the following additional commands for the workflow:
+
+\begin{description}
+\item [CreatePlan] - create a SharedPlan that includes intentionality and other metadata.
+\item [Evaluate] - prior to committing a revision, perform an analysis of the current score against intentionality.
+\item [CreateSubplan] - create a sub-plan, specifying the inter-composer communication.
+\item [EditSubplan] - revise an existing sub-plan
+\item [Release] - after a commit, mark a plan or sub-plan as ready for review by the creator of the SharedPlan. This implicitly closes the sub-plan.
+\item [Approve] - the SharedPlan creator denotes a SharedPlan as satisfactorily executed
+\item [Reject] - the SharedPlan creator denotes a SharedPlan as unsatisfactorily executed
+\end{description}
+
+The versioning aspect is particularly relevant in the music context, as intellectual property and originality is often the source of extensive lawsuits. By maintaining version control, an examination of the history would assist in the identification of derivative works and originality of authorship.
+
+\subsection{Sub-plan as Inter-composer Communication}
+ 
+When a composition task is created, it exists as a SharedPlan that contains an intent specification, as well as a \texttt{NULL} score. The initial specification must meet a minimal criteria, which is that a genre and a mood must be specified. However, additional descriptive keywords may be included, of the style that typically comes in the form of tags on YouTube or Soundcloud ($\#$USA, $\#$lo-fi, $\#$chill, $\#$electronic, $\#120BPM$). These tags power an automated comparison between work-in-progress and goal, and helps composers pick edits that may bring a composition closer to a sound characterized by the goal keywords. In particular, we assume that an information retrieval system for querying large amounts of music by keyword exists, and retrieves MIDI scores to be analyzed by our system.
+
+In addition to containing initial goal-describing information, the sub-plan is responsible for mediating any inter-composer communication that takes place aside from the edits to the shared musical work itself. The sub-plan may be updated actively as the piece is revised. A composer may wish to express the intention of a particular edit to justify its presence or to elicit specific future directions for their material. For example, a composer may add a block of music containing an exposed melody, but may want to communicate that another composer should add a harmonic accompaniment to that section.
+
+It is ideal for such communication to be concise and structured. It may be detrimental to collaborative work for one participant to expect all other participants to read five paragraphs of unstructured goal descriptions for a particular section of music. Such a message may require too high of a cognitive load for the others to carefully read and understand, and the intending composer may not have their ideas respected. We have not yet designed a structured language for including block-specific comments enabling composers to share local intents per-edit, but our system allows small free-form comments to be included. A structured language may help support automated agent collaborators in the future. This is discussed further in the Therapy case study (See section BLAH). Providing a mechanism for composers to share there intentions per-edit is crucial because it can help to distinguish between two kinds of composer misunderstandings/disagreements. The first scenario is where a composer agrees with another composer's intention about an edit, but disagrees with the actual implementation. This may lead to the second composer editing the first composer's material with care to preserve the original sound, or replacing it with something of similar affect. The second scenario is where a composer fundamentally disagrees with the artistic intention of another. An effective SharedPlan communication system may disambiguate these cases.
+
 \begin{figure}
 \vspace*{-3cm}
 	\includegraphics[scale=0.4]{midi.pdf}
@@ -276,37 +308,10 @@ During an interaction with the system, a composer is able to change a compositio
     	\textit{Split, Merge} & Divide or combine a block \\
     	\hline
     \end{tabular}
-	\caption{Summary of Atomic Edit Actions}
+	\caption{Summary of Atomic Edit Actions on Score}
 \end{table}
 
 The piece can be produced as an electronic piece of music by importing the MIDI into any music production software, specifying which MIDI track should be played by which sound or synthetic instrument, and exporting a sound file. If desired, composers may take additional actions on that finished work that are external to the system, such as produce the piece of music with live musicians or extended software instruments, but this is beyond our scope, which is mainly to facilitate collaboration during the composition process.
-
-\subsection{GIT}
-
- \todo[inline]{David}
-
-\begin{itemize}
-
-\item git + intention
-
-\item version control not available in existing MIDI systems, along with tracking additional metadata
-
-\item attributing credit
-
-\item reference splice.com and blend.io
-
-\end{itemize}
-
-
-\subsection{SharedPlan + Inter-composer Communication}
-
- \todo[inline]{Mark}
- 
-When a composition task is created, it exists as a SharedPlan that contains a goal specification, as well as a \texttt{NULL} score. The initial specification must meet a minimal criteria, which is that a genre and a mood must be specified. However, additional descriptive keywords may be included, of the style that typically comes in the form of tags on Youtube or Soundcloud ($\#$USA, $\#$lo-fi, $\#$chill, $\#$electronic, $\#120BPM$). These tags power an automated comparison between work-in-progress and goal, and helps composers pick edits that may bring a composition closer to a sound characterized by the goal keywords. In particular, we assume that an information retrieval system for querying large amounts of music by keyword exists, and retrieves MIDI scores to be analyzed by our system.
-
-In addition to containing initial goal-describing information, the SharedPlan is responsible for mediating any inter-composer communication that takes place aside from the edits to the shared musical work itself. The SharedPlan may be updated actively as the piece is revised. A composer may wish to express the intention of a particular edit to justify its presence or to elicit specific future directions for their material. For example, a composer may add a block of music containing an exposed melody, but may want to communicate that another composer should add a harmonic accompaniment to that section.
-
-It is ideal for such communication to be concise and structured. It may be detrimental to collaborative work for one participant to expect all other participants to read five paragraphs of unstructured goal descriptions for a particular section of music. Such a message may require too high of a cognitive load for the others to carefully read and understand, and the intending composer may not have their ideas respected. We have not yet designed a structured language for including block-specific comments enabling composers to share local intents per-edit, but our system allows small free-form comments to be included. A structured language may help support automated agent collaborators in the future. This is discussed further in the Therapy case study (See section BLAH). Providing a mechanism for composers to share there intentions per-edit is crucial because it can help to distinguish between two kinds of composer misunderstandings/disagreements. The first scenario is where a composer agrees with another composer's intention about an edit, but disagrees with the actual implementation. This may lead to the second composer editing the first composer's material with care to preserve the original sound, or replacing it with something of similar affect. The second scenario is where a composer fundamentally disagrees with the artistic intention of another. An effective SharedPlan communication system may disambiguate these cases.
 
 \section{User Interface}
 
@@ -424,6 +429,7 @@ Presume that reliable corpus-based genre and mood classification solutions exist
  
 \begin{itemize}
 
+\item Originality Evaluation, derivative work - do new compositions potentially expose intellectual property infringement.
 
 \item MusicXML
 \todo[inline]{Mark: MusicXML instead of MIDI. Makes automatic evaluation more difficult} 
@@ -504,6 +510,8 @@ Pierce, Letter Scientific American 1956
 Youngblood, Style as information 1958 Journal of Music Theory
 
 The mathematical theory of communication. Shannon, Claude Elwood 1948. Bell Tel Labs Monograph
+
+Torvalds, Linus, and Junio Hamano. "Git: Fast version control system." URL http://git-scm. com (2010).
 
 \todo[inline]{Fix references from section to section}
 
