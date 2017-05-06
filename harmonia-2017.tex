@@ -121,32 +121,34 @@
 %% \address{Address\fnref{label3}}
 %% \fntext[label3]{}
 
-\title{CS280r Spring 2017 - Final Project Report \\ $A \rho \mu o \nu \acute{\iota} \alpha$ (Harmonia): A System for Collaborative Music Composition}
+\title{$A \rho \mu o \nu \acute{\iota} \alpha$ (Harmonia): A System for Collaborative Music Composition}
 
 %% use optional labels to link authors explicitly to addresses:
 %% \author[label1,label2]{<author name>}
 %% \address[label1]{<address>}
 %% \address[label2]{<address>}
 
-\author{Mark Goldstein, David Wihl}
-\address{\{markgoldstein,davidwihl\}@g.harvard.edu}
+\author{{\rm Mark Goldstein, David Wihl}\\ Harvard University}
+\address{\normalsize\{markgoldstein,davidwihl\}@g.harvard.edu}
 
 \begin{abstract}
 
-Increasing productivity of music composition has many positive benefits. Listeners
-would appreciate individually tailored music to their emotional needs and context.
-Composers would be facilitated by greater and more diverse cooperation yielding more
-innovative music. Composition agents could assist in the generation of repetitive or 
-experimental musical forms. Therapists can use music as part of a treatment plan 
-for autism and
-many other disorders. The system we propose attempts to address these myriad needs 
-by offering two key innovations: a SharedPlan with collaborative versioning to mediate the workflow of a composition for a group of musicians, an algorithmic evaluation of a composition against the intention of the
-SharedPlan to provide guidance to both human and agent composers.
+Increasing productivity of music composition has many positive benefits. Listeners would appreciate individually tailored music to their emotional needs and context. Composers would be facilitated by greater and more diverse cooperation yielding more innovative music. Composition agents could assist in the generation of repetitive or  experimental musical forms. Therapists can use music as part of a treatment plan  for autism and many other disorders. The system we propose attempts to address these myriad needs  by offering two key innovations: a SharedPlan with collaborative versioning to mediate the workflow of a composition for a group of musicians, an algorithmic evaluation of a composition against the intention of the SharedPlan to provide guidance to both human and agent composers.
 
 \end{abstract}
+
 \end{frontmatter}
 
-% \linenumbers
+%\title{\Large $A \rho \mu o \nu \acute{\iota} \alpha$ (Harmonia): A System for Collaborative Music Composition}
+%\author{{\rm Mark Goldstein, David Wihl}\\Harvard University}
+%\address{\normalsize\{markgoldstein,davidwihl\}@g.harvard.edu}
+%\maketitle
+
+
+%\section{Abstract}
+%\label{sec:abstract}
+
+%Increasing productivity of music composition has many positive benefits. Listeners would appreciate individually tailored music to their emotional needs and context. Composers would be facilitated by greater and more diverse cooperation yielding more innovative music. Composition agents could assist in the generation of repetitive or  experimental musical forms. Therapists can use music as part of a treatment plan  for autism and many other disorders. The system we propose attempts to address these myriad needs  by offering two key innovations: a SharedPlan with collaborative versioning to mediate the workflow of a composition for a group of musicians, an algorithmic evaluation of a composition against the intention of the SharedPlan to provide guidance to both human and agent composers.
 
 \section{Introduction}
 \label{sec:introduction}
@@ -282,7 +284,6 @@ This final product can be produced as an electronic piece of music by importing 
 
  \todo[inline]{Mark}
  
- 
 When a composition task is created, it exists as a SharedPlan that contains a goal specification, as well as a \texttt{NULL} score. The initial specification must meet a minimal criteria, which is that a genre and a mood must be specified. However, additional descriptive keywords may be included, of the style that typically comes in the form of tags on Youtube or Soundcloud ($\#$USA, $\#$lo-fi, $\#$chill, $\#$electronic, $\#120BPM$). These tags power an automated comparison between work-in-progress and goal, and helps composers pick edits that may bring a composition closer to a sound characterized by the goal keywords. In particular, we assume that an information retrieval system for querying large amounts of music by keyword exists, and retrieves MIDI scores to be analyzed by our system.
 
 In addition to containing initial goal-describing information, the SharedPlan is responsible for mediating any inter-composer communication that takes place aside from the edits to the shared musical work itself. The SharedPlan may be updated actively as the piece is revised. A composer may wish to express the intention of a particular edit to justify its presence or to elicit specific future directions for their material. For example, a composer may add a block of music containing an exposed melody, but may want to communicate that another composer should add a harmonic accompaniment to that section.
@@ -295,7 +296,7 @@ It is ideal for such communication to be concise and structured. It may be detri
  
  \begin{itemize}
 
- \item must have intuitive layout for joining and splitting segments, like click and drag several and click join. Or, select sciccors tool and click within a segment to split it.
+ \item must have intuitive layout for joining and splitting segments, like click and drag several and click join. Or, select scissors tool and click within a segment to split it.
  
  \item how do composers view metadata? How specifically do they view metadata associated with a particular block. Maybe when they click a block, any existing metadata about it opened. So if I click a block with a melody, I may see that the melody composer asked to add a chord under the melody. Do these notes go away? Can the second editor close the request? Does the original poster need to approve? Maybe the second editor can close it, and the original editor can add a new note later if they are still not happy?
  
@@ -486,8 +487,10 @@ The mathematical theory of communication. Shannon, Claude Elwood 1948. Bell Tel 
 
 \todo[inline]{Fix references from section to section}
 
+\bibliographystyle{elsarticle-num-names}
+\bibliography{harmonia-bib}
 
-
+\end{document}
 
 %\subsection{Citations}
 
@@ -501,7 +504,6 @@ The mathematical theory of communication. Shannon, Claude Elwood 1948. Bell Tel 
 
 %%  \citet{key}  ==>>  Jones et al. (1990)
 %%  \citep{key}  ==>>  (Jones et al., 1990)
-
 
 
 
@@ -558,9 +560,4 @@ The mathematical theory of communication. Shannon, Claude Elwood 1948. Bell Tel 
 
 
 %% References with bibTeX database:
-
-\bibliographystyle{elsarticle-num-names}
-\bibliography{harmonia-bib}
-
-\end{document}
 
