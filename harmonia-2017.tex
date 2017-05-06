@@ -170,8 +170,6 @@ the original intention.
 
 We propose a system for music composition that addresses collaborative music composition inspired by
 tools used for software teamwork, collaborative ideation, and musical structure analysis. This system defines an interface for collaboration over a shared creative artifact, including a procedure for editing a work in progress and receiving algorithmic  feedback about edits. Crucially, the system assists collaborators with the task of staying on track with an \textit{a priori} specified goal for the turnout of the piece, and also provides a framework for communication among collaborators about the intention of edits. 
-\todo[inline]{David: $\uparrow$ the framework for communication significantly complicates the integration of agents. We may not want
-to promise this.}
 
 We first examine previous work related to shared intentionality, collaboration and group ideation, intelligent music systems, and modeling the structure of music. Next, we describe the details of the overall usage workflow as well as the individual components of our system. This includes a specification of an automated approach for giving composers feedback on the relevance of their ideas to a specified collaborative goal. We present three use cases for our system, where collaborating composers create music ranging in purpose from casual listening to clinical therapy. We conclude with a discussion of our system proposal, including limitations we have identified and potential future work.
 
@@ -187,15 +185,25 @@ Our work builds on several areas of research related to music, computer science,
 
 \subsection{Shared Plans}
 
- \todo[inline]{David}
+SharedPlans [Grosz, Hunsberger] define a robust framework for multiagent, multi-level collaboration. A SharedPlan consists of a set of intentions, mutual beliefs, constraints, and hierarchies of actions and plans. All of these elements are applicable in this context, although only a subset of the general definition is needed for music composition purposes. 
 
-\begin{itemize}
+A SharedPlan is the basic unit of work. It serves as the container for the initial definition of the intent of the work, the  the musical score representing the work-in-progress, the revision history of the work-in-progress, the sub-plans used to communicate between composers and the final approval given by the user who defined the SharedPlan initially.
 
-\item decompose sets of tasks among multiple agents
-\item commitment among agents
-\item Typically used in a concurrent cooperative setting where agents act on many resources and accomplish a goal. 
-\item In our case there are many agents, potentially taking turns, working on one structure. 
-\end{itemize}
+Intentions are expressed by a minimum of two criteria: genre and mood. Genre and mood are algorithmically combined using existing methods [TODO: specify forward reference] to define the approximate representation of the final work.
+  
+Mutual beliefs are expressed in the trust of the algorithmic evaluation of genre / mood combination as well as the algorithmic evaluation of the musical structure. This extends the notion of beliefs in SharedPlans to a predictable instrumentation of common understanding, simplifying integration of both human and agent composers. 
+
+There is but one complex action and one Full SharedPlan in this scenario: production of a score that meets the intention. Each composer may divide the complex action into a series of sub-actions [See section xxx]. If a composer is unable to complete all actions necessary to achieve the intention, a sub-plan is created stating the Intention-To for a future composer. This is primary means that composers communicate with each other.
+
+We use the term composer in the singular form, however a single composer may consist of several collaborating humans to produce a single action on the score. Any such informal communication or experimentation is beyond the scope of our proposal. After collaborating, a single human would execute an action or set of actions to advance the composition towards the intented goal. For example, a human composer may ``jam" with colleagues to explore several alternatives of a sub-plan. Once a consensus is achieved that section meets artistic and SharedPlan goals, the one composer performs one action on the SharedPlan. 
+
+
+%\begin{itemize}
+%\item decompose sets of tasks among multiple agents
+%\item commitment among agents
+%\item Typically used in a concurrent cooperative setting where agents act on many resources and accomplish a goal. 
+%\item In our case there are many agents, potentially taking turns, working on one structure. 
+%\end{itemize}
 
 \subsection{Collaborative Ideation}
 % Collaborative Ideation In General
