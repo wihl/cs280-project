@@ -327,7 +327,7 @@ There are three aspects to the user interface: for non-musical users, for compos
 
 There are three possible commands in this context: \textbf{EditPlan} (including create/edit/delete), \textbf{Approve, Reject}. Since the user may not have any musical background, this user interface should be accessible to as large a population as possible. Ideally, this would be a simple looking, reactive web-based interface that would work equally well on mobile devices as well as desktops. Music apps such as Spotify may wish to integrate this functionality so a web-based API should also be accessible.
 
-For an unsophisticated user, \textbf{Approve} and \textbf{Reject} may be considered implicit. If the user listens to the composition past a certain point, such as 80\% of the total length of the work, it may be deemed implicitly approved. Similarly, if the user advances to another song within the first 20\%, the composition is implicitly rejected. Implicit rejection does not provide any causal reason for the rejection, so trial and error analogous to reinforcement learning must be used to discover the hidden reasons why a work was implicitly rejected. Other user actions (such as stopping all music in the middle of play) do not provide enough signal to determine implicit actions so the work's acceptance status remains unknown.
+For an unsophisticated user, \textbf{Approve} and \textbf{Reject} may be considered implicit. If the user listens to the composition past a certain point, such as 80\% of the total length of the work, it may be deemed implicitly approved. Similarly, if the user advances to another song within the first 20\% of piece time, the composition is implicitly rejected. Implicit rejection does not provide any causal reason for the rejection, so trial and error analogous to reinforcement learning must be used to discover the hidden reasons why a work was implicitly rejected. Other user actions (such as stopping all music in the middle of play) do not provide enough signal to determine implicit actions so the work's acceptance status remains unknown.
 
 \subsection{Sub-plan Workflow User Interface}
 
@@ -335,21 +335,17 @@ The market reality is the most modern composers use an existing Digital Audio Wo
 
 %  how do composers view metadata? How specifically do they view metadata associated with a particular block. Maybe when they click a block, any existing metadata about it opened. So if I click a block with a melody, I may see that the melody composer asked to add a chord under the melody. Do these notes go away? Can the second editor close the request? Does the original poster need to approve? Maybe the second editor can close it, and the original editor can add a new note later if they are still not happy?  David's response: I think the Release command effectively closes the sub-plan. Anyone working on the SharedPlan can create or release a sub-plan.
 
-
 \subsection{Composer Edit / Evaluation User Interface}
 
 This is most complex and demanding user interface as it requires the highest degree of interactivity. Rather re-implementing the multitude of music editing features of a mature DAW, integration to existing DAWs is again preferable over creating a \textit{de novo} user interface. 
 
 The most novel aspect would be the integration of the evaluation to the editing task. Ideally the evaluation result would decorate and annotate the score enabling the composer to address results of the evaluation while remaining in a known editing context, analogous to seeing and resolving comments in Microsoft Word or a Google Doc.
 
- 
- 
-
 \section{Automated Analysis of Musical Structure}
 
 Harmonia facilitates collaborative composition in two ways. First, the interface as a whole, including the revision system an the shared metadata associated with each composition, helps with practical aspects of communication and coordination. Second, the analysis system lets composers know how close their work-in-progress is to their goal, as measured by similarity to characteristic pieces relevant to their goal. The analysis system also suggests structural edits such as swapping the order of existing material, or deleting material, that could further improve the piece. In this section, we describe the automated analysis of musical structure that is used by our system. Crucial to our system, our computational approach models the structure of a piece of music in relation to the expected trajectory of surprise and redundancy that a listener experiences. We first discuss the nature of the musical analysis used in our system, and then discuss how this method supports goal checking and suggested musical edits.
 
- \subsection{Entropy of Musical Events and Divergence}
+\subsection{Entropy of Musical Events and Divergence}
  
 Let $X$ be a discrete random variable that takes on values from the set $\mathcal{X}$. For example, $X$ may represent the next chord that a listener hears in a piece of music. The event $X=x$ indicates that the listener heard $X$ take on a specific value $x$. Let $p_X(x) = p(x)$ denote the probability that $X$ will take on value $x$, \textit{before} the listener hears the chord, as estimated by a distribution that the listener brings with them from prior musical experiences, as well as from what they have heard in the piece so far. $-\log\ p(x)$ then corresponds to the \textit{surprise} of the event, because the more the listener expects the event (higher $p(x)$), the lower the surprise, where the log is taken for convenience (it is monotonic in the $p(x)$). Since $X$ represents the event that the listener is about to hear, we can represent the expected surprise of $X$ averaged over all possible values as:
  
@@ -362,7 +358,6 @@ Because we choose to represent musical structure in terms of the surprise dynami
 $$ D_{KL}(X^{\prime}\textrm{ }|| \textrm{ } X) =  \sum_{x \in \mathcal{X}} p_{X^{\prime}}(x) log\frac{p_{X^{\prime}}(x) }{p_{X}(x)}$$
 
 \noindent This is read as ``the divergence from X' of X", and is the average over the ratio of point-wise log probabilities between the two distributions, weighted by $p_{X'}(x)$. For an accessible yet informative discussion of the significance of entropy as a measure of information and KL Divergence  \footnote{Another interpretation of entropy is the average number of bits required to send a message from a distribution $p$ under an optimal variable-length coding scheme. The KL Divergence of $q$ from $p$ is the increase in the average bits per message when one communicates items from $p$ using a code optimized for $q$. This is the difference between the cross entropy $H(p,q)$ and entropy $H(p)$.}, see Christopher Olah's post on Visual Information Theory \footnote{\texttt{http://colah.github.io/posts/2015-09-Visual-Information}}. This divergence describes the amount of revision to a listener's distribution over the future that happens as they hear each event. Let this be called the \textit{predictive information} of the event $X=x$ as the listener hears it. When a surprising event occurs and causes the listener to drastically revise their distribution (i.e. this same event will be less surprising in the future), the event had high predicative information. On the other hand, if thirty strikes of the same chord have just happened, hearing a thirty-first articulation does not communicate much predictive information. Our system measures the predicative information \textit{rate} (PIR) over the duration of the piece (or work-in-progress), and uses this trajectory of this rate to summarize the structure of a piece of music as it is expected to be perceived by the listener. Note that in the running example, entropy and divergence were discussed in terms of a sequence of chords heard by the listener, and the expectation over next chords in context. In even a simple piece of music, the listener tracks multiple such parameters and their interactions: evolving harmony, rhythm, timbre, and more (see section Future Work). This application of divergence to the revision of a listeners expectation over events is directly motivated by the work of  Abdallah et al. We base the summarization of musical structure in our system on their work.
-
 
 \subsection{Current Design: Analyze, Suggest, and Edit}
 
@@ -415,8 +410,9 @@ In this case, due to high volume of personal treatment plans, the initial Shared
 
 For those who do not have access to a music therapist, Harmonia can be used as a platform to assist patients in achieving certain goals and outcomes, such as creating a song that will express sadness or grief, or to express acceptance and hope for the future. The recommendations generated by the Evaluation process can assist a non-musically trained composer create reasonably sounding music for emotional expression. [TODO: add references]
 
+\section{Discussion}
 
-\section{Evaluation Methodology}
+\subsection{Evaluation Methodology}
 
  \todo[inline]{Mark}
 
@@ -431,8 +427,6 @@ For those who do not have access to a music therapist, Harmonia can be used as a
 % To test the usefulness of suggestions, we can compare composers using our revision / metadata system without system analysis and suggestions versus with analysis and suggestions. This could be further broken up by measuring differences between showing analysis percentages but not giving suggestions, versus giving suggestions.
 
 % composers vote on whether or not the piece sounds like it reached the goal.
-
-\section{Discussion}
 
 \subsection{Enhancing or Stifling Creativity}
 
