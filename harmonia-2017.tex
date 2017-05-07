@@ -361,8 +361,6 @@ $$ D_{KL}(X^{\prime}\textrm{ }|| \textrm{ } X) =  \sum_{x \in \mathcal{X}} p_{X^
 
 \subsection{Current Design: Analyze, Suggest, and Edit}
 
-\todo[inline]{David: Show waveform comparison}
-
 Harmonia uses predictive information rate to calculate the proximity of a musical work in progress to a characteristic piece from the category specified by the SharedPlan. Using these measures, the system gives feedback to a composer with respect to the composer's editing decisions, and provides suggestions that may bring a piece closer to the goal. It is this analysis and suggestion loop, along with interaction with the SharedPlan metadata, that characterize the main experience for an individual composer. This experienced is further enriched by the fact that each time the composer enters the feedback loop, the piece and aspects of SharedPlan may have changed by other composers.
 
 We assume that music information retrieval systems exist to facilitate calculating PIR on sample pieces of music queried by genre, mood, and other metadata keywords (HipHop, Chill, Slow, Study)[footnote to youtube link]. Because we currently analyze MIDI representation of music, this retrieval is done on a corpus of MIDI and score representations of music rather than audio recordings. Some examples of existing query systems include BLAH BLAH and BLAH. We calculate the PIR for the most popular $\boldsymbol{\beta}\%$ of pieces matching a specified query, and average the PIR curves to create a ``characteristic curve" that represents the typical structure of a piece of music fitting the metadata criteria. 
@@ -454,15 +452,15 @@ There are several limitations in this proposal that are inherent in the design. 
 
 \section {Future work}
 
-Harmonia is intended to serve as a base platform for multiple aspects of musical creativity, while maintaining a sufficiently modular design to evolve. Specifically, the area of creative agents is undergoing rapid evolution. Providing a framework to ensure shared intentionality, artistic consistency and collaboration with humans should provide further acceleration. Multi-agent online improvisation such as AI Beats is another ripe area for exploration both for creative purposes as well as for `call and response' treatment of autism and other disorders. 
+Harmonia is intended to serve as a base platform for multiple aspects of musical creativity, while maintaining a sufficiently modular design to evolve. Specifically, the area of creative agents is undergoing rapid evolution. Providing a framework to ensure shared intentionality, artistic consistency and collaboration with humans should provide further acceleration. Multi-agent online improvisation such as AI Beats is another ripe area for exploration both for artistic purposes as well as for `call and response' treatment of autism and other disorders. 
 
 The current Evaluation methodology is based on Music Information Retrieval and entropic measures. Given the rapid advance of Recurrent Neural Nets in natural language understanding and other sequential data streams, further investigation is warranted of applying Deep Learning to both musical evaluation as well as composition.
 
-An improved Evaluation methodology would also lead to improved agent composition. If Harmonia were used by a large set of users, the resulting listening dataset would provide important training data for applying Reinforcement Learning and other methods to further enhance agent composition.
+An improved Evaluation methodology would also lead to improved agent composition. If Harmonia were used by a large set of users, the resulting listening dataset would provide important training data for applying Reinforcement Learning and other methods to further enhance agent composition. A larger dataset would also be of significant benefit to music therapists who could share empirical data on effective treatments tailored to specific demographic and psychographic profiles.
 
 As mentioned previously, there are significant limits when using MIDI for musical expression. Incorporating more advanced musical encoding formats such as MusicXML or even just sounds would allow for greater range of expression such as articulation information.
 
-Adding vocals is an interesting challenge. Given recent developments in speech generation, is it possible to further the idea to vocals? Can a neural net be programmed to `sing' like Alicia Keys? [https://lyrebird.ai/]
+Adding vocals is an interesting challenge. Given recent developments in speech generation, is it possible to further the idea to vocals?\footnote{\texttt{https://lyrebird.ai/}} Can a neural net be programmed to `sing' like Alicia Keys? 
 
 Commercial applications of Harmonia include the aforementioned intellectual property similarity evaluation. The evaluation module may also incorporate commercial goals such as potential popularity [CS229 project].
 
@@ -482,17 +480,17 @@ Commercial applications of Harmonia include the aforementioned intellectual prop
 
 \section*{Conclusion}
   
-Our proposal contributes in two novel areas of collaborative music composition:
+Our proposal contributes two novel areas of collaborative music composition:
 \begin{itemize}
-	\item A workflow incorporating SharedPlans including intentionality and sub-plans, Collaborative Ideation, revision control Intentionality, SharedPlan and Agents
+	\item A workflow incorporating SharedPlans with explicit intentionality, sub-plans, Collaborative Ideation, revision control and automated agents
 	\item An algorithmic evaluation of the composition against intention, to ensure that both human and agent composers cooperate in reaching the shared objective.
 \end{itemize}
 
-As discussed in the Future Work, we see this initial proposal as a start of interesting area to explore leading to improved creativity, diversity and applicability of music composition as a tool for composers, music therapists and listener pleasure.
+% \todo[inline]{Mark: Probably important to mention again how this is an extention to things like SoundCloud and Blend}
+% I think this is sufficient? -David
 
- \todo[inline]{David + Mark}
+These novels contributions extend the state of the art, beyond the ideation of SoundCloud and the revision control without intentionality of Blend. As discussed in the Future Work, we see this initial proposal as a start of several interesting areas to explore leading to improved creativity, diversity and applicability of music composition as a tool for composers, music therapists and listener pleasure.
  
- \todo[inline]{Mark: Probably important to mention again how this is an extention to things like SoundCloud and Blend}
  
 \section*{Acknowledgements}
 
