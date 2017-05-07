@@ -526,10 +526,15 @@ Pierce, Letter Scientific American 1956
 
 Youngblood, Style as information 1958 Journal of Music Theory
 
-\todo[inline]{Sort references. See https://tex.stackexchange.com/questions/297283/order-references-alphabetically-with-elsarticle-num-names-bst}
+% NOTE: Replaced the class provided elsarticle-num-names with elsarticle-num-names-alpha
+%       to enable sorting of references.
+% See https://tex.stackexchange.com/questions/297283/order-references-alphabetically-with-elsarticle-num-names-bst
+% and https://github.com/erelsgl/erelsgl.github.io/blob/master/papers/elsarticle-num-names-alpha.bst
+%
+% To revert to the prior bibliographstyle, change the following line back to:
+%             \bibliographystyle{elsarticle-num-names}
 
-
-\bibliographystyle{elsarticle-num-names}
+\bibliographystyle{elsarticle-num-names-alpha}
 \bibliography{harmonia-bib}
 
 
