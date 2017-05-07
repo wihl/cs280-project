@@ -288,7 +288,7 @@ It is ideal for such communication to be concise and structured. It may be detri
 
 Our system represents music in MIDI format. MIDI is a protocol for communicating discrete information about the pitch, duration, and dynamics of individual notes. A musical work is described by specifying the vertical arrangement of individual notes as chords and their horizontal arrangement over time. Additionally, there is a General MIDI Soundbank that maps integers to specific electronic instrument sounds. For example, one can specify that this MIDI part is meant to be played by sound $0$, grand piano or Ocarina, sound $80$. Most familiar software for music notation and music production build user interfaces on top of a basic MIDI file editor. Through the use of additional metadata (next section), composers are able to segment MIDI files into separate segments. For example, a piece may be subdivided into several sections. Segmentation may represent intentions about musical form, for example one may segment part of a composition into an exposition and a development section. 
 
-During an interaction with the system, a composer is able to change a composition by editing the MIDI in several low-level or high-level ways. Composers can add a new block of material, edit an existing block, remove an existing block, swap the order of two blocks, merge two blocks, or split a block into two. At each iteration of editing, the system suggests an option that may bring the work in progress closer to what is specified by the SharedPlan. This is primarily of the form of "switch blocks A and B?" (See Section on Automatic Evaluation). The final product of collaboration is a MIDI file that represents the pitches, rhythms, and dynamics of musical events, as well as a collection of metadata that concisely states additional information, such as tempo and instrumentation. 
+During an interaction with the system, a composer is able to change a composition by editing the MIDI in several low-level or high-level ways. Composers can add a new block of material, edit an existing block, remove an existing block, swap the order of two blocks, merge two blocks, or split a block into two. At each iteration of editing, the system suggests an option that may bring the work in progress closer to what is specified by the SharedPlan. This is primarily of the form of ``move block A after block B?" (See Section on Automatic Evaluation). The final product of collaboration is a MIDI file that represents the pitches, rhythms, and dynamics of musical events, as well as a collection of metadata that concisely states additional information, such as tempo and instrumentation. 
 
 \begin{table}
     \begin{tabular}{|l|l|}
@@ -325,7 +325,7 @@ There are three aspects to the user interface: for non-musical users, for compos
 
 \subsection{SharedPlan Workflow User Interface}
 
-There are three possible commands in this context: \textbf{EditPlan} (including create/edit/delete), \textbf{Approve, Reject}. Since the user may not have any musical background, this user interface should be accessible to as large a population as possible. Ideally, this would be a simple looking, reactive web-based interface that would work equally well on mobile devices as well as desktops. Music apps such as Spotify may wish to integrate this functionality so a web-based API should also be accessible.
+There are three possible commands in this context: \textbf{EditPlan} (including create/edit/delete), \textbf{Approve, Reject}. Since the user may not have any musical background, this user interface must be accessible to as large a population as possible. Ideally, this would be a simple looking, reactive web-based interface that would work equally well on mobile devices as well as desktops. Music apps such as Spotify may wish to integrate this functionality so a web-based API must also be accessible.
 
 For an unsophisticated user, \textbf{Approve} and \textbf{Reject} may be considered implicit. If the user listens to the composition past a certain point, such as 80\% of the total length of the work, it may be deemed implicitly approved. Similarly, if the user advances to another song within the first 20\% of piece time, the composition is implicitly rejected. Implicit rejection does not provide any causal reason for the rejection, so trial and error analogous to reinforcement learning must be used to discover the hidden reasons why a work was implicitly rejected. Other user actions (such as stopping all music in the middle of play) do not provide enough signal to determine implicit actions so the work's acceptance status remains unknown.
 
@@ -374,11 +374,11 @@ Also using these PIR scores, our system may give edit suggestions. As specified 
 
 \section{Use Cases}
 
-\subsection{Individual User, Individual Composer}
+\subsection{Use Case 1: Individual User, Individual Composer}
 
 Our first use case considers the following scenario: a listener who may be a non-musician would like a new piece of music, perhaps for a very specific function such as study music. We consider the case that the listener specifies a new project defined by a mood and genre. In this simple case, we consider a single composer iterates over the piece with assistance from our system until the requester is implicitly satisfied by listening to at least 80\% of the piece.
 
-\subsection{Multiple Composers}
+\subsection{Use Case 2: Multiple Composers}
 
 \begin{figure}
 	\includegraphics[scale=0.35]{multicomposer.pdf}
@@ -392,7 +392,7 @@ Our first use case considers the following scenario: a listener who may be a non
 
 Our second use case considers the case where multiple composers create a music specification together, and then collaboratively compose music that stays on track with the original specification.
 
-\subsection{Therapist with Agent - Human Composition Team}
+\subsection{Use Case 3: Therapist with Agent \& Human Composers}
 
 \begin{figure}
 	\includegraphics[scale=0.35]{clinical.pdf}
@@ -400,13 +400,13 @@ Our second use case considers the case where multiple composers create a music s
 	\label{fig:clinical}
 \end{figure}
 
-Our third case considers the situation where a music therapist treats their patients using newly composed music, specific to a given patient's needs. Music therapy is used in many contexts such as the treatment of autism. This SharedPlan may have a more highly-refined specification than music for casual listening, such as a specific tempo or special therapeutic timbres (sound qualities). 
+Our third case considers the situation where a music therapist treats their patients using newly composed music, specific to a given patient's needs. Music therapy is used in many contexts including children and adults with mood disorders (e.g. depression and PTSD), developmental disorders (e.g. autism and ADHD), and neurological conditions (e.g. dementia). This SharedPlan may have a more highly-refined specification than music for casual listening, such as a specific tempo or special therapeutic timbres (sound qualities). 
 
 In this case, due to high volume of personal treatment plans, the initial SharedPlan is executed by an agent which performs the bulk of the composition. The agent's composition is then reviewed by a human who may make only small modifications to make the music more warm or less mechanical. The clinician makes the final approval and then provides the music to the patient for treatment.
 
-\subsection{Pseudo Music Therapist}
+\subsection{Use Case 4: Pseudo Music Therapist}
 
-For those who do not have access to a music therapist, Harmonia can be used as a platform to assist patients in achieving certain goals and outcomes, such as creating a song that will express sadness or grief, or to express acceptance and hope for the future. The recommendations generated by the Evaluation process can assist a non-musically trained composer create reasonably sounding music for emotional expression. [TODO: add references]
+For those who do not have access to a music therapist, Harmonia can be used as a platform to assist patients in achieving certain goals and outcomes, such as creating a song that will express sadness or grief, or to express acceptance and hope for the future. The recommendations generated by the Evaluation process can assist a non-musically trained composer create reasonably sounding music for emotional expression. The act of creative composition is itself therapeutic employing various regions in the brain, including the region responsibly for autobiographical memory in the case of improvisation. [TODO: add references]
 
 \section{Discussion}
 
@@ -428,7 +428,7 @@ For those who do not have access to a music therapist, Harmonia can be used as a
 
 \subsection{Enhancing or Stifling Creativity}
 
-The question arises whether algorithmic evaluation of a composition is a potential means of stifling music creativity. Is it possible that a corpus based evaluation will nudge composers into making music that resembles existing work rather free creative expression? Firstly, the evaluation can be ignored by composer - there is purposefully no gatekeeper function of the Evaluation, it is purely advisory. Secondly, by using an entropy-based evaluation, the composer now has a means of determining the originality of the creation. The Evaluation could be further enhanced to show the composer that the work-in-progress resembles certain existing works too closely, avoiding potential future intellectual property infringement. No composer can possibly know all existing work in the corpus. A composer can now have an independent measure of the originality of the new work, which we believe will encourage greater creativity.
+The question arises whether algorithmic evaluation of a composition is a potential means of stifling music creativity. Is it possible that a corpus based evaluation will nudge composers into making music that resembles existing work rather free creative expression? Firstly, the evaluation can be ignored by composer - there is purposefully no gatekeeper function of the Evaluation, it is purely advisory. Secondly, by using an entropy-based evaluation, the composer now has a means of determining the originality of the creation. The Evaluation could be further enhanced to show the composer that the work-in-progress resembles certain existing works too closely, avoiding potential future intellectual property infringement. No composer can possibly know all existing work in the corpus. A composer can now have an independent measure of the originality of the new work, which will encourage greater creativity.
 
 \subsection{Limitations}
 
@@ -557,6 +557,8 @@ Carr, C., d?Ardenne, P., Sloboda, A., Scott, C., Wang, D., \& Priebe, S. (2012).
 
 Bensimon, M., Amir, D., \& Wolf, Y. (2008). Drumming through trauma: Music therapy with post-traumatic soldiers. The Arts in Psychotherapy, 35(1), 34-48.
 
+Limb \& Braun, 2008: http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0001679).
+
 You may also make an argument for how this can help pre or post surgery to reduce anxiety and discomfort, and pain:
 Hole, J., Hirsch, M., Ball, E., \& Meads, C. (2015). Music as an aid for postoperative recovery in adults: a systematic review and meta-analysis. The Lancet, 386(10004), 1659-1671.
 
@@ -568,6 +570,8 @@ Predicting song popularity http://cs229.stanford.edu/proj2015/140\_report.pdf se
 
 \bibliographystyle{elsarticle-num-names}
 \bibliography{harmonia-bib}
+
+\todo[inline]{David: add appendix of common git commands}
 
 \end{document}
 
