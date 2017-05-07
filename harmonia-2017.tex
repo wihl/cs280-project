@@ -150,7 +150,7 @@ Increasing productivity of music composition has many positive benefits. Listene
 
 %Increasing productivity of music composition has many positive benefits. Listeners would appreciate individually tailored music to their emotional needs and context. Composers would be facilitated by greater and more diverse cooperation yielding more innovative music. Composition agents could assist in the generation of repetitive or  experimental musical forms. Therapists can use music as part of a treatment plan  for autism and many other disorders. The system we propose attempts to address these myriad needs  by offering two key innovations: a SharedPlan with collaborative versioning to mediate the workflow of a composition for a group of musicians, an algorithmic evaluation of a composition against the intention of the SharedPlan to provide guidance to both human and agent composers.
 
-\section{Introduction}
+\section*{Introduction}
 \label{sec:introduction}
 
 \epigraph{It is my design to render it manifest that no one point in its composition is referrible either to accident or intuition -- that the work proceeded, step by step, to its completion with the precision and rigid consequence of a mathematical problem.}{\textit{Edgar Allen Poe, The Philosophy of Composition}}
@@ -315,7 +315,7 @@ There are multiple potential failure circumstances of the proposed design:
 \item[Failure to satisfy] The creator of the original SharedPlan may never approve or reject the produced work, leaving it in an undefined state.
 \item[Sub-plan not released]A sub-plan may be defined but no composer ever completes the sub-plan so the work stays in an incomplete state.
 \item[Evaluation not converging] The evaluation process may continue to offer suggestions that are rejected by the composer. Note that the evaluation process only makes recommendations but is not a gatekeeper for the composer to release. However, if the Evaluation mechanism repeatedly gives undesired or unhelpful suggestions, composers will cease future use.
-\item[Fail to Evaluate] there may not be sufficient training data for a given genre / mood combination so the Evaluation may fail to provide sufficiently useful recommendations.
+\item[Failure to Evaluate] there may not be sufficient training data for a given genre / mood combination so the Evaluation may fail to provide sufficiently useful recommendations.
 \end{description}
 
 None of these failure modes results in a castastrophic collapse of the system. Failures result in a specific SharedPlan not advancing but does not preclude other SharedPlans from continuing to evolve.
@@ -326,7 +326,7 @@ There are three aspects to the user interface: for non-musical users, for compos
 
 \subsection{SharedPlan Workflow User Interface}
 
-There are four commands possible in this context: \textbf{EditPlan} (including create/edit/delete), \textbf{Approve, Reject}. Since the user may not have any musical background, this user interface should be accessible to as large a population as possible. Ideally, this would be a simple looking, reactive web-based interface that would work equally well on mobile devices as well as desktops. Music apps such as Spotify may wish to integrate this functionality so a web-based API should also be accessible.
+There are three possible commands in this context: \textbf{EditPlan} (including create/edit/delete), \textbf{Approve, Reject}. Since the user may not have any musical background, this user interface should be accessible to as large a population as possible. Ideally, this would be a simple looking, reactive web-based interface that would work equally well on mobile devices as well as desktops. Music apps such as Spotify may wish to integrate this functionality so a web-based API should also be accessible.
 
 For an unsophisticated user, \textbf{Approve} and \textbf{Reject} may be considered implicit. If the user listens to the composition past a certain point, such as 80\% of the total length of the work, it may be deemed implicitly approved. Similarly, if the user advances to another song within the first 20\%, the composition is implicitly rejected. Implicit rejection does not provide any causal reason for the rejection, so trial and error analogous to reinforcement learning must be used to discover the hidden reasons why a work was implicitly rejected. Other user actions (such as stopping all music in the middle of play) do not provide enough signal to determine implicit actions so the work's acceptance status remains unknown.
 
@@ -412,6 +412,10 @@ Our third case considers the situation where a music therapist treats their pati
 
 In this case, due to high volume of personal treatment plans, the initial SharedPlan is executed by an agent which performs the bulk of the composition. The agent's composition is then reviewed by a human who may make only small modifications to make the music more warm or less mechanical. The clinician makes the final approval and then provides the music to the patient for treatment.
 
+\subsection{Pseudo Music Therapist}
+
+For those who do not have access to a music therapist, Harmonia can be used as a platform to assist patients in achieving certain goals and outcomes, such as creating a song that will express sadness or grief, or to express acceptance and hope for the future. The recommendations generated by the Evaluation process can assist a non-musically trained composer create reasonably sounding music for emotional expression.
+
 
 \section{Evaluation Methodology}
 
@@ -494,7 +498,7 @@ There are several limitations in this proposal that are inherent in the design. 
 %We need to consider several streams of info. and their interactions: rhythm, pitch, harmony, timbre. Even within one type of information stream, say pitch, we need to consider several hierarchical levels at once: 
 \end{itemize}
 
-\section{Conclusion}
+\section*{Conclusion}
   
 Our proposal contributes in two novel areas of collaborative music composition:
 \begin{itemize}
@@ -507,8 +511,14 @@ As discussed in the Future Work, we see this initial proposal as a start of inte
  \todo[inline]{David + Mark}
  
  \todo[inline]{Mark: Probably important to mention again how this is an extention to things like SoundCloud and Blend}
+ 
+\section*{Acknowledgements}
 
-\section{References}
+We are honored to be part of Prof. Grosz's final class. We deeply appreciate the guidance that she and Peter Krafft have provided all semester. We wish them all the best in their future endeavors and SharedPlans.
+
+Special thanks to \href{https://www.psychologytoday.com/experts/david-m-greenberg-phd}{Dr. David Greenberg} who provided important insights and suggestions regarding the application of Harmonia and other future work for music therapy.
+
+\section*{References}
 
  \todo[inline]{David + Mark: clean this up, add proper citations in text}
  
@@ -555,6 +565,20 @@ Youngblood, Style as information 1958 Journal of Music Theory
 The mathematical theory of communication. Shannon, Claude Elwood 1948. Bell Tel Labs Monograph
 
 Torvalds, Linus, and Junio Hamano. "Git: Fast version control system." URL http://git-scm. com (2010).
+
+Grief Song writing process:
+
+http://my.ilstu.edu/~crropp/Documents/PDF\%20files\%20341/Dalton\%20and\%20Krout.pdf
+
+
+Hilliard, R. E. (2001). The effects of music therapy-based bereavement groups on mood and behavior of grieving children: A pilot study. Journal of Music Therapy, 38(4), 291-306.
+
+Carr, C., d?Ardenne, P., Sloboda, A., Scott, C., Wang, D., \& Priebe, S. (2012). Group music therapy for patients with persistent post?traumatic stress disorder?an exploratory randomized controlled trial with mixed methods evaluation. Psychology and Psychotherapy: Theory, Research and Practice, 85(2), 179-202.
+
+Bensimon, M., Amir, D., \& Wolf, Y. (2008). Drumming through trauma: Music therapy with post-traumatic soldiers. The Arts in Psychotherapy, 35(1), 34-48.
+
+You may also make an argument for how this can help pre or post surgery to reduce anxiety and discomfort, and pain:
+Hole, J., Hirsch, M., Ball, E., \& Meads, C. (2015). Music as an aid for postoperative recovery in adults: a systematic review and meta-analysis. The Lancet, 386(10004), 1659-1671.
 
 \todo[inline]{Fix references from section to section}
 
