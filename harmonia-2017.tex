@@ -167,7 +167,7 @@ SharedPlans provide a framework to establish and maintain context and metadata a
 
 We propose a system that addresses collaborative music composition inspired by tools used for software teamwork, collaborative ideation, and musical structure analysis. This system defines an interface for collaboration over a shared creative artifact, and includes procedures for editing a work-in-progress and receiving algorithmic  feedback about edits. Crucially, the system assists collaborators with the task of staying on track with an \textit{a priori} specified goal for the turnout of the piece, and also provides a framework for communication among collaborators about the intention of edits during collaboration.
 
-We first examine previous work related to shared intentionality, collaboration and group ideation, intelligent music systems, and modeling the structure of music. Next, we describe the details of the overall usage workflow, as well as the individual components of our system. This includes a specification of an automated approach for giving composers feedback on the relevance of their ideas to a specified collaborative goal. We present three use cases for our system, where collaborating composers create music ranging in purpose from casual listening to clinical therapy. We conclude with a discussion of our system proposal, including limitations we have identified and potential future work.
+We first examine previous work related to shared intentionality, collaboration and group ideation, intelligent music systems, and modeling the structure of music. Next, we describe the details of the overall usage workflow, as well as the individual components of our system. This includes a specification of an automated approach for giving composers feedback on the relevance of their ideas to a specified collaborative goal. We present four use cases for our system, where collaborating composers create music ranging in purpose from casual listening to clinical therapy. We conclude with a discussion of our system proposal, including limitations we have identified and potential future work.
 
 %Deep Neural Networks are being used for the creation of new visual[ref to Sketch paper], narrative[ref] and now musical works[wavenet? magenta ref?]. These sophisticated tools can assist a human composer with idea exploration and generation, as well as with idea evaluation (e.g. a composer may evaluate the likelihood of a musical sample against a corpus).
 
@@ -461,28 +461,18 @@ There are several limitations in this proposal that are inherent in the design. 
 
 \section {Future work}
 
- \todo[inline]{David + Mark}
- 
-\begin{itemize}
+Harmonia is intended to serve as a base platform for multiple aspects of musical creativity, while maintaining a sufficiently modular design to evolve. Specifically, the area of creative agents is undergoing rapid evolution. Providing a framework to ensure shared intentionality, artistic consistency and collaboration with humans should provide further acceleration. Multi-agent online improvisation such as AI Beats is another ripe area for exploration both for creative purposes as well as for `call and response' treatment of autism and other disorders. 
 
-\item Originality Evaluation, derivative work - do new compositions potentially expose intellectual property infringement.
+The current Evaluation methodology is based on Music Information Retrieval and entropic measures. Given the rapid advance of Recurrent Neural Nets in natural language understanding and other sequential data streams, further investigation is warranted of applying Deep Learning to both musical evaluation as well as composition.
 
-\item integration with existing DAW, especially for layering notion of blocks over an existing piece.
+An improved Evaluation methodology would also lead to improved agent composition. If Harmonia were used by a large set of users, the resulting listening dataset would provide important training data for applying Reinforcement Learning and other methods to further enhance agent composition.
 
-\item MusicXML
-\todo[inline]{Mark: MusicXML instead of MIDI. Makes automatic evaluation more difficult} 
+As mentioned previously, there are significant limits when using MIDI for musical expression. Incorporating more advanced musical encoding formats such as MusicXML or even just sounds would allow for greater range of expression.
 
-\item Improved agent composition
-\todo[inline]{David: 1. maybe re-mention here how could work when human agents communicate their intentions concisely and formally. 2. reinforcement learning} 
+Adding vocals is an interesting challenge. Given recent developments in speech generation, is it possible to further the idea to vocals? Can a neural net be programmed to `sing' like Alicia Keys? [https://lyrebird.ai/]
 
-\item Intelligent ad hoc composition
-\todo[inline]{David: what would this be?} 
+Commercial applications of Harmonia include the aforementioned intellectual property similarity evaluation. The evaluation module may also incorporate commercial goals such as potential popularity [CS229 project].
 
-\item Facilitator of scalable music composition
-\todo[inline]{David: How is this different? What what change? is it the ``scalable" aspect?} 
-
-\item improved evaluator
-\todo[inline]{Mark: Improved evaluator. Multiple mutual information for interacting parameters of music.} 
 
 % THESE ARE EXTENSIONS TO HOW WE COULD IMPROVE THE ANALYSIS (DO NOT DELETE)
 
@@ -495,7 +485,7 @@ There are several limitations in this proposal that are inherent in the design. 
 %2. ?Another... is that one portion of the cultural sign system can be legitimately abstracted from the whole, and that values based on this abstraction will have the same worth as when the portion is a part of the whole.?
 %3. ?A further assumption... a sequence of musical events is experienced on only one architectonic level: in melodic analyses, on the level of notes or intervals; in rhythmic analyses, on the level of the pulse pattern... theory will have to take account of the interaction among levels.?
 %We need to consider several streams of info. and their interactions: rhythm, pitch, harmony, timbre. Even within one type of information stream, say pitch, we need to consider several hierarchical levels at once: 
-\end{itemize}
+
 
 \section*{Conclusion}
   
@@ -578,6 +568,10 @@ Bensimon, M., Amir, D., \& Wolf, Y. (2008). Drumming through trauma: Music thera
 
 You may also make an argument for how this can help pre or post surgery to reduce anxiety and discomfort, and pain:
 Hole, J., Hirsch, M., Ball, E., \& Meads, C. (2015). Music as an aid for postoperative recovery in adults: a systematic review and meta-analysis. The Lancet, 386(10004), 1659-1671.
+
+Predicting song popularity http://cs229.stanford.edu/proj2015/140\_report.pdf see also https://motherboard.vice.com/en\_us/article/a-machine-successfully-predicted-the-hit-dance-songs-of-2015
+
+
 
 \todo[inline]{Fix references from section to section}
 
