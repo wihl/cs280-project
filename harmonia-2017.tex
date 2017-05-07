@@ -218,10 +218,10 @@ While our current work seeks primarily to assist teams of human composers to enr
 
 \subsection{Information Theory and Music Analysis}
 
-Our systems relies on the ability to model musical structure in a way that supports automated feedback for collaborating composers, where feedback is in the form of suggested rearrangements of musical ideas that help a composition reach a mutually specified structural goal. In this direction, there has been a rich body of work in automated analysis of musical structure from the 1950's to present. A prominent direction is to model musical form by way of listener perception and the expected dynamics of their attention and surprise. Understanding musical structure and its impact on listeners is a cogent goal to music theorists, cognitive scientists, and machine learning researchers. Many of these approaches have drawn on probability theory and information theory. A survey of approaches historical to contemporary can be found in the Con Espressione Manifesto [Widmer 2016], which is a strong position paper on the coming decade of research directions for music information retrieval. Many of these works borrow from original principles described in \cite{shannon} in largely unmodified ways.
+Our systems relies on the ability to model musical structure in a way that supports automated feedback for collaborating composers, where feedback is in the form of suggested rearrangements of musical ideas that help a composition reach a mutually specified structural goal. In this direction, there has been a rich body of work in automated analysis of musical structure from the 1950's to present. A prominent direction is to model musical form by way of listener perception and the expected dynamics of their attention and surprise. Understanding musical structure and its impact on listeners is a cogent goal to music theorists, cognitive scientists, and machine learning researchers. Many of these approaches have drawn on probability theory and information theory. A survey of approaches historical to contemporary can be found in the Con Espressione Manifesto \citep{widmer2016getting}, which is a strong position paper on the coming decade of research directions for music information retrieval. Many of these works borrow from original principles described in \cite{shannon} in largely unmodified ways.
 
 % Abdallah, Predictive Information Rate
-Our work builds on the Information Dynamics Approach [Abdallah et al 2012]. Abdallah uses predictive information rate, a entropy/divergence based metric that measures how a listener's mid-piece distribution over future musical events is continually revised as new information is presented, to compute a curve that summarizes aspects of surprise in redundancy in a piece of music. Our work assumes that musical structure can be effectively summarized by this criteria. We assume that pieces from a particular genre/mood are defined by characteristic balances of surprise and redundancy over time, with peaks of information content (communicated by the composer) in genre-specific locations. We leverage this metric as the foundation of our automatic analysis system, which compares a collaborative work-in-progress against the characteristic curves for the genre and mood specified by the work's SharedPlan, and suggests edits to the composers to keep them in line with their goal.
+Our work builds on the Information Dynamics Approach \citep{abdallah2012cognitive}. Abdallah uses predictive information rate, a entropy/divergence based metric that measures how a listener's mid-piece distribution over future musical events is continually revised as new information is presented, to compute a curve that summarizes aspects of surprise in redundancy in a piece of music. Our work assumes that musical structure can be effectively summarized by this criteria. We assume that pieces from a particular genre/mood are defined by characteristic balances of surprise and redundancy over time, with peaks of information content (communicated by the composer) in genre-specific locations. We leverage this metric as the foundation of our automatic analysis system, which compares a collaborative work-in-progress against the characteristic curves for the genre and mood specified by the work's SharedPlan, and suggests edits to the composers to keep them in line with their goal.
 
 \section{System Design}
 
@@ -247,7 +247,7 @@ As composers begin to work on the piece, they iterate adding and editing materia
 
 Version control has become an essential part of team-based software development. However, the tools for managing
 revisions of other creative work, including music composition, are non-existant or limited in comparison. There are
-two commercial version control systems for music: the aforementioned Blend and Splice.com \footnote{\texttt{https://splice.com/}}. \texttt{git} [Torvalds] has been referenced elsewhere [Wolf] as a viable means for musical score version control, especially in the MIDI format.
+two commercial version control systems for music: the aforementioned Blend and Splice.com \footnote{\texttt{https://splice.com/}}. \texttt{git} \citep{torvalds2010git} has been referenced elsewhere \citep{oberholtzer2015computational} as a viable means for musical score version control, especially in the MIDI format.
 
 Software based version control systems are excellent for basic version control operations such as branching, committing and viewing history, there are lacking several primitive necessary for integration in our proposed workflow. In the interest of brevity, we do not specify the entire subset of major \texttt{git} commands necessary for version control.
 
@@ -400,13 +400,13 @@ Our second use case considers the case where multiple composers create a music s
 	\label{fig:clinical}
 \end{figure}
 
-Our third case considers the situation where a music therapist treats their patients using newly composed music, specific to a given patient's needs. Music therapy is used in many contexts including children and adults with mood disorders (e.g. depression and PTSD), developmental disorders (e.g. autism and ADHD), and neurological conditions (e.g. dementia). This SharedPlan may have a more highly-refined specification than music for casual listening, such as a specific tempo or special therapeutic timbres (sound qualities). 
+Our third case considers the situation where a music therapist treats their patients using newly composed music, specific to a given patient's needs. Music therapy is used in many contexts including children and adults with mood disorders (e.g. depression and PTSD), developmental disorders (e.g. autism and ADHD), and neurological conditions (e.g. dementia) \citep{hole2015music}. This SharedPlan may have a more highly-refined specification than music for casual listening, such as a specific tempo or special therapeutic timbres (sound qualities). 
 
 In this case, due to high volume of personal treatment plans, the initial SharedPlan is executed by an agent which performs the bulk of the composition. The agent's composition is then reviewed by a human who may make only small modifications to make the music more warm or less mechanical. The clinician makes the final approval and then provides the music to the patient for treatment.
 
 \subsection{Use Case 4: Pseudo Music Therapist}
 
-For those who do not have access to a music therapist, Harmonia can be used as a platform to assist patients in achieving certain goals and outcomes, such as creating a song that will express sadness or grief, or to express acceptance and hope for the future. The recommendations generated by the Evaluation process can assist a non-musically trained composer create reasonably sounding music for emotional expression. The act of creative composition is itself therapeutic employing various regions in the brain, including the region responsibly for autobiographical memory in the case of improvisation. [TODO: add references]
+For those who do not have access to a music therapist, Harmonia can be used as a platform to assist patients in achieving certain goals and outcomes, such as creating a song that will express sadness or grief, or to express acceptance and hope for the future \citep{dalton2006grief}. The recommendations generated by the Evaluation process can assist a non-musically trained composer create reasonably sounding music for emotional expression. The act of creative composition is itself therapeutic employing various regions in the brain, including the region responsibly for autobiographical memory in the case of improvisation. \citep{hilliard2001effects,bensimon2008drumming,limb2008neural,carr2012group} 
 
 \section{Discussion}
 
@@ -462,7 +462,7 @@ As mentioned previously, there are significant limits when using MIDI for musica
 
 Adding vocals is an interesting challenge. Given recent developments in speech generation, is it possible to further the idea to vocals?\footnote{\texttt{https://lyrebird.ai/}} Can a neural net be programmed to `sing' like Alicia Keys? 
 
-Commercial applications of Harmonia include the aforementioned intellectual property similarity evaluation. The evaluation module may also incorporate commercial goals such as potential popularity [CS229 project].
+Commercial applications of Harmonia include the aforementioned intellectual property similarity evaluation. The evaluation module may also incorporate commercial goals such as potential popularity \citep{phampredicting}.
 
 
 % THESE ARE EXTENSIONS TO HOW WE COULD IMPROVE THE ANALYSIS (DO NOT DELETE)
@@ -498,20 +498,15 @@ We are honored to be part of Prof. Grosz's final class. We deeply appreciate the
 
 Special thanks to \href{https://www.psychologytoday.com/experts/david-m-greenberg-phd}{Dr. David Greenberg} who provided important insights and suggestions regarding the application of Harmonia for music therapy.
 
-\section*{References}
+\section*{Not References}
 
- \todo[inline]{David + Mark: clean this up, add proper citations in text}
+\todo[inline]{Orphaned references - not found in text}
  
-
 Meyer, L.B., 1956. Emotion and Meaning in Music. Chicago University Press, Chicago, IL.
 
 Narmour, E.. 1992. The Analysis and Cognition of Melodic Complexity: The Implication-Realization Model.
 
 D. Huron. 2006. Sweet Anticipation: Music and the Psychology of Expectation. MIT Press, Cambridge, MA.
-
-Abdallah, Cognitive Music Modeling: An Information Dynamics Approach. 2012 3rd International Workshop on Cognitive Information Processing (CIP)
-
-Widmer, Gerhard. 2016. Getting closer to the essence of music: The Con Espressione manifesto. ACM Transactions on Intelligent Systems and Technology
 
 Engel et al., Neural Audio Synthesis of Musical Notes with WaveNet Autoencoders, 2017
 
@@ -531,28 +526,7 @@ Pierce, Letter Scientific American 1956
 
 Youngblood, Style as information 1958 Journal of Music Theory
 
-The mathematical theory of communication. Shannon, Claude Elwood 1948. Bell Tel Labs Monograph
-
-Torvalds, Linus, and Junio Hamano. "Git: Fast version control system." URL http://git-scm. com (2010).
-
-Grief Song writing process:
-
-http://my.ilstu.edu/~crropp/Documents/PDF\%20files\%20341/Dalton\%20and\%20Krout.pdf
-
-
-Hilliard, R. E. (2001). The effects of music therapy-based bereavement groups on mood and behavior of grieving children: A pilot study. Journal of Music Therapy, 38(4), 291-306.
-
-Carr, C., d?Ardenne, P., Sloboda, A., Scott, C., Wang, D., \& Priebe, S. (2012). Group music therapy for patients with persistent post?traumatic stress disorder?an exploratory randomized controlled trial with mixed methods evaluation. Psychology and Psychotherapy: Theory, Research and Practice, 85(2), 179-202.
-
-Bensimon, M., Amir, D., \& Wolf, Y. (2008). Drumming through trauma: Music therapy with post-traumatic soldiers. The Arts in Psychotherapy, 35(1), 34-48.
-
-Limb \& Braun, 2008: http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0001679).
-
-You may also make an argument for how this can help pre or post surgery to reduce anxiety and discomfort, and pain:
-Hole, J., Hirsch, M., Ball, E., \& Meads, C. (2015). Music as an aid for postoperative recovery in adults: a systematic review and meta-analysis. The Lancet, 386(10004), 1659-1671.
-
-Predicting song popularity http://cs229.stanford.edu/proj2015/140\_report.pdf see also https://motherboard.vice.com/en\_us/article/a-machine-successfully-predicted-the-hit-dance-songs-of-2015
-
+\todo[inline]{Sort references. See https://tex.stackexchange.com/questions/297283/order-references-alphabetically-with-elsarticle-num-names-bst}
 
 
 \bibliographystyle{elsarticle-num-names}
