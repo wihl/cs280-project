@@ -392,7 +392,7 @@ For those who do not have access to a music therapist, Harmonia can be used as a
 
 \subsection{Evaluation Methodology}
  
-We intend to validate our system with several studies on small groups of composers that specify a musical goal and collaboratively work on a piece of music facilitated by our system (Use Case 2). We also intend to validate our system for Use Case 1, \hl{in which} a non-musician requester feels that their desire has been addressed in some way. The Therapy use cases should be included in studies once these two less-complex cases are assessed.
+We intend to validate our system with several studies on small groups of composers that specify a musical goal and collaboratively work on a piece of music facilitated by our system (Use Case 2). We also intend to validate our system for Use Case 1, in which a non-musician requester feels that their desire has been addressed in some way. The Therapy use cases should be included in studies once these two less-complex cases are assessed.
 
 Testing will include the validation of several system aspects:
 
@@ -402,9 +402,7 @@ Testing will include the validation of several system aspects:
 
 \item Do composers feel that communication through Sub-Goals is efficient for collaborating on ideas requiring the work of several composers?
 
-\item Do composers feel as if finished pieces respect their original SharedPlan?
-
-\item Does the requester feel as if the finished piece respects the original SharedPlan?
+\item Do composers and requesters feel as if finished pieces respect the SharedPlan? 
 
 \end{enumerate}
 
@@ -428,7 +426,7 @@ There are several limitations in this proposal that are inherent in the design. 
 
 \textit{Information Theory.} Although we have presented the way in which PIR may be calculated over a single musical parameter such as chord progressions or rhythms, composers create many complex relationships across parameters. In the Con Espressione Manifesto, \cite{widmer2016getting} cites several theorists from the 1950s that were working on modeling music as information. Among them, \cite {cohen1962information} demanded 1) a theory of interactions for multiple streams of musical information, for example, to explain how rhythmic information may make harmonic events more or less certain. 2) a theory for multiple levels of structural hierarchy coming at once from a single stream of musical information. Rhythms constitute a local time feel but also accelerate a piece toward new sections. These are still complicated aspects of information today. The first point requires a generalization of mutual information to multiple random variables, which has been difficult to interpret and has been met with confusion through several coexistent approaches \citep{van2011two}. To our knowledge, the second point has not yet been explored.
 
-\textit{Model may not generalize.} While we are confident that SharedPlans, software revision control, and algorithmic evaluation are applicable to music composition, it is uncertain that the overall framework can be generalized to other domains. Version control for visual artwork seems promising, but simple text-based revision may not support editing capabilities for rich-enough representations of art in an intuitive or useful way.  Algorithmic evaluation of intent may be more difficult to design for a painting. Musical form, as treated by our system, is experienced at an information-general level also applicable to a story, movie, or play, but which is limited to sequential forms. The static experience of a painting is less related and may require a different set of domain-specific criteria for capturing intent. To this end, generalizable techniques for automated analysis that bypass the necessity to encode domain-specific information are desirable, and may be approached with today's Deep Learning techniques (See \ref{sec:future} \nameref{sec:future}).
+\textit{Model may not generalize.} While we are confident that SharedPlans, software revision control, and algorithmic evaluation are applicable to music composition, it is uncertain that the overall framework can be generalized to other domains. Version control for visual artwork seems promising, but simple text-based revision may not support editing capabilities for rich-enough representations of visual art in an intuitive or useful way.  Algorithmic evaluation of intent may be more difficult to design for a painting. Musical form, as treated by our system, is experienced at an information-general level also applicable to a story, movie, or play, but which is limited to sequential forms. The static experience of a painting is less related and may require a different set of domain-specific criteria for capturing intent. To this end, generalizable techniques for automated analysis that bypass the necessity to encode domain-specific information are desirable, and may be approached with today's Deep Learning techniques (See \ref{sec:future} \nameref{sec:future}).
 
 \textit{Representation is MIDI, not recorded acoustic signal. Vocals are not supported.} MIDI is far easier to generate and maintain under version control, but has two limitations. The first is that many interesting sounds such as vocals and other samples of recorded sound cannot be expressed in the current design. MIDI placeholders may be made for these sounds, such that someone substitutes them into the piece post-collaboration, but collaboration over these sounds themselves is not supported. Given this setting of \textit{written}, rather than \textit{performed} music, the second limitation is that MIDI encodes only a subset of written musical expression. MusicXML is another text-based format that is more flexible than MIDI, while still being amenable to revision control (See Figure 2). It allows musicians to visually communicate performance techniques (e.g. pizzicato, slur, sul ponticello) but would complicate SharedPlan communication protocol and automated analysis.
 
@@ -441,7 +439,7 @@ There are several limitations in this proposal that are inherent in the design. 
 
 Harmonia is intended to serve as a base platform for multiple aspects of musical creativity, while maintaining a sufficiently modular design to evolve. Specifically, the area of creative agents is undergoing rapid evolution. Providing a framework to ensure shared intentionality, artistic consistency and collaboration with humans should provide further acceleration. Multi-agent online improvisation such as AI Duet is another ripe area for exploration both for artistic purposes as well as for `call and response' treatment of autism and other disorders. 
 
-The current Evaluation methodology is based on hand-crafted entropic measures specific to music information. Given the rapid advance of Recurrent Neural Nets in natural language understanding and other sequential data streams, further investigation is warranted for applying Deep Learning to musical evaluation. In general, a Deep Learning approach to \textit{analysis} of music a huge (and exciting) obstacle in the training of automated, musically interactive agents, which could have roles in our system \hl{[TODO see Section BLAH]}.
+The current Evaluation methodology is based on hand-crafted entropic measures specific to music information. Given the rapid advance of Recurrent Neural Nets in natural language understanding and other sequential data streams, further investigation is warranted for applying Deep Learning to musical evaluation. In general, a Deep Learning approach to \textit{analysis} of music a huge (and exciting) obstacle in the training of automated, musically interactive agents, which could have roles in our system.
 
 An improved Evaluation methodology would also lead to improved agent composition. If Harmonia were used by a large set of users, the resulting listening dataset would provide important training data for applying Reinforcement Learning and other methods to further enhance agent composition. A larger dataset would also be of significant benefit to music therapists who could share empirical data on effective treatments tailored to specific demographic and psychographic profiles.
 
@@ -468,7 +466,7 @@ These contributions extend the state of the art, beyond the ideation of SoundClo
 
 We are honored to be part of Prof. Grosz's final class. We deeply appreciate the guidance that she and Peter Krafft have provided all semester. We wish them all the best in their future endeavors and SharedPlans.
 
-Special thanks to \href{https://www.psychologytoday.com/experts/david-m-greenberg-phd}{Dr. David Greenberg} who provided important insights and suggestions regarding the application of Harmonia for music therapy, and to composers Daniel Pencer and BLAH BLAH, whose discussions about the proposed user interface of our system were highly valuable.
+Special thanks to \href{https://www.psychologytoday.com/experts/david-m-greenberg-phd}{Dr. David Greenberg} who provided important insights and suggestions regarding the application of Harmonia for music therapy, and to composers Daniel Pencer \hl{and BLAH BLAH}, whose discussions about the proposed user interface of our system were highly valuable.
 
 
 %%%%%%%%% OPEN ITEMS %%%%%%%%%%%%%%%%%
@@ -477,16 +475,13 @@ Special thanks to \href{https://www.psychologytoday.com/experts/david-m-greenber
 
 %1) Music analysis section: resolve two open questions
 
-%2) Resolve a few open questions in music analysis section: averaging and comparison
+%2) Update last paragraph of intro to add forward references.
 
-%3) PIR image from Abdallah? Not sure.
-
-%4) MIDI AND XML same music to illustrate difference? (this is not a priority) [David's $0.02: 1) we have no room unless you want to make it an Appendix, 2) It isn't necessary as you already provide a high level contrast]
-
-%5) % David Greenberg's point about Spotify and EchoNest. Might be important but also trying to reduce related work section at this point. I will think about it. [David's $0.02: This section is already too long. See the Project Writing Guidelines: "This section should contain brief, in depth discussions of the work most similar to your project, i.e., to research that takes an approach to the problem or produces results with which your project should be compared."]
+%3) Reduce Related Work
 
 %------------------ David TODOs --------------------------------
 
+%1) Consolidate and de-dup intro, workflow and use cases
 
 %------------------ GENERAL TODOs --------------------------------
 
@@ -494,9 +489,7 @@ Special thanks to \href{https://www.psychologytoday.com/experts/david-m-greenber
 
 %2) Another pass or two at spelling and grammar, text revision, clean read through
 
-%3) How much of the formatting latex comments do we want to get rid of? Probably most of them, when we are almost done with the paper. Removing them may help us more easily notice what still needs to be done.
-
-%4) Ensure that body of report stays within 8-10 page limit
+%3) Ensure that body of report stays within 8-10 page limit
 
 
 
