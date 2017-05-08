@@ -202,7 +202,7 @@ While our current work seeks primarily to assist teams of human composers to enr
 \subsection{Information Theory and Music Analysis}
 
 % Abdallah, Predictive Information Rate
-Our systems relies on the ability to analyze musical structure to support automated feedback for collaborating composers. Recent approaches have represented musical form in the context of listener perception, modeling the attention dynamics of the listener as they experience the toggle of surprise and redundancy. The Information Dynamics Approach \citep{abdallah2012cognitive} uses \textit{predictive information rate}, an entropy-based measurement of how a listener's distribution over future musical events is continually revised as new information is presented.  Our work assumes that musical structure can be effectively summarized by this criteria. We assume that pieces from a particular genres and moods are defined by characteristic balances of surprise and redundancy over time, with peaks of information content communicated by the composer(s) in genre-specific locations. We use the Information Dynamics Approach for automated analysis in our system, which compares a collaborative work-in-progress to the characteristic curves for the genre and mood specified by the work's SharedPlan, and suggests edits to the composers to keep the collaborative process on track. %Understanding musical structure and its impact on listeners is a cogent goal to music theorists, cognitive scientists, and machine learning researchers.
+Our systems relies on the ability to analyze musical structure to support automated feedback for collaborating composers. Recent approaches have represented musical form in the context of listener perception, modeling the attention dynamics of the listener as they experience the toggle of surprise and redundancy. The Information Dynamics Approach \citep{abdallah2012cognitive} uses \textit{predictive information rate}, an entropy-based measurement of how a listener's distribution over future musical events is continually revised as new information is presented.  Our work assumes that musical structure can be effectively summarized by this criteria. We assume that pieces from a particular genres and moods are defined by characteristic balances of surprise and redundancy over time, with peaks of information content communicated by the composer(s) in genre-specific locations. We use the Information Dynamics Approach for automated analysis in our system, which compares a collaborative work-in-progress to the characteristic curves for the genre and mood specified by the work's SharedPlan, and suggests edits to the composers to keep the collaborative process on track.
 
 \section{System Design}
 
@@ -256,12 +256,12 @@ When a composition task is created, it exists as a SharedPlan that contains an i
 
 In addition to containing initial goal-describing information, the sub-plan is responsible for mediating any inter-composer communication that takes place aside from the edits to the shared musical work itself. The sub-plan may be updated actively as the piece is revised. A composer may wish to express the intention of a particular edit to justify its presence or to elicit specific future directions for their material. For example, a composer may add a block of music containing an exposed melody, but may want to communicate that another composer should add a harmonic accompaniment to that section.
 
-It is ideal for such communication to be concise and structured. It may be detrimental to collaborative work for one participant to expect all other participants to read five paragraphs of unstructured goal descriptions for a particular section of music. Such a message may require too high of a cognitive load for the others to carefully read and understand, and the intending composer may not have their ideas respected. We have not yet designed a structured language for including block-specific comments enabling composers to share local intents per-edit, but our system allows small free-form comments to be included. A structured language may help support automated agent collaborators in the future. This is discussed further in the Therapy case study (See section BLAH). Providing a mechanism for composers to share there intentions per-edit is crucial because it can help to distinguish between two kinds of composer misunderstandings/disagreements. The first scenario is where a composer agrees with another composer's intention about an edit, but disagrees with the actual implementation. This may lead to the second composer editing the first composer's material with care to preserve the original sound, or replacing it with something of similar affect. The second scenario is where a composer fundamentally disagrees with the artistic intention of another. An effective SharedPlan communication system may disambiguate these cases.
+It is ideal for such communication to be concise and structured. It may be detrimental to collaborative work for one participant to expect all other participants to read five paragraphs of unstructured goal descriptions for a particular section of music. Such a message may require too high of a cognitive load for the others to carefully read and understand, and the intending composer may not have their ideas respected. We have not yet designed a structured language for including block-specific comments enabling composers to share local intents per-edit, but our system allows small free-form comments to be included. A structured language may help support automated agent collaborators in the future. This is discussed further in the Therapy case study \hl{(See section BLAH)}. Providing a mechanism for composers to share there intentions per-edit is crucial because it can help to distinguish between two kinds of composer misunderstandings/disagreements. The first scenario is where a composer agrees with another composer's intention about an edit, but disagrees with the actual implementation. This may lead to the second composer editing the first composer's material with care to preserve the original sound, or replacing it with something of similar affect. The second scenario is where a composer fundamentally disagrees with the artistic intention of another. An effective SharedPlan communication system may disambiguate these cases.
 
 \begin{figure}
 	\centering
 	\includegraphics[scale=0.5]{midi.pdf}
-	\caption{Music represented by MIDI and traditional score}
+	\caption{Music represented by MIDI (top) and MusicXML (bottom)}
 	\label{fig:midi}
 \end{figure}
 
@@ -347,9 +347,9 @@ We assume that music information retrieval systems exist to facilitate calculati
 \todo[inline]{Mark: HUGE PROBLEM $\#1$ HOW IS THIS AVERAGE CREATED?}
 Comparing the characteristic curve with the PIR curve of the work in progress, our system can estimate some notion of distance from the musical goal specified in the SharedPlan. Let the difference be denoted as $\Delta$. This comparison supports several important features of our system. First, not considering any edit suggestions made by our system, a composer may simply see whether their latest edit brings the piece of music closer to (lower $\Delta$) or further from (higher $\Delta$) the SharedPlan. \todo[inline]{Mark: HUGE PROBLEM $\#2$ HOW IS THIS DIFFERENCE CALCULATED?} 
 
-Composers may prefer to go with edits that decrease $\Delta$, or may choose to stick with their edit even if it increases $\Delta$. Reasons for going with a ``worsening" action include choosing to lay down material that further edits will re-contextualize, whether by the same composer or by others. In this case, it is important for a composer to commit their intention for the new edit (as concise text) into the SharedPlan metadata. Future work involves specifying this format more explicitly, so that an automated agent may be able to act in response to this intention. It is also the case that unstructured, non-concise description of intentions by one composer may be difficult or overwhelming for another composer to deal with.
+Composers may prefer to go with edits that decrease $\Delta$, or may choose to stick with their edit even if it increases $\Delta$. Reasons for going with a ``worsening" action include choosing to lay down material that further edits will re-contextualize, whether by the same composer or by others. In this case, it is important for a composer to commit their intention for the new edit (as concise text) into the SharedPlan metadata as a Sub-Goal. Future work involves specifying this format more explicitly, so that an automated agent may be able to act in response to this intention. It is also the case that unstructured, non-concise description of intentions by one composer may be difficult or overwhelming for another composer to deal with.
 
-Also using these PIR scores, our system may give edit suggestions. As specified in \hl{[Section Midi and Edit Actions]}, a composer may edit a piece by adding a new block of material (of any length), edit an existing block, remove a block, swap two blocks, merge two blocks into one, or split one block into two. Excluding adding or editing blocks because this requires intelligent automated composition, and excluding splitting and joining blocks because this does not actually change any musical material or it's ordering, the system may recommend repeating or deleting any existing block, or swapping any pair of existing blocks. Because for any work-in-progress of reasonable length there is a tractably enumerable set of such choices, the system can just try each choice of deleting, repeating, and swapping, and suggest to the user the choice the minimizes $\Delta$. This choice may be the ``make no change" choice at a given iteration, because the best thing to do may be to add more material before considering such actions.
+Also using these PIR scores, our system may give actionable edit suggestions. As specified in \hl{[Section Midi and Edit Actions]}, a composer may edit a piece by adding a new block of material (of any length), edit an existing block, remove a block, swap two blocks, merge two blocks into one, or split one block into two. Excluding adding or editing blocks because this requires intelligent automated composition, and excluding splitting and joining blocks because this does not actually change any musical material or it's ordering, the system may recommend repeating or deleting any existing block, or swapping any pair of existing blocks. Because for any work-in-progress of reasonable length there is a tractably enumerable set of such choices, the system can just try each choice of deleting, repeating, and swapping, and suggest to the user the choice the minimizes $\Delta$. This choice may be the ``make no change" choice at a given iteration, because the best thing to do may be to add more material before considering such actions.
 
 \section{Use Cases}
 
@@ -389,30 +389,28 @@ For those who do not have access to a music therapist, Harmonia can be used as a
 \section{Discussion}
 
 \subsection{Evaluation Methodology}
-
- \todo[inline]{Mark: Cleanup}
  
-We intend to validate our system with several studies on small groups of composers that specify a musical goal and collaboratively work on piece of music facilitated by our system (Use Case 2). We may also be interesting in validating whether a non-musician music requesters feels that their desire has been addressed in some way (Use Case 1). The Therapy use cases should be including in studies once these two are assessed.
+We intend to validate our system with several studies on small groups of composers that specify a musical goal and collaboratively work on piece of music facilitated by our system (Use Case 2). We also intend to validate our system for Use Case 1, \hl{in which} a non-musician requester feels that their desire has been addressed in some way. The Therapy use cases should be included in studies once these two less-complex cases are assessed.
 
 Testing will include the validation of several system aspects:
 
 \begin{enumerate}
 
-\item Do composers understand and benefit from system feedback? If the feedback scores one composer-suggested edit higher than another, which does the composer pick? Do composers accept the system's own music reordering recommendations?
+\item Do composers understand and benefit from system feedback? If the composer proposes edits $A$ and $B$, and the system scores $B$ higher than $A$, which does the composer pick? What percentage of scores do composers take agreeable actions on? For system-suggested edits, what percentage of suggestions do composers accept?
 
-\item Do composers that feel that communication through metadata Sub-goals was efficient for collaborating on musical ideas requiring the work of several composers?
+\item Do composers feel that communication through Sub-Goals is efficient for collaborating on ideas requiring the work of several composers?
 
-\item Do composers feel as if the finished piece respects the originally-specified SharedPlan?
+\item Do composers feel as if finished pieces respect their original SharedPlan?
 
-\item Does the requester feel as if the finished piece respects the originally-specified SharedPlan?
+\item Does the requester feel as if the finished piece respects the original SharedPlan?
 
 \end{enumerate}
 
-To address the first point, we can compare composer experiencing using 1) our revision and metadata system without automated analysis 2) system with analysis for feedback to composer-specified edits (scores shown), but no system-suggested reorderings or deletes of blocks. 3) system with analysis, feedback for composer-specified edits, and system-suggested edits. To address the second point, we should explore other methods of inter-composer communication in place of the Sub-Goal create/release procedure. Two approaches are 1) traditional email in addition to version controlled music with no Sub-Goal metadata 2) Committing longer-formed text documents along with the music for communicating intentions about unfinished blocks to other composers. The third and fourth points will come from discussion with the requester and composers.
+To address the first point, we can compare composer experience using 1) our revision and metadata system without automated analysis 2) system with analysis for score feedback to composer-specified edits, but no system-suggested edits (reorderings, repeats, deletes). 3) system with analysis for both score feedback to composer-specified edits and system suggestions. To address the second point, we should explore other methods of inter-composer communication in place of the Sub-Goal issue/release procedure. Two approaches are 1) traditional email to complement version-controlled music with no Sub-Goal options 2) additional text documents to describe the equivelent of Sub-Goals but external to the SharedPlan and in longer form, comitted along with the SharedPlan + musical score. The third and fourth points will come from discussion with the requester and composers.
 
-The percentage of edit suggestions that each user takes does not only describe the success of the system's suggestions, but also the personality of each composer: are they generally open to suggestions or do they tend to stick with their own ideas? This will help to not blame the system for poor performance when dealing with a composer that would not take good suggestions. Aspects of a composer's collaboration profile may also be collected orthogonally to our system through simple collaboration games (to be designed).
+The percentage of edit suggestion that each user takes does not only describe the success of the system's suggestions, but also the personality of each composer: are they generally open to suggestions or do they tend to stick with their own ideas? This will help to not blame the system for poor performance when dealing with a composer that tends not to take suggestions in general. Aspects of a composer's collaboration profile may also be collected orthogonally to system usage through simple collaboration games (to be designed).
 
-Several obstacles remain to setup the studies. This involves implementation of the system, including information retrieval aspects that are beyond the scope of our work.Because compositions may take some time to work on, these studies will not be very quick.
+Several obstacles remain to setup the studies. This involves implementation of the system, including information retrieval aspects that are beyond the scope of our work. Because compositions may take some time to work on, these studies will not be very quick. We may try to design smaller-scale composition tasks for these purposes.
 
 \subsection{Enhancing or Stifling Creativity}
 
@@ -470,19 +468,17 @@ Special thanks to \href{https://www.psychologytoday.com/experts/david-m-greenber
 
 %%%%%%%%% OPEN ITEMS %%%%%%%%%%%%%%%%%
 
-% multiple composers use case
-
 %------------------ MARK TODOs --------------------------------
 
 %1) Music analysis section: resolve two open questions
 
 %2) Resolve a few open questions in music analysis section: averaging and comparison
 
-%3) David Greenberg's point about Spotify and EchoNest.
+%3) PIR image from Abdallah? Not sure.
 
-%4) PIR image from Abdallah? Not sure.
+%4) MIDI AND XML same music to illustrate difference? (this is not a priority)
 
-%5) MIDI AND XML same music to illustrate difference? (this is not a priority)
+%5) % David Greenberg's point about Spotify and EchoNest. Might be important but also trying to reduce related work section at this point. I will think about it.
 
 %------------------ David TODOs --------------------------------
 
@@ -500,7 +496,7 @@ Special thanks to \href{https://www.psychologytoday.com/experts/david-m-greenber
 
 %4) How much of the formatting latex comments do we want to get rid of? Probably most of them, when we are almost done with the paper. Removing them may help us more easily notice what still needs to be done.
 
-%5) Add these references to bib file
+%5) Add these references to bib file:
 
 %Cohen, Joel E., Information Theory and Music , Behavioral Science, 7:2 (1962:Apr.) p.137
 
