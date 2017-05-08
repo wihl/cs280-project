@@ -139,17 +139,6 @@ Increasing productivity of music composition has many positive benefits. Listene
 
 \end{frontmatter}
 
-%\title{\Large $A \rho \mu o \nu \acute{\iota} \alpha$ (Harmonia): A System for Collaborative Music Composition}
-%\author{{\rm Mark Goldstein, David Wihl}\\Harvard University}
-%\address{\normalsize\{markgoldstein,davidwihl\}@g.harvard.edu}
-%\maketitle
-
-
-%\section{Abstract}
-%\label{sec:abstract}
-
-%Increasing productivity of music composition has many positive benefits. Listeners would appreciate individually tailored music to their emotional needs and context. Composers would be facilitated by greater and more diverse cooperation yielding more innovative music. Composition agents could assist in the generation of repetitive or  experimental musical forms. Therapists can use music as part of a treatment plan  for autism and many other disorders. The system we propose attempts to address these myriad needs  by offering two key innovations: a SharedPlan with collaborative versioning to mediate the workflow of a composition for a group of musicians, an algorithmic evaluation of a composition against the intention of the SharedPlan to provide guidance to both human and agent composers.
-
 \section*{Introduction}
 \label{sec:introduction}
 
@@ -168,10 +157,6 @@ SharedPlans provide a framework to establish and maintain context and metadata a
 We propose a system that addresses collaborative music composition inspired by tools used for software teamwork, collaborative ideation, and musical structure analysis. This system defines an interface for collaboration over a shared creative artifact, and includes procedures for editing a work-in-progress and receiving algorithmic  feedback about edits. Crucially, the system assists collaborators with the task of staying on track with an \textit{a priori} specified goal for the turnout of the piece, and also provides a framework for communication among collaborators about the intention of edits during collaboration.
 
 We first examine previous work related to shared intentionality, collaboration and group ideation, intelligent music systems, and modeling the structure of music. Next, we describe the details of the overall usage workflow, as well as the individual components of our system. This includes a specification of an automated approach for giving composers feedback on the relevance of their ideas to a specified collaborative goal. We present four use cases for our system, where collaborating composers create music ranging in purpose from casual listening to clinical therapy. We conclude with a discussion of our system proposal, including limitations we have identified and potential future work.
-
-%Deep Neural Networks are being used for the creation of new visual[ref to Sketch paper], narrative[ref] and now musical works[wavenet? magenta ref?]. These sophisticated tools can assist a human composer with idea exploration and generation, as well as with idea evaluation (e.g. a composer may evaluate the likelihood of a musical sample against a corpus).
-
-% parts of system may be replaced by DNNs
 
 \section{Related Work}
 
@@ -218,10 +203,8 @@ While our current work seeks primarily to assist teams of human composers to enr
 
 \subsection{Information Theory and Music Analysis}
 
-Our systems relies on the ability to model musical structure in a way that supports automated feedback for collaborating composers, where feedback is in the form of suggested rearrangements of musical ideas that help a composition reach a mutually specified structural goal. In this direction, there has been a rich body of work in automated analysis of musical structure from the 1950's to present. A prominent direction is to model musical form by way of listener perception and the expected dynamics of their attention and surprise. Understanding musical structure and its impact on listeners is a cogent goal to music theorists, cognitive scientists, and machine learning researchers. Many of these approaches have drawn on probability theory and information theory. A survey of approaches historical to contemporary can be found in the Con Espressione Manifesto \citep{widmer2016getting}, which is a strong position paper on the coming decade of research directions for music information retrieval. Many of these works borrow from original principles described in \cite{shannon} in largely unmodified ways.
-
 % Abdallah, Predictive Information Rate
-Our work builds on the Information Dynamics Approach \citep{abdallah2012cognitive}. Abdallah uses predictive information rate, an entropy/divergence based metric that measures how a listener's mid-piece distribution over future musical events is continually revised as new information is presented, to compute a curve that summarizes aspects of surprise in redundancy in a piece of music. Our work assumes that musical structure can be effectively summarized by this criteria. We assume that pieces from a particular genre/mood are defined by characteristic balances of surprise and redundancy over time, with peaks of information content (communicated by the composer) in genre-specific locations. We leverage this metric as the foundation of our automatic analysis system, which compares a collaborative work-in-progress to the characteristic curves for the genre and mood specified by the work's SharedPlan, and suggests edits to the composers to keep them in line with their goal.
+Our systems relies on the ability to analyze musical structure to support automated feedback for collaborating composers. Recent approaches have represented musical form in the context of listener perception, modeling the attention dynamics of the listener as they experience the toggle of surprise and redundancy. The Information Dynamics Approach \citep{abdallah2012cognitive} uses \textit{predictive information rate}, an entropy-based measurement of how a listener's distribution over future musical events is continually revised as new information is presented.  Our work assumes that musical structure can be effectively summarized by this criteria. We assume that pieces from a particular genres and moods are defined by characteristic balances of surprise and redundancy over time, with peaks of information content communicated by the composer(s) in genre-specific locations. We use the Information Dynamics Approach for automated analysis in our system, which compares a collaborative work-in-progress to the characteristic curves for the genre and mood specified by the work's SharedPlan, and suggests edits to the composers to keep the collaborative process on track. %Understanding musical structure and its impact on listeners is a cogent goal to music theorists, cognitive scientists, and machine learning researchers.
 
 \section{System Design}
 
@@ -500,8 +483,6 @@ Special thanks to \href{https://www.psychologytoday.com/experts/david-m-greenber
 %1) EVAL METHODOLOGY
 
 %2) Music analysis section: resolve two open questions, and mention multivariate info theory (get rid of Cohen quotes comment)
-
-%2) Drastically shorten the music analysis info theory related work subsection
 
 %3) multiple composers use case
 
