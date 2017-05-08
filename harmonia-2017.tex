@@ -184,7 +184,7 @@ We use the term composer in the singular form, however a single composer may con
 Collaborative Ideation (CI) seeks to improve the productivity of individuals and groups in generating ideas through collaboration. The people involved are interested in creating related objects (e.g., we all want to brainstorm solutions to social problems) and seek either feedback or examples of others' work to enhance their individual process. Collaboration is centered in a shared workspace, physical or virtual, that allows for communication and sharing of ideas. The ideas produced may be for individual use, or ideators may work on shared artifacts such as an essay or piece of art. The dynamics of collaboration may be real-time or not, though increasingly, today's settings are real-time and virtual [TODO: find citation]. A simple CI setting is one where each ideator brainstorms solutions to a problem common to all participants, and each participant can see all other's ideas. While such approaches have been used naturally in human culture for millennia, the design of intelligent computer systems today aims to facilitate these activities to allow for increased creativity and productivity. 
 
 %IdeaHound
-It has been shown that only a small subset of an idea pool may be relevant and inspiring to a single ideator, and that it is overwhelming for each ideator to view all participant's ideas \citep{siangliulue2015toward}. In IdeaHound \citep{siangliulue2016ideahound}, each user is prompted to interact with a personal ``whiteboard" where they can cluster their ideas and separate them by semantic distance as they generate them. The system then creates a global semantic map of all generated ideas from the whiteboards, which allows each ideator to easily view their work in the context of the entire solution space. Using this map, IdeaHound recommends diverse suggestions to each ideator, eliminating the cognitive load of idea search. In the collaborative composition setting, CI is implicitly present in the individual work of each composer. By working on material of multiple stylistic origins, composers may come up with things they would make on their own. CI is made explicit when a composer addresses a SharedPlan sub-goal instantiated by another [See section XXX]. In our work, generated objects are structured, rather than unordered collections of ideas, and ideators need to build over each other's ideas rather than only seek inspiration from examples by others. These details present new challenges.
+It has been shown that only a small subset of an idea pool may be relevant and inspiring to a single ideator, and that it is overwhelming for each ideator to view all participant's ideas \citep{siangliulue2015toward}. In IdeaHound \citep{siangliulue2016ideahound}, each user is prompted to interact with a personal ``whiteboard" where they can cluster their ideas and separate them by semantic distance as they are generated. The system then creates a global semantic map of all generated ideas from the whiteboards, which allows each ideator to easily view their work in the context of the entire solution space. Using this map, IdeaHound recommends diverse suggestions to each ideator, eliminating the cognitive load of idea search. In the collaborative composition setting, CI is implicitly present in the individual work of each composer. By working on material of multiple stylistic origins, composers may come up with things they would make on their own. CI is made explicit when a composer addresses a SharedPlan sub-goal instantiated by another [See section XXX]. In our work, generated objects are structured, rather than unordered collections of ideas, and ideators need to build over each other's ideas rather than only seek inspiration from examples by others. These details present new challenges.
 
 
 %Soundcloud and Blend
@@ -408,18 +408,42 @@ For those who do not have access to a music therapist, Harmonia can be used as a
 \subsection{Evaluation Methodology}
 
  \todo[inline]{Mark}
+ 
+ 
+ 
+ 
+We intend to validate our system with several studies on small groups of composers that specify a musical goal and collaboratively work on piece of music facilitated by our system (Use Case 2). We may also be interesting in validating whether a non-musician music requesters feels that their desire has been addressed in some way (Use Case 1). The Therapy use cases should be including in studies once these two are assessed.
 
-% testing this is quite lengthy. It involves people writing a piece! That said, clearly computer scientists must find ways to evaluate success on long term studies. There are plenty of things in life that computers can facilitate, that are not easy or quick to evaluate.
 
-%this will probably be a small study on trained musicians rather than a large-scale crowdsourced study
+
+
+Testing will include the validation of several system aspects:
+
+\begin{enumerate}
+
+\item Do composers that feel that communication through metadata Sub-goals was efficient for collaborating on blocks of music?
+
+\item Do composers feel as if the finished piece respects the originally-specified SharedPlan?
+
+\item Does the requester feel as if the finished piece respects the originally-specified SharedPlan?
+
+\end{enumerate}
+
+To address the first point xxxxxxx. To address the second point xxxxxxxxxxxxx.
+
+% subgoal communication versus email
+% 
+ 
+
+Several obstacles remain to setup the studies. This involves implementation of the system, including information retrieval aspects that are beyond the scope of our work.Because compositions may take some time to work on, these studies will not be very quick.
 
 %import metric to see what percentage of suggestions each user takes. In fact, this measurement has some more significance.... it not only describes the success of the system's suggestions but also the personality of each composer (do they accept suggestions or always do things on their own). I wonder what other kinds of activities could evaluate a composer's personality profile with respect to this quality. That could even be addressed without our system, just with simple collaboration activities. That would not only be interesting and important to learn about the composers, but also important for eventually evaluating the rate of suggestions accepted by the system
 
-% We can test version control / metadata / intention sharing by comparing composers' experiences emailing each other ideas versus using our system.
+
 
 % To test the usefulness of suggestions, we can compare composers using our revision / metadata system without system analysis and suggestions versus with analysis and suggestions. This could be further broken up by measuring differences between showing analysis percentages but not giving suggestions, versus giving suggestions.
 
-% composers vote on whether or not the piece sounds like it reached the goal.
+
 
 \subsection{Enhancing or Stifling Creativity}
 
