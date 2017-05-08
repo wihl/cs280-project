@@ -324,7 +324,7 @@ The most novel aspect would be the integration of the evaluation to the editing 
 
 \section{Automated Analysis of Musical Structure}
 
-Harmonia facilitates collaborative composition in two ways. First, the interface as a whole, including the revision system and the shared metadata associated with each composition, helps with practical aspects of communication and coordination. Second, the analysis system lets composers know how close their work-in-progress is to their goal, as measured by similarity to characteristic pieces relevant to their goal. The analysis system also suggests structural edits such as swapping the order of existing material, or deleting material, that could further improve the piece. In this section, we describe the automated analysis of musical structure that is used by our system. Crucial to our system, our computational approach models the structure of a piece of music in relation to the expected trajectory of surprise and redundancy that a listener experiences. We first discuss the nature of the musical analysis used in our system, and then discuss how this method supports goal checking and suggested musical edits.
+Harmonia facilitates collaborative composition in two ways. First, the interface as a whole, including the revision system and the shared metadata associated with each composition, helps with practical aspects of communication and coordination. Second, the analysis system lets composers know how close their work-in-progress is to their goal, as measured by similarity to characteristic pieces relevant to their goal. The analysis system also suggests structural edits such as swapping the order of existing material, or deleting material, that could further improve the piece. In this section, we describe the automated analysis of musical structure that is used by our system. Crucial to our system, our computational approach models the structure of a piece of music in relation to the expected trajectory of surprise and redundancy that a listener experiences. Our work follows directly from The Information Dynamics Approach. \citep{abdallah2012cognitive} We first discuss the nature of the musical analysis used in our system, and then discuss how this method supports goal checking and suggested musical edits.
 
 \subsection{Entropy of Musical Events and Divergence}
  
@@ -338,13 +338,14 @@ Because we choose to represent musical structure in terms of the surprise dynami
 
 $$ D_{KL}(X^{\prime}\textrm{ }|| \textrm{ } X) =  \sum_{x \in \mathcal{X}} p_{X^{\prime}}(x) log\frac{p_{X^{\prime}}(x) }{p_{X}(x)}$$
 
-\noindent This is read as ``the divergence from X' of X", and is the average over the ratio of point-wise log probabilities between the two distributions, weighted by $p_{X'}(x)$. For an accessible yet informative discussion of the significance of entropy as a measure of information and KL Divergence  \footnote{Another interpretation of entropy is the average number of bits required to send a message from a distribution $p$ under an optimal variable-length coding scheme. The KL Divergence of $q$ from $p$ is the increase in the average bits per message when one communicates items from $p$ using a code optimized for $q$. This is the difference between the cross entropy $H(p,q)$ and entropy $H(p)$.}, see Christopher Olah's post on Visual Information Theory \footnote{\texttt{http://colah.github.io/posts/2015-09-Visual-Information}}. This divergence describes the amount of revision to a listener's distribution over the future that happens as they hear each event. Let this be called the \textit{predictive information} of the event $X=x$ as the listener hears it. When a surprising event occurs and causes the listener to drastically revise their distribution (i.e. this same event will be less surprising in the future), the event had high predicative information. On the other hand, if thirty strikes of the same chord have just happened, hearing a thirty-first articulation does not communicate much predictive information. Our system measures the predicative information \textit{rate} (PIR) over the duration of the piece (or work-in-progress), and uses this trajectory of this rate to summarize the structure of a piece of music as it is expected to be perceived by the listener. Note that in the running example, entropy and divergence were discussed in terms of a sequence of chords heard by the listener, and the expectation over next chords in context. In even a simple piece of music, the listener tracks multiple such parameters and their interactions: evolving harmony, rhythm, timbre, and more (see section Future Work). This application of divergence to the revision of a listeners expectation over events is directly motivated by the work of  Abdallah et al. We base the summarization of musical structure in our system on their work.
+\noindent This is read as ``the divergence from X' of X", and is the average over the ratio of point-wise log probabilities between the two distributions, weighted by $p_{X'}(x)$. For an accessible yet informative discussion of the significance of entropy as a measure of information and KL Divergence  \footnote{Another interpretation of entropy is the average number of bits required to send a message from a distribution $p$ under an optimal variable-length coding scheme. The KL Divergence of $q$ from $p$ is the increase in the average bits per message when one communicates items from $p$ using a code optimized for $q$. This is the difference between the cross entropy $H(p,q)$ and entropy $H(p)$.}, see Christopher Olah's post on Visual Information Theory \footnote{\texttt{http://colah.github.io/posts/2015-09-Visual-Information}}. This divergence describes the amount of revision to a listener's distribution over the future that happens as they hear each event. Let this be called the \textit{predictive information} of the event $X=x$ as the listener hears it. When a surprising event occurs and causes the listener to drastically revise their distribution (i.e. this same event will be less surprising in the future), the event had high predicative information. On the other hand, if thirty strikes of the same chord have just happened, hearing a thirty-first articulation does not communicate much predictive information. Our system measures the predicative information \textit{rate} (PIR) over the duration of the piece (or work-in-progress), and uses this trajectory of this rate to summarize the structure of a piece of music as it is expected to be perceived by the listener. Note that in the running example, entropy and divergence were discussed in terms of a sequence of chords heard by the listener, and the expectation over next chords in context. In even a simple piece of music, the listener tracks multiple such parameters and their interactions: evolving harmony, rhythm, timbre, and more.[TODO: See Section Future Work]
+
 
 \subsection{Current Design: Analyze, Suggest, and Edit}
 
 Harmonia uses predictive information rate to calculate the proximity of a musical work in progress to a characteristic piece from the category specified by the SharedPlan. Using these measures, the system gives feedback to a composer with respect to the composer's editing decisions, and provides suggestions that may bring a piece closer to the goal. It is this analysis and suggestion loop, along with interaction with the SharedPlan metadata, that characterize the main experience for an individual composer. This experienced is further enriched by the fact that each time the composer enters the feedback loop, the piece and aspects of SharedPlan may have changed by other composers.
 
-We assume that music information retrieval systems exist to facilitate calculating PIR on sample pieces of music queried by genre, mood, and other metadata keywords (HipHop, Chill, Slow, Study)[footnote to youtube link]. Because we currently analyze MIDI representation of music, this retrieval is done on a corpus of MIDI and score representations of music rather than audio recordings. Some examples of existing query systems include BLAH BLAH and BLAH. We calculate the PIR for the most popular $\boldsymbol{\beta}\%$ of pieces matching a specified query, and average the PIR curves to create a ``characteristic curve" that represents the typical structure of a piece of music fitting the metadata criteria. 
+We assume that music information retrieval systems exist to facilitate calculating PIR on sample pieces of music queried by genre, mood, and other metadata keywords (HipHop, Chill, Slow, Study)[footnote to youtube link]. Because we currently analyze MIDI representation of music, this retrieval is done on a corpus of MIDI and score representations of music rather than audio recordings. Some examples of existing query systems include [TODO: ADD EXISTING INFO RETRIEVAL SYSTEM]. We calculate the PIR for the most popular $\boldsymbol{\beta}\%$ of pieces matching a specified query, and average the PIR curves to create a ``characteristic curve" that represents the typical structure of a piece of music fitting the metadata criteria. 
 \todo[inline]{Mark: Is the method for calculating rate clear?}
 \todo[inline]{Mark: HUGE PROBLEM $\#1$ HOW IS THIS AVERAGE CREATED?}
 Comparing the characteristic curve with the PIR curve of the work in progress, our system can estimate some notion of distance from the musical goal specified in the SharedPlan. Let the difference be denoted as $\Delta$. This comparison supports several important features of our system. First, not considering any edit suggestions made by our system, a composer may simply see whether their latest edit brings the piece of music closer to (lower $\Delta$) or further from (higher $\Delta$) the SharedPlan. \todo[inline]{Mark: HUGE PROBLEM $\#2$ HOW IS THIS DIFFERENCE CALCULATED?} 
@@ -352,20 +353,6 @@ Comparing the characteristic curve with the PIR curve of the work in progress, o
 Composers may prefer to go with edits that decrease $\Delta$, or may choose to stick with their edit even if it increases $\Delta$. Reasons for going with a ``worsening" action include choosing to lay down material that further edits will re-contextualize, whether by the same composer or by others. In this case, it is important for a composer to commit their intention for the new edit (as concise text) into the SharedPlan metadata. Future work involves specifying this format more explicitly, so that an automated agent may be able to act in response to this intention. It is also the case that unstructured, non-concise description of intentions by one composer may be difficult or overwhelming for another composer to deal with.
 
 Also using these PIR scores, our system may give edit suggestions. As specified in [Section Midi and Edit Actions], a composer may edit a piece by adding a new block of material (of any length), edit an existing block, remove a block, swap two blocks, merge two blocks into one, or split one block into two. Excluding adding or editing blocks because this requires intelligent automated composition, and excluding splitting and joining blocks because this does not actually change any musical material or it's ordering, the system may recommend repeating or deleting any existing block, or swapping any pair of existing blocks. Because for any work-in-progress of reasonable length there is a tractably enumerable set of such choices, the system can just try each choice of deleting, repeating, and swapping, and suggest to the user the choice the minimizes $\Delta$. This choice may be the ``make no change" choice at a given iteration, because the best thing to do may be to add more material before considering such actions.
-
-
-
-% THESE ARE EXTENSIONS TO HOW WE COULD IMPROVE THE ANALYSIS (DO NOT DELETE)
-
-%In the manifesto, Widner recalls key points made by theorist Cohen in the 1950s, that an information approach for describing music must develop to account for two things crucial to music but not included in information theory (at Cohen's time but still hardly so half a century later) 1) there must be a theory of interactions for multiple streams of musical information, for example for the way in which rhythmic information may make harmonic events more or less certain. Composers do not decide all of music's parameters separately. 2) there must be theory for account for multiple levels of structural hierarchy coming at once from a single stream of musical information. Rhythms constitute a local time feel but also accelerate a piece toward new sections. Recent directions in information theory may provide insight. 
-
-%The first point requires a generalization of mutual information to multiple random variables, which has been difficult to interpret and met with confusion over several coexistent approaches [V.d. Cruys 2011]. Multivariate mutual information is used to describe the extent to which the knowledge of one event can reduce the entropy in several other variables. To our knowledge, the second point has not yet been explored.
-
-%Cohen Quotes
-%1. the basic [assumption] is that statistical probability... corresponds to the listener's expectations... the average surprisal value... represents the listener's state of uncertainty?
-%2. ?Another... is that one portion of the cultural sign system can be legitimately abstracted from the whole, and that values based on this abstraction will have the same worth as when the portion is a part of the whole.?
-%3. ?A further assumption... a sequence of musical events is experienced on only one architectonic level: in melodic analyses, on the level of notes or intervals; in rhythmic analyses, on the level of the pulse pattern... theory will have to take account of the interaction among levels.?
-%We need to consider several streams of info. and their interactions: rhythm, pitch, harmony, timbre. Even within one type of information stream, say pitch, we need to consider several hierarchical levels at once: 
 
 \section{Use Cases}
 
@@ -407,7 +394,7 @@ For those who do not have access to a music therapist, Harmonia can be used as a
 
 \subsection{Evaluation Methodology}
 
- \todo[inline]{Mark}
+ \todo[inline]{Mark: Cleanup}
  
 We intend to validate our system with several studies on small groups of composers that specify a musical goal and collaboratively work on piece of music facilitated by our system (Use Case 2). We may also be interesting in validating whether a non-musician music requesters feels that their desire has been addressed in some way (Use Case 1). The Therapy use cases should be including in studies once these two are assessed.
 
@@ -441,11 +428,15 @@ There are several limitations in this proposal that are inherent in the design. 
 
 \textit{No explicit support for improvisation.} The collaborative design is inspired from software engineering teamwork, which is a solitary activity. Unlike software, in music very fruitful results may occur in real-time improvisation by several musicians. The design does not preclude improvisation but does not account for it either. There may be interesting paths to explore discovered during improvisation that would not be captured by this design. A composer would have to create separate branches and record improvisation sections in each branch. The design does not account for partial interchange between branches.
 
+\textit{Information Theory.} Although we have presented the way in which PIR may be calculated over a single musical parameter such as chord progressions or rhythms, composers create many complex relationships across parameters. In the Con Espressione Manifesto [TODO: include citation], Widmer cites several theorists from the 1950s that were working on modeling music as information. Among them, Cohen [TODO: citation] demanded 1) a theory of interactions for multiple streams of musical information, for example, to explain how rhythmic information may make harmonic events more or less certain. 2) a theory for multiple levels of structural hierarchy coming at once from a single stream of musical information. Rhythms constitute a local time feel but also accelerate a piece toward new sections. These are still complicated aspects of information today. The first point requires a generalization of mutual information to multiple random variables, which has been difficult to interpret and has been met with confusion through several coexistent approaches [TODO: cite V.d. Cruys 2011]. To our knowledge, the second point has not yet been explored.
+
 \textit{Model may not generalize.} While we are confident that SharedPlans, software revision control, and algorithmic evaluation are applicable to music composition, it is uncertain that the overall framework can be generalized to other domains. Version control for visual artwork seems promising, but simple text-based revision may not support editing capabilities for rich-enough representations of art in an intuitive or useful way.  Algorithmic evaluation of intent may be more difficult to design for a painting. Musical form, as treated by our system, is experienced at an information-general level also applicable to a story, movie, or play, but which is limited to sequential forms. The static experience of a painting is less related and may require a different set of domain-specific criteria for capturing intent. To this end, generalizable techniques for automated analysis that bypass the necessity to encode domain-specific information are desirable, and may be approached with todays deep learning techniques [TODO: See Deep Learning Discussion in Section Future Work].
 
 \textit{Representation is MIDI, not recorded acoustic signal. Vocals are not supported.} MIDI is far easier to generate and maintain under version control, but has two limitations. The first is that many interesting sounds such as vocals and other samples of recorded sound cannot be expressed in the current design. MIDI placeholders may be made for these sounds, such that someone substitutes them into the piece post-collaboration, but collaboration over these sounds themselves is not supported. Given this setting of \textit{written}, rather than \textit{performed} music, the second limitation is that MIDI encodes only a subset of written musical expression. MusicXML is another text-based format that is more flexible than MIDI, while still being amenable to revision control (See Figure 2). It allows musicians to visually communicate performance techniques (e.g. pizzicato, slur, sul ponticello) but would complicate SharedPlan communication protocol and automated analysis.
 
-\textit{Corpus based shared beliefs may not be robust.} One of the key assumptions is that genre / mood permutations generate a reasonable representation of the intent of the music. This representation is corpus based. This assumption presumes that genre and mood classification solutions exist, particularly for information retrieval procedures and that the representation is robust enough for the evaluation function to provide useful guidance. Since this has not been built and validated, the certainty of this assumption remains a source of further investigation.
+\textit{Corpus based shared beliefs may not be robust.} One of the key assumptions is that genre / mood permutations generate a reasonable representation of the intent of the music. This representation is corpus-based. This assumption presumes that genre and mood classification solutions exist, particularly for information retrieval procedures and that the representation is robust enough for the evaluation function to provide useful guidance. Since this has not been built and validated, the certainty of this assumption remains a source of further investigation.
+
+
 
 \section {Future work}
 
@@ -485,17 +476,16 @@ Special thanks to \href{https://www.psychologytoday.com/experts/david-m-greenber
 
 %------------------ MARK TODOs --------------------------------
 
-%1) evaluation methodology
+%1) Successfully shortened info theory / music analysis related work. Now must shorten other related work.
 
-%2) Music analysis section: resolve two open questions, and mention multivariate info theory (get rid of Cohen quotes comment)
-
+%2) Music analysis section: resolve two open questions,
 %3) multiple composers use case
 
-%4) Resolve a few open questions in my music analysis section
+%4) Resolve a few open questions in music analysis section: averaging and comparison
 
 %5) David Greenberg's point about Spotify and EchoNest.
 
-%6) Successfully shortened info theory / music analysis related work. Now must shorten other related work.
+%6) INCLUDE PIR IMAGE FROM ABDALLAH PAPER?
 
 %------------------ David TODOs --------------------------------
 
@@ -513,37 +503,17 @@ Special thanks to \href{https://www.psychologytoday.com/experts/david-m-greenber
 
 %4) How much of the formatting latex comments do we want to get rid of? Probably most of them, when we are almost done with the paper. Removing them may help us more easily notice what still needs to be done.
 
-%5) review orphaned references that appear at the end of tex but not mentioned in text. From Mark: this point is mainly for me, but I wanted to get this out of my TODOs having to do with actual content edits
+%5) Add these references to bib file
 
-%%%%% RESOLVE THESE REFERENCES (NOT PRESENT IN PAPER) %%%%%%%%
+%Cohen, Joel E., Information Theory and Music , Behavioral Science, 7:2 (1962:Apr.) p.137
 
-\section*{Not References}
+%Two Multivariate generalizations of Pointwise Mutual Information Tim Van de Cruys, Association for Computational Linguistics 2011
 
-\todo[inline]{Orphaned references - not found in text}
- 
-Meyer, L.B., 1956. Emotion and Meaning in Music. Chicago University Press, Chicago, IL.
+%Widmer, Gerhard. 2016. Getting closer to the essence of music: The Con Espressione manifesto. ACM Transactions on Intelligent Systems and Technology	
 
-Narmour, E.. 1992. The Analysis and Cognition of Melodic Complexity: The Implication-Realization Model.
 
-D. Huron. 2006. Sweet Anticipation: Music and the Psychology of Expectation. MIT Press, Cambridge, MA.
 
-Engel et al., Neural Audio Synthesis of Musical Notes with WaveNet Autoencoders, 2017
 
-Wiggins, Auditory Expectation: The Information Dynamics of Music Perception and Cognition. 2012 Topics in Cognitive Science
-
-Moles, A.. 1966. Information Theory and Aesthetic Perception. University of Illinois Press, Urbana, IL
-
-Two Multivariate generalizations of Pointwise Mutual Information Tim Van de Cruys, Association for Computational Linguistics 2011
-
-Cohen, Joel E., Information Theory and Music , Behavioral Science, 7:2 (1962:Apr.) p.137
-
-Schillinger, Joseph The mathematical basis of the arts 1948
-
-Pierce, Electronics, waves, and messages. 1956
-
-Pierce, Letter Scientific American 1956
-
-Youngblood, Style as information 1958 Journal of Music Theory
 
 
 
