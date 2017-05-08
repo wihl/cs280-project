@@ -422,7 +422,7 @@ There are several limitations in this proposal that are inherent in the design. 
 
 \textit{No explicit support for improvisation.} The collaborative design is inspired from software engineering teamwork, which is a solitary activity. Unlike software, in music very fruitful results may occur in real-time improvisation by several musicians. The design does not preclude improvisation but does not account for it either. There may be interesting paths to explore discovered during improvisation that would not be captured by this design. A composer would have to create separate branches and record improvisation sections in each branch. The design does not account for partial interchange between branches.
 
-\textit{Information Theory.} Although we have presented the way in which PIR may be calculated over a single musical parameter such as chord progressions or rhythms, composers create many complex relationships across parameters. In the Con Espressione Manifesto \hl{[TODO: include citation]}, Widmer cites several theorists from the 1950s that were working on modeling music as information. Among them, Cohen \hl{[TODO: citation]} demanded 1) a theory of interactions for multiple streams of musical information, for example, to explain how rhythmic information may make harmonic events more or less certain. 2) a theory for multiple levels of structural hierarchy coming at once from a single stream of musical information. Rhythms constitute a local time feel but also accelerate a piece toward new sections. These are still complicated aspects of information today. The first point requires a generalization of mutual information to multiple random variables, which has been difficult to interpret and has been met with confusion through several coexistent approaches \hl{[TODO: cite V.d. Cruys 2011]}. To our knowledge, the second point has not yet been explored.
+\textit{Information Theory.} Although we have presented the way in which PIR may be calculated over a single musical parameter such as chord progressions or rhythms, composers create many complex relationships across parameters. In the Con Espressione Manifesto, \cite{widmer2016getting} cites several theorists from the 1950s that were working on modeling music as information. Among them, \cite {cohen1962information} demanded 1) a theory of interactions for multiple streams of musical information, for example, to explain how rhythmic information may make harmonic events more or less certain. 2) a theory for multiple levels of structural hierarchy coming at once from a single stream of musical information. Rhythms constitute a local time feel but also accelerate a piece toward new sections. These are still complicated aspects of information today. The first point requires a generalization of mutual information to multiple random variables, which has been difficult to interpret and has been met with confusion through several coexistent approaches \citep{van2011two}. To our knowledge, the second point has not yet been explored.
 
 \textit{Model may not generalize.} While we are confident that SharedPlans, software revision control, and algorithmic evaluation are applicable to music composition, it is uncertain that the overall framework can be generalized to other domains. Version control for visual artwork seems promising, but simple text-based revision may not support editing capabilities for rich-enough representations of art in an intuitive or useful way.  Algorithmic evaluation of intent may be more difficult to design for a painting. Musical form, as treated by our system, is experienced at an information-general level also applicable to a story, movie, or play, but which is limited to sequential forms. The static experience of a painting is less related and may require a different set of domain-specific criteria for capturing intent. To this end, generalizable techniques for automated analysis that bypass the necessity to encode domain-specific information are desirable, and may be approached with todays deep learning techniques \hl{[TODO: See Deep Learning Discussion in Section Future Work]}.
 
@@ -496,16 +496,7 @@ Special thanks to \href{https://www.psychologytoday.com/experts/david-m-greenber
 
 %4) How much of the formatting latex comments do we want to get rid of? Probably most of them, when we are almost done with the paper. Removing them may help us more easily notice what still needs to be done.
 
-%5) Add these references to bib file:
-
-%Cohen, Joel E., Information Theory and Music , Behavioral Science, 7:2 (1962:Apr.) p.137
-
-%Two Multivariate generalizations of Pointwise Mutual Information Tim Van de Cruys, Association for Computational Linguistics 2011
-
-%Widmer, Gerhard. 2016. Getting closer to the essence of music: The Con Espressione manifesto. ACM Transactions on Intelligent Systems and Technology	
-
-
-
+%5) DONE Add these references to bib file:
 
 
 
