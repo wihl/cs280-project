@@ -431,11 +431,7 @@ There are several limitations in this proposal that are inherent in the design. 
 
 \textit{No explicit support for improvisation.} The collaborative design is inspired from software engineering teamwork, which is a solitary activity. Unlike software, in music very fruitful results may occur in real-time improvisation by several musicians. The design does not preclude improvisation but does not account for it either. There may be interesting paths to explore discovered during improvisation that would not be captured by this design. A composer would have to create separate branches and record improvisation sections in each branch. The design does not account for partial interchange between branches.
 
-\textit{Model may not generalize.} While we are confident that SharedPlans, software revision control and algorithmic evaluation is applicable to music composition, it is uncertain that the overall framework can be generalized to other domains. Version control on visual artwork seems promising and helpful, but simple text-based revision may not support the editing rich-enough digital representations in an intuitive or useful way. Algorithmic evaluation of intent-matching may be more difficult to design for a painting. Music theory has a historically long interplay with mathematical analysis, and aspects of musical form are experienced generically at the level of experiencing the form of a story, movie, or play. The static experience of a painting is less related. To this end, more generalizable techniques of automated analysis are necessary [TODO: See Deep Learning DIscussion in Section Future Work].
-
-
-%\todo[inline]{Mark} DO NOT DELETE
-%Are there any generalizations of the automated analysis? It's a special case of semantic analysis that is specific to temporal structure. What would it be like to work on a story? The focus should be on considering things that do not rely on external crowdsourced work (point made in IdeaHound).
+\textit{Model may not generalize.} While we are confident that SharedPlans, software revision control, and algorithmic evaluation are applicable to music composition, it is uncertain that the overall framework can be generalized to other domains. Version control for visual artwork seems promising, but simple text-based revision may not support editing capabilities for rich-enough representations of art in an intuitive or useful way.  Algorithmic evaluation of intent may be more difficult to design for a painting. Musical form, as treated by our system, is experienced at an information-general level also applicable to a story, movie, or play, but which is limited to sequential forms. The static experience of a painting is less related and may require a different set of domain-specific criteria for capturing intent. To this end, generalizable techniques for automated analysis that bypass the necessity to encode domain-specific information are desirable, and may be approached with todays deep learning techniques [TODO: See Deep Learning Discussion in Section Future Work].
 
 \textit{Representation is MIDI, not recorded acoustic signal. Vocals are not supported.} MIDI is far easier to generate and maintain under version control, but has two limitations. The first is that many interesting sounds such as vocals and other samples of recorded sound cannot be expressed in the current design. MIDI placeholders may be made for these sounds, such that someone substitutes them into the piece post-collaboration, but collaboration over these sounds themselves is not supported. Given this setting of \textit{written}, rather than \textit{performed} music, the second limitation is that MIDI encodes only a subset of written musical expression. MusicXML is another text-based format that is more flexible than MIDI, while still being amenable to revision control (See Figure 2). It allows musicians to visually communicate performance techniques (e.g. pizzicato, slur, sul ponticello) but would complicate SharedPlan communication protocol and automated analysis.
 
@@ -489,9 +485,7 @@ Special thanks to \href{https://www.psychologytoday.com/experts/david-m-greenber
 
 %5) Resolve a few open questions in my music analysis section
 
-%6) Limitations, Generalizations. See comment
-
-%7) David Greenberg's point about Spotify and EchoNest.
+%6) David Greenberg's point about Spotify and EchoNest.
 
 %------------------ David TODOs --------------------------------
 
