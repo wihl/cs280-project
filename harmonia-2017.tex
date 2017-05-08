@@ -372,6 +372,20 @@ Composers may prefer to go with edits that decrease $\Delta$, or may choose to s
 
 Also using these PIR scores, our system may give edit suggestions. As specified in [Section Midi and Edit Actions], a composer may edit a piece by adding a new block of material (of any length), edit an existing block, remove a block, swap two blocks, merge two blocks into one, or split one block into two. Excluding adding or editing blocks because this requires intelligent automated composition, and excluding splitting and joining blocks because this does not actually change any musical material or it's ordering, the system may recommend repeating or deleting any existing block, or swapping any pair of existing blocks. Because for any work-in-progress of reasonable length there is a tractably enumerable set of such choices, the system can just try each choice of deleting, repeating, and swapping, and suggest to the user the choice the minimizes $\Delta$. This choice may be the ``make no change" choice at a given iteration, because the best thing to do may be to add more material before considering such actions.
 
+
+
+% THESE ARE EXTENSIONS TO HOW WE COULD IMPROVE THE ANALYSIS (DO NOT DELETE)
+
+%In the manifesto, Widner recalls key points made by theorist Cohen in the 1950s, that an information approach for describing music must develop to account for two things crucial to music but not included in information theory (at Cohen's time but still hardly so half a century later) 1) there must be a theory of interactions for multiple streams of musical information, for example for the way in which rhythmic information may make harmonic events more or less certain. Composers do not decide all of music's parameters separately. 2) there must be theory for account for multiple levels of structural hierarchy coming at once from a single stream of musical information. Rhythms constitute a local time feel but also accelerate a piece toward new sections. Recent directions in information theory may provide insight. 
+
+%The first point requires a generalization of mutual information to multiple random variables, which has been difficult to interpret and met with confusion over several coexistent approaches [V.d. Cruys 2011]. Multivariate mutual information is used to describe the extent to which the knowledge of one event can reduce the entropy in several other variables. To our knowledge, the second point has not yet been explored.
+
+%Cohen Quotes
+%1. the basic [assumption] is that statistical probability... corresponds to the listener's expectations... the average surprisal value... represents the listener's state of uncertainty?
+%2. ?Another... is that one portion of the cultural sign system can be legitimately abstracted from the whole, and that values based on this abstraction will have the same worth as when the portion is a part of the whole.?
+%3. ?A further assumption... a sequence of musical events is experienced on only one architectonic level: in melodic analyses, on the level of notes or intervals; in rhythmic analyses, on the level of the pulse pattern... theory will have to take account of the interaction among levels.?
+%We need to consider several streams of info. and their interactions: rhythm, pitch, harmony, timbre. Even within one type of information stream, say pitch, we need to consider several hierarchical levels at once: 
+
 \section{Use Cases}
 
 \subsection{Use Case 1: Individual User, Individual Composer}
@@ -438,23 +452,18 @@ There are several limitations in this proposal that are inherent in the design. 
 
 \textit{Model may not generalize.} While we are confident that SharedPlans, software revision control and algorithmic evaluation is applicable to music composition, it is uncertain that the overall framework can be generalized to other domains. For example, it is difficult to imagine using this design for creating visual artwork. Revision control on binary formats is not very useful. Algorithmic evaluation of intent of a painting appears to be far more difficult than music. Music has a historically long interplay with mathematics making algorithmic evaluation more tractable. 
 
-\textit{Representation is discrete MIDI, not sounds. Vocals are not supported.} MIDI is far easier to generate and maintain under version control. This implies that many interesting sounds such as vocals, ocean waves and many experimental musical forms cannot be expressed in the current design. MusicXML is another text-based format that is more flexible than MIDI while still being amenable to revision control. However, it does not support vocals and more sophisticated sounds either. 
-
-\textit{Corpus based shared beliefs may not be robust.} One of the key assumptions is that genre / mood permutations generate a reasonable representation of the intent of the music. This representation is corpus based. This assumption presumes that genre and mood classification solutions exist, particularly for information retrieval procedures and that the representation is robust enough for the evaluation function to provide useful guidance. Since this has not been built and validated, the certainty of this assumption remains a source of further investigation.
-
-
-%\todo[inline]{Mark}
+%\todo[inline]{Mark} DO NOT DELETE
 %Are there any generalizations of the automated analysis? It's a special case of semantic analysis that is specific to temporal structure. What would it be like to work on a story? The focus should be on considering things that do not rely on external crowdsourced work (point made in IdeaHound).
 
-%\todo[inline]{Mark}
-%Current music representation is discrete MIDI, not audio. Limits for vocals, ocean sounds. MIDI not Music XML. Sure, MIDI blocks could be used as placeholders for later-inserted, real-audio sounds, but it would be nice to avoid the need for future post-production work. Would be nice for composers to collaborate and have a finished piece art the end of the collaboration.
+\textit{Representation is MIDI, not recorded acoustic signal. Vocals are not supported.} MIDI is far easier to generate and maintain under version control, but has two limitations. The first is that many interesting sounds such as vocals and other samples of recorded sound cannot be expressed in the current design. MIDI placeholders may be made for these sounds, such that someone substitutes them into the piece post-collaboration, but collaboration over these sounds themselves is not supported. Given this setting of \textit{written}, rather than \textit{performed} music, the second limitation is that MIDI encodes only a subset of written musical expression. MusicXML is another text-based format that is more flexible than MIDI, while still being amenable to revision control (See Figure 2). It allows musicians to visually communicate performance techniques (e.g. pizzicato, slur, sul ponticello) but would complicate SharedPlan communication protocol and automated analysis.
 
+\textit{Corpus based shared beliefs may not be robust.} One of the key assumptions is that genre / mood permutations generate a reasonable representation of the intent of the music. This representation is corpus based. This assumption presumes that genre and mood classification solutions exist, particularly for information retrieval procedures and that the representation is robust enough for the evaluation function to provide useful guidance. Since this has not been built and validated, the certainty of this assumption remains a source of further investigation.
 
 \section {Future work}
 
 Harmonia is intended to serve as a base platform for multiple aspects of musical creativity, while maintaining a sufficiently modular design to evolve. Specifically, the area of creative agents is undergoing rapid evolution. Providing a framework to ensure shared intentionality, artistic consistency and collaboration with humans should provide further acceleration. Multi-agent online improvisation such as AI Beats is another ripe area for exploration both for artistic purposes as well as for `call and response' treatment of autism and other disorders. 
 
-The current Evaluation methodology is based on Music Information Retrieval and entropic measures. Given the rapid advance of Recurrent Neural Nets in natural language understanding and other sequential data streams, further investigation is warranted of applying Deep Learning to both musical evaluation as well as composition.
+The current Evaluation methodology is based on hand-crafted entropic measures specific to music information. Given the rapid advance of Recurrent Neural Nets in natural language understanding and other sequential data streams, further investigation is warranted for applying Deep Learning to musical evaluation. In general, a Deep Learning approach to \textit{analysis} of music a huge (and exciting) obstacle in the training of automated, musically interactive agents, which could have roles in our system [TODO see Section BLAH].
 
 An improved Evaluation methodology would also lead to improved agent composition. If Harmonia were used by a large set of users, the resulting listening dataset would provide important training data for applying Reinforcement Learning and other methods to further enhance agent composition. A larger dataset would also be of significant benefit to music therapists who could share empirical data on effective treatments tailored to specific demographic and psychographic profiles.
 
@@ -465,19 +474,6 @@ Adding vocals is an interesting challenge. Given recent developments in speech g
 Commercial applications of Harmonia include the aforementioned intellectual property similarity evaluation. The evaluation module may also incorporate commercial goals such as potential popularity \citep{phampredicting}.
 
 
-% THESE ARE EXTENSIONS TO HOW WE COULD IMPROVE THE ANALYSIS (DO NOT DELETE)
-
-%In the manifesto, Widner recalls key points made by theorist Cohen in the 1950s, that an information approach for describing music must develop to account for two things crucial to music but not included in information theory (at Cohen's time but still hardly so half a century later) 1) there must be a theory of interactions for multiple streams of musical information, for example for the way in which rhythmic information may make harmonic events more or less certain. Composers do not decide all of music's parameters separately. 2) there must be theory for account for multiple levels of structural hierarchy coming at once from a single stream of musical information. Rhythms constitute a local time feel but also accelerate a piece toward new sections. Recent directions in information theory may provide insight. 
-
-%The first point requires a generalization of mutual information to multiple random variables, which has been difficult to interpret and met with confusion over several coexistent approaches [V.d. Cruys 2011]. Multivariate mutual information is used to describe the extent to which the knowledge of one event can reduce the entropy in several other variables. To our knowledge, the second point has not yet been explored.
-
-%Cohen Quotes
-%1. the basic [assumption] is that statistical probability... corresponds to the listener's expectations... the average surprisal value... represents the listener's state of uncertainty?
-%2. ?Another... is that one portion of the cultural sign system can be legitimately abstracted from the whole, and that values based on this abstraction will have the same worth as when the portion is a part of the whole.?
-%3. ?A further assumption... a sequence of musical events is experienced on only one architectonic level: in melodic analyses, on the level of notes or intervals; in rhythmic analyses, on the level of the pulse pattern... theory will have to take account of the interaction among levels.?
-%We need to consider several streams of info. and their interactions: rhythm, pitch, harmony, timbre. Even within one type of information stream, say pitch, we need to consider several hierarchical levels at once: 
-
-
 \section*{Conclusion}
   
 Our proposal contributes two novel areas of collaborative music composition:
@@ -486,8 +482,6 @@ Our proposal contributes two novel areas of collaborative music composition:
 	\item An algorithmic evaluation of the composition against intention, to ensure that both human and agent composers cooperate in reaching the shared objective.
 \end{itemize}
 
-% \todo[inline]{Mark: Probably important to mention again how this is an extension to things like SoundCloud and Blend}
-% I think this is sufficient? -David
 
 These novels contributions extend the state of the art, beyond the ideation of SoundCloud and the revision control without intentionality of Blend. As discussed in the Future Work, we see this initial proposal as a start of several interesting areas to explore leading to improved creativity, diversity and applicability of music composition as a tool for composers, music therapists and listener pleasure.
  
@@ -497,6 +491,38 @@ These novels contributions extend the state of the art, beyond the ideation of S
 We are honored to be part of Prof. Grosz's final class. We deeply appreciate the guidance that she and Peter Krafft have provided all semester. We wish them all the best in their future endeavors and SharedPlans.
 
 Special thanks to \href{https://www.psychologytoday.com/experts/david-m-greenberg-phd}{Dr. David Greenberg} who provided important insights and suggestions regarding the application of Harmonia for music therapy.
+
+
+%%%%%%%%% OPEN ITEMS %%%%%%%%%%%%%%%%%
+
+%MARK TODOs
+
+%1) EVAL METHODOLOGY
+
+%2) Music analysis section: resolve two open questions, and mention multivariate info theory (get rid of Cohen quotes comment)
+
+%2) Drastically shorten the music analysis info theory related work subsection
+
+%3) multiple composers use case
+
+%4) I'd like to add one sentence to the part about releasing subgoals
+
+%5) NEW: Fix the bibliography - there are a bunch of orphaned references that appear at the end but can't be found in the text
+
+%6) Resolve a few open questions in my music analysis section
+
+%7) Limitations, Generalizations. See comment
+
+%David TODOs
+
+%1) Add in some missing bibliography items, like Grosz, Hunsberger etc.
+
+%2) Fix the intra-paper references and section label references
+
+%3) Another pass or two at spelling and grammar, text revision, clean read through
+
+
+%%%%% RESOLVE THESE REFERENCES (NOT PRESENT IN PAPER) %%%%%%%%
 
 \section*{Not References}
 
@@ -525,6 +551,11 @@ Pierce, Electronics, waves, and messages. 1956
 Pierce, Letter Scientific American 1956
 
 Youngblood, Style as information 1958 Journal of Music Theory
+
+
+
+
+
 
 % NOTE: Replaced the class provided elsarticle-num-names with elsarticle-num-names-alpha
 %       to enable sorting of references.
