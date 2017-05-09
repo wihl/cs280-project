@@ -233,6 +233,8 @@ Composers can follow suggestions or make their own decisions. During this proces
 
 %The final product of collaboration is a MIDI file that represents the pitches, rhythms, and dynamics of musical events, as well as a collection of metadata that concisely states additional information, such as tempo and instrumentation. 
 
+% The piece can be produced as an electronic piece of music by importing the MIDI into any music production software, specifying which MIDI track should be played by which sound or synthetic instrument, and exporting a sound file. If desired, composers may take additional actions on that finished work that are external to the system, such as produce the piece of music with live musicians or extended software instruments, but this is beyond our scope, which is mainly to facilitate collaboration during the composition process.
+
 
 \subsection{Version Control}
 
@@ -263,7 +265,7 @@ In addition to describing global goals, the SharedPlan mediates any inter-compos
 
 It is ideal for communication to be concise and structured. It may be detrimental to collaborative work for one composer to expect others to read long, unstructured goal descriptions. It may require too high of a cognitive load for the others to carefully read and understand, and the intending composer may not have their ideas respected. We have not yet designed a structured language for describing intent in sub-goals, but we recommend composers to be concise. A structured language may help support automated agent collaborators in the future. This is discussed further in the Therapy case study (See \S \ref{subsec:therapy1}~). 
 
-Intention sharing may help distinguish between two kinds of collaboration issues. The first scenario is where a composer agrees with another composer's intention about an edit, but disagrees with the actual implementation. This may lead to the second composer editing the first composer's material with care to preserve the original sound, or replacing it with something of similar effect. The second scenario is where a composer fundamentally disagrees with the artistic intention of another. An effective SharedPlan communication system may disambiguate these cases.
+Intention sharing may help distinguish between two kinds of collaboration issues. One scenario is where a composer agrees with another composer's intention about an edit, but disagrees with the implementation. This may lead to the second composer editing the first composer's material with care to preserve the original sound, or replacing it with something of similar effect. The other scenario is where one fundamentally disagrees with the artistic intention of another. An effective SharedPlan communication system may disambiguate these cases.
 
 \begin{figure}
 	\centering
@@ -275,7 +277,7 @@ Intention sharing may help distinguish between two kinds of collaboration issues
 \subsection{MIDI and Edit Actions}
 \label{subsec:editActions}
 
-Our system represents music in MIDI format. MIDI is a protocol for communicating discrete information about the pitch, duration, and dynamics of individual notes. A musical work is described by specifying the vertical arrangement of individual notes as chords and their horizontal arrangement over time. There is a General MIDI Sound bank that maps integers to specific electronic instrument sounds such as \textit{grand piano} and \textit{Ocarina}. Most familiar software for music notation and music production build user interfaces on top of basic MIDI editors. Through the use of additional metadata, composers are able to segment MIDI files into blocks corresponding to phrases, themes, or sections. Segmentation may represent intentions about musical form. For example, one may segment a composition into exposition and development section. 
+Our system represents music in MIDI format. MIDI is a protocol for communicating discrete information about the pitch, duration, and dynamics of individual notes. A musical work is described by specifying the vertical arrangement of individual notes as chords and their horizontal arrangement over time. There is a General MIDI Sound bank that maps integers to specific electronic instrument sounds such as \textit{grand piano} and \textit{Ocarina}. Most familiar software for music notation and music production build user interfaces on top of basic MIDI editors. Composers are able to segment MIDI files into blocks corresponding to phrases, themes, or sections. Segmentation may represent intentions about musical form. For example, one may segment a composition into exposition and development section. 
 
 During an interaction with the system, a composer is able to change a composition by editing the MIDI in several low-level or high-level ways. Composers can add a new block, edit or remove an existing block, swap the order of two blocks, merge two blocks, or split a block into two. At each iteration, the system suggests an option that may bring the work-in-progress closer to what is specified by the SharedPlan (See \S \ref{subsec:suggestedit}~).
 
@@ -292,7 +294,6 @@ During an interaction with the system, a composer is able to change a compositio
 	\caption{Summary of Atomic Edit Actions on Score}
 \end{table}
 
-The piece can be produced as an electronic piece of music by importing the MIDI into any music production software, specifying which MIDI track should be played by which sound or synthetic instrument, and exporting a sound file. If desired, composers may take additional actions on that finished work that are external to the system, such as produce the piece of music with live musicians or extended software instruments, but this is beyond our scope, which is mainly to facilitate collaboration during the composition process.
 
 \subsection{Design Failure Modes}
 
@@ -301,22 +302,21 @@ There are multiple potential failure circumstances of the proposed design:
 \begin{description}
 \item[Failure to compose] No composer may elect to work on a given SharedPlan.
 \item[Failure to satisfy] The creator of the original SharedPlan may never approve or reject the produced work, leaving it in an undefined state.
-\item[Sub-plan not released]A sub-plan may be defined but no composer ever completes the sub-plan so the work stays in an incomplete state.
-\item[Evaluation not converging] The evaluation process may continue to offer suggestions that are rejected by the composer. Note that the evaluation process only makes recommendations but is not a gatekeeper for the composer to release. However, if the Evaluation mechanism repeatedly gives undesired or unhelpful suggestions, composers will cease future use.
-\item[Failure to Evaluate] there may not be sufficient training data for a given genre / mood combination so the Evaluation may fail to provide sufficiently useful recommendations.
+\item[Sub-plan not released]A sub-plan may be defined but no composer ever completes the sub-plan, leaving the work in an incomplete state.
+\item[Evaluation not converging] The evaluation process may continue to offer suggestions that are rejected by the composer. Composers may abandon using evaluation. \item[Failure to evaluate] there may not be sufficient training data for a given genre / mood combination so the evaluation may fail to provide sufficiently useful recommendations.
 \end{description}
 
-Failures result in a specific SharedPlan not advancing, but none of these failures affect other SharedPlans in the system.
+Failures result in a specific SharedPlan not advancing, but none of these failures affect other SharedPlans in the system. A SharedPlan requester may still accept a piece under some of these conditions.
 
 \section{User Interface}
 
-There are three aspects to the user interface: for non-musical users, for composers performing workflow and for composers actively editing the musical score.
+There are three aspects to the user interface: for SharedPlan requesters, for composers in workflow, and for composers actively editing the musical score.
 
 \subsection{SharedPlan Workflow User Interface}
 
 There are three possible commands in this context: \textbf{EditPlan} (including create/edit/delete), \textbf{Approve, Reject}. Since the user may not have any musical background, this user interface must be accessible to as large a population as possible. Ideally, this would be a simple looking, reactive web-based interface that would work equally well on mobile devices as well as desktops. Music apps such as Spotify may wish to integrate this functionality so a web-based API must also be accessible.
 
-For an unsophisticated user, \textbf{Approve} and \textbf{Reject} may be considered implicit. If the user listens to the composition past a certain point, such as 80\% of the total length of the work, it may be deemed implicitly approved. Similarly, if the user advances to another song within the first 20\% of piece time, the composition is implicitly rejected. Implicit rejection does not provide any causal reason for the rejection, so trial and error analogous to reinforcement learning must be used to discover the hidden reasons why a work was implicitly rejected. Other user actions (such as stopping all music in the middle of play) do not provide enough signal to determine implicit actions so the work's acceptance status remains unknown.
+\hl{For an unsophisticated user, \textbf{Approve} and \textbf{Reject} may be considered implicit. If the user listens to the composition past a certain point, such as 80\% of the total length of the work, it may be deemed implicitly approved. Similarly, if the user advances to another song within the first 20\% of piece time, the composition is implicitly rejected. Implicit rejection does not provide any causal reason for the rejection, so trial and error analogous to reinforcement learning must be used to discover the hidden reasons why a work was implicitly rejected. Other user actions (such as stopping all music in the middle of play) do not provide enough signal to determine implicit actions so the work's acceptance status remains unknown.}
 
 \subsection{Sub-plan Workflow User Interface}
 
@@ -329,7 +329,7 @@ This is the most complex and demanding user interface as it requires the highest
 \section{Automated Analysis of Musical Structure}
 \label{sec:analysis}
 
-Harmonia facilitates collaborative composition in two ways. First, the interface as a whole, including the revision system and the shared metadata associated with each composition, helps with practical aspects of communication and coordination. Second, the analysis system lets composers know how close their work-in-progress is to their goal, as measured by similarity to characteristic pieces relevant to their goal. The analysis system also suggests structural edits such as swapping the order of existing material, or deleting material, that could further improve the piece. In this section, we describe the automated analysis of musical structure that is used by our system. Crucial to our system, our computational approach models the structure of a piece of music in relation to the expected trajectory of surprise and redundancy that a listener experiences. Our work follows directly from The Information Dynamics Approach. \citep{abdallah2012cognitive} We first discuss the nature of the musical analysis used in our system, and then discuss how this method supports goal checking and suggested musical edits.
+Harmonia facilitates collaborative composition in two ways. First, the interface as a whole, including the SharedPlan and the revision control, helps with practical aspects of communication and coordination. Second, the analysis system lets composers know how close their work-in-progress is to their goal. The analysis system also suggests structural edits that could further improve the piece. In this section, we describe the automated analysis of musical structure that is used by our system. Crucial to our system, our computational approach models the structure of a piece of music in relation to the expected trajectory of surprise and redundancy that a listener experiences. Our work follows directly from The Information Dynamics Approach. \citep{abdallah2012cognitive} We first discuss the nature of the musical analysis used in our system, and then discuss how this method supports goal checking and edit suggestion.
 
 \subsection{Entropy of Musical Events and Divergence}
  
