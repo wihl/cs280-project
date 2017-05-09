@@ -228,12 +228,15 @@ After reviewing the workflow of editing a piece of music as part of a team of co
 
 The generic use case that we consider is that a listener (musician or not) requests a new piece of music of a specified genre and mood, and other related keywords. A new, blank score is associated with a SharedPlan that stores the genre, mood, and optional keywords. The system retrieves MIDI scores for existing related music. The system computes a summary of characteristic musical structure of the retrieved body of work. Composers iteratively add and edit material while receiving system feedback, helping composers choose which edits are most relevant to the SharedPlan. The system also suggests edits, such as to repeat, delete, or the switch the order of blocks of material. 
 
-Composers can follow suggestions or make their own decisions. During this process, composers create sub-goals that describe the intentions of local edits, such that others can pick up on their material and preserve these intentions. Composers collaborate to bring the composition to a state of completion such that it matches the originally specified goals. Composers iterate on the composition until the SharedPlan originator is satisfied. The finished product is a MIDI score for a piece of music.
+Composers can follow suggestions or make their own decisions. During this process, composers create sub-goals that describe the intentions of local edits, such that others can pick up on their material and preserve these intentions. Composers collaborate to bring the composition to a state of completion such that it matches the originally specified goals and the SharedPlan originator is satisfied. The finished product is a MIDI score.
+% for a piece of music.
+
+%The final product of collaboration is a MIDI file that represents the pitches, rhythms, and dynamics of musical events, as well as a collection of metadata that concisely states additional information, such as tempo and instrumentation. 
 
 
 \subsection{Version Control}
 
-Version control has become an essential part of team-based software development. However, the tools for managing revisions of other creative work, including composition, are nonexistent or limited in comparison. There are two commercial version control systems for music: the aforementioned Blend and Splice.com \footnote{\texttt{https://splice.com/}}. \texttt{git} \citep{torvalds2010git} has been referenced elsewhere \citep{oberholtzer2015computational} as a viable means for musical score version control, especially in the MIDI format. Software based version control systems are excellent for basic operations such as branching, committing and viewing history, but they are lacking several primitives necessary for integration in our proposed workflow. We propose the following additional commands for the workflow:
+Version control has become an essential part of team-based software development. However, the tools for managing revisions of other creative work, including composition, are nonexistent or limited in comparison. There are two commercial version control systems for music: Blend and Splice \footnote{\texttt{https://splice.com/}}. \texttt{git} \citep{torvalds2010git} has been referenced elsewhere \citep{oberholtzer2015computational} as a viable means for music score version control, especially in the MIDI format. Software based version control systems are excellent for basic operations such as branching, committing and viewing history, but they lack several primitives necessary for integration in our proposed workflow. We propose the following additional commands:
 
 \noindent \textit{For users and composers}:
 \begin{description}
@@ -249,16 +252,16 @@ Version control has become an essential part of team-based software development.
     \item [Release] - after a commit, mark a work as ready for review by the creator of the sub-plan. This closes the sub-plan. If a plan is rejected, it may be re-opened.
 \end{description}
 
-The versioning aspect is particularly relevant in the music context, as intellectual property and originality is often the source of extensive lawsuits. By maintaining version control, an examination of the history would assist in the identification of derivative works and originality of authorship.
+Versioning is particularly relevant in the music context, as intellectual property and originality is often the source of extensive lawsuits. By maintaining version control, an examination of the history would assist in the identification of derivative works and originality of authorship.
 
 \subsection{Communication through SharedPlan and Sub-plans}
 \label{subsec:interComposer}
  
 When a composition task is created, it exists as a SharedPlan that contains an intent specification, as well as a \texttt{NULL} score. Additional descriptive keywords may be included in the form of tags, like those on YouTube or Soundcloud \footnote{\texttt{https://on.soundcloud.com/creator-guide/tracks}} (\texttt{$\#$USA}, \texttt{$\#$lo-fi}, \texttt{$\#$chill}, \texttt{$\#$electronic}, \texttt{$\#120BPM$}). These tags power an automated comparison between work-in-progress and goal, and helps composers pick edits that may bring a composition closer to a sound characterized by the goal keywords. We assume that an information retrieval system for querying MIDI music scores by keyword exists.
 
-In addition to describing global goals, the SharedPlan also mediates any inter-composer communication that takes place aside from the edits to the composition itself.  A composer may wish to express the intention of a particular edit to justify its presence or to elicit specific future directions for their material. For example, a composer may add a block of music containing an exposed melody, but may want to communicate that another composer should add a harmonic accompaniment to that section. This is done by issuing a sub-goal. Another composer who acts on an open sub-goal \textit{releases} it when they commit their work.
+In addition to describing global goals, the SharedPlan mediates any inter-composer communication that takes place aside from the edits to the composition itself.  A composer may wish to express the intention of a particular edit to justify its presence or to elicit specific future directions for their material. For example, a composer may add a block of music containing an exposed melody, but may want to communicate that another composer should add a harmonic accompaniment. This is done by issuing a sub-goal. Another composer who acts on an open sub-goal \textit{releases} it when they commit their work.
 
-It is ideal for communication to be concise and structured. It may be detrimental to collaborative work for one composer to expect others to read long, unstructured goal descriptions. It may require too high of a cognitive load for the others to carefully read and understand, and the intending composer may not have their ideas respected. We have not yet designed a structured language for describing intent in sub-goals, but we recommend composers to be concise. A structured language may help support automated agent collaborators in the future. This is discussed further in the Therapy case study (See \S \ref{subsec:therapy1}~ \nameref{subsec:therapy1}). 
+It is ideal for communication to be concise and structured. It may be detrimental to collaborative work for one composer to expect others to read long, unstructured goal descriptions. It may require too high of a cognitive load for the others to carefully read and understand, and the intending composer may not have their ideas respected. We have not yet designed a structured language for describing intent in sub-goals, but we recommend composers to be concise. A structured language may help support automated agent collaborators in the future. This is discussed further in the Therapy case study (See \S \ref{subsec:therapy1}~). 
 
 Intention sharing may help distinguish between two kinds of collaboration issues. The first scenario is where a composer agrees with another composer's intention about an edit, but disagrees with the actual implementation. This may lead to the second composer editing the first composer's material with care to preserve the original sound, or replacing it with something of similar effect. The second scenario is where a composer fundamentally disagrees with the artistic intention of another. An effective SharedPlan communication system may disambiguate these cases.
 
@@ -272,9 +275,9 @@ Intention sharing may help distinguish between two kinds of collaboration issues
 \subsection{MIDI and Edit Actions}
 \label{subsec:editActions}
 
-Our system represents music in MIDI format. MIDI is a protocol for communicating discrete information about the pitch, duration, and dynamics of individual notes. A musical work is described by specifying the vertical arrangement of individual notes as chords and their horizontal arrangement over time. Additionally, there is a General MIDI Sound bank that maps integers to specific electronic instrument sounds. For example, one can specify that this MIDI part is meant to be played by sound $0$, grand piano or Ocarina, sound $80$. Most familiar software for music notation and music production build user interfaces on top of a basic MIDI file editor. Through the use of additional metadata, composers are able to segment MIDI files into separate segments. For example, a piece may be subdivided into several sections. Segmentation may represent intentions about musical form, for example one may segment part of a composition into an exposition and a development section. 
+Our system represents music in MIDI format. MIDI is a protocol for communicating discrete information about the pitch, duration, and dynamics of individual notes. A musical work is described by specifying the vertical arrangement of individual notes as chords and their horizontal arrangement over time. There is a General MIDI Sound bank that maps integers to specific electronic instrument sounds such as \textit{grand piano} and \textit{Ocarina}. Most familiar software for music notation and music production build user interfaces on top of basic MIDI editors. Through the use of additional metadata, composers are able to segment MIDI files into blocks corresponding to phrases, themes, or sections. Segmentation may represent intentions about musical form. For example, one may segment a composition into exposition and development section. 
 
-During an interaction with the system, a composer is able to change a composition by editing the MIDI in several low-level or high-level ways. Composers can add a new block of material, edit an existing block, remove an existing block, swap the order of two blocks, merge two blocks, or split a block into two. At each iteration of editing, the system suggests an option that may bring the work in progress closer to what is specified by the SharedPlan. This is primarily of the form of ``move block A after block B?" (See Section on Automatic Evaluation). The final product of collaboration is a MIDI file that represents the pitches, rhythms, and dynamics of musical events, as well as a collection of metadata that concisely states additional information, such as tempo and instrumentation. 
+During an interaction with the system, a composer is able to change a composition by editing the MIDI in several low-level or high-level ways. Composers can add a new block, edit or remove an existing block, swap the order of two blocks, merge two blocks, or split a block into two. At each iteration, the system suggests an option that may bring the work-in-progress closer to what is specified by the SharedPlan (See \S \ref{subsec:suggestedit}~).
 
 \begin{table}
     \begin{tabular}{|l|l|}
@@ -344,6 +347,7 @@ $$ D_{KL}(X^{\prime}\textrm{ }|| \textrm{ } X) =  \sum_{x \in \mathcal{X}} p_{X^
 
 
 \subsection{Current Design: Analyze, Suggest, and Edit}
+\label{subsec:suggestedit}
 
 Harmonia uses PIR to calculate the proximity of a musical work in progress to a characteristic piece from the category specified by the SharedPlan. Using these measures, the system gives feedback to a composer with respect to the composer's editing decisions, and provides suggestions that may bring a piece closer to the goal. It is this analysis and suggestion loop, along with interaction with the SharedPlan metadata, that characterize the main experience for an individual composer. This experience is further enriched by the fact that each time the composer enters the feedback loop, the piece and aspects of SharedPlan may have changed by other composers.
 
@@ -353,7 +357,9 @@ Comparing the characteristic curve with the PIR curve of the work in progress, o
 
 Composers may prefer to go with edits that decrease $\Delta$, or may choose to stick with their edit even if it increases $\Delta$. Reasons for going with a ``worsening" action include choosing to lay down material that further edits will re-contextualize, whether by the same composer or by others. In this case, it is important for a composer to commit their intention for the new edit (as concise text) into the SharedPlan metadata as a sub-plan. Future work involves specifying this format more explicitly, so that an automated agent may be able to act in response to this intention. It is also the case that unstructured, non-concise description of intentions by one composer may be difficult or overwhelming for another composer to deal with.
 
-Also using these PIR scores, our system may give actionable edit suggestions. As specified in \S \ref{subsec:editActions}~ \nameref{subsec:editActions}, a composer may edit a piece by adding a new block of material (of any length), edit an existing block, remove a block, swap two blocks, merge two blocks into one, or split one block into two. Excluding adding or editing blocks because this requires intelligent automated composition, and excluding splitting and joining blocks because this does not actually change any musical material or it's ordering, the system may recommend repeating or deleting any existing block, or swapping any pair of existing blocks. Because for any work-in-progress of reasonable length there is a tractably enumerable set of such choices, the system can just try each choice of deleting, repeating, and swapping, and suggest to the user the choice the minimizes $\Delta$. This choice may be the ``make no change" choice at a given iteration, because the best thing to do may be to add more material before considering such actions.
+As specified in \S \ref{subsec:editActions}~ \nameref{subsec:editActions}, composer may edit a composition in several defined ways. Excluding options that require intelligent machine composition, the system may give actionable edit suggestions according based on PIR scores. It may recommend repeating or deleting any existing block, or swapping any pair of existing blocks. Because for any work-in-progress of reasonable length there is a tractably enumerable set of such choices, the system can just try each choice of deleting, repeating, and swapping, and suggest to the user the choice the minimizes $\Delta$. This choice may be the ``make no change" choice at a given iteration.
+%because the best thing to do may be to add more material before considering such actions.
+
 
 \section{Use Cases}
 \label{sec:usecases}
@@ -464,7 +470,9 @@ Special thanks to \href{https://www.psychologytoday.com/experts/david-m-greenber
 
 %1) Music analysis section: resolve two open questions
 
-%3) Reduce Related Work
+%2) Reduce Related Work
+
+%3) Remove space after section references.
 
 %------------------ David TODOs --------------------------------
 
