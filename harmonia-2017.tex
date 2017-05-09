@@ -155,11 +155,11 @@ There are many additional issues that surround collaboration over structured, sh
 
 Collaborative Ideation (CI) investigates the effect of various idea-sharing tactics on the creativity, productivity and scope of individual idea-generating participants. Such techniques may include showing each participant in a pool of brainstormers the collection of all participants' brainstormed ideas. In CI that focuses on the creation of shared objects such as a composition or story by several people, certain interfaces for collaboration, automated idea-sharing mechanisms, and per-participant system feedback may help facilitate group creativity and productivity.
 
-SharedPlans provide a framework to establish and maintain context and metadata about group artistic work. This framework ensures that the collaborative process and ideation stay within reasonably agreed parameters, provides a formalized notion of common beliefs and defines a means of independent measurement that the work-in-progress is navigating toward the original intention.
+SharedPlans provide a framework to establish and maintain context and metadata about group artistic work. This framework provides a formalized notion of common beliefs, and defines a computational approach to ensure that the collaborative process stays within reasonably agreed parameters, preserving original intention.
 
 We propose Harmonia, a system that addresses collaborative music composition inspired by tools used for software teamwork, collaborative ideation, and musical analysis. The system defines a set of editing procedures and an interface for communication and collaboration over a shared musical artifact.
 
-In \S \ref{sec:related} we examine previous work related to shared intentionality, collaboration and group ideation, intelligent music systems, and modeling the structure of music. In \S \ref{sec:design}, we describe the details of the overall usage workflow, as well as the individual components of our system. A proposed user interface for users and composers is described in \S \ref{sec:UI}. The details of the automated analysis of the work-in-progress is described in detail in \S \ref{sec:analysis}.  We present four use cases for our system in \S \ref{sec:usecases}, where collaborating composers create music ranging in purpose from casual listening to clinical therapy. In \S \ref{sec:discuss}, we discuss limitations that we have identified in our system, and a few initial plans for system validation. We discuss potential future work in \S \ref{sec:future}.
+In \S \ref{sec:related} we examine previous work related to shared intentionality, collaboration and group ideation, intelligent music systems, and modeling the structure of music. In \S \ref{sec:design}, we describe the details of the overall usage workflow, as well as the individual components of our system. A proposed interface for users and composers is described in \S \ref{sec:UI}. The details of the automated analysis of a work-in-progress is described in detail in \S \ref{sec:analysis}.  We present four use cases for our system in \S \ref{sec:usecases}, where collaborating composers create music ranging in purpose from casual listening to clinical therapy. In \S \ref{sec:discuss}, we discuss limitations identified in the system, and a few initial plans for system validation. We discuss potential future work in \S \ref{sec:future}.
 
 \section{Related Work}
 \label{sec:related}
@@ -264,19 +264,6 @@ It is ideal for communication to be concise and structured. It may be detrimenta
 
 Intention sharing may help distinguish between two kinds of collaboration issues. One scenario is where a composer agrees with another composer's intention about an edit, but disagrees with the implementation. This may lead to the second composer editing the first composer's material with care to preserve the original sound, or replacing it with something of similar effect. The other scenario is where one fundamentally disagrees with the artistic intention of another. An effective SharedPlan communication system may disambiguate these cases.
 
-\begin{figure}
-	\centering
-	\includegraphics[scale=0.5]{midi.pdf}
-	\caption{Music represented by MIDI (top) and MusicXML (bottom)}
-	\label{fig:midi}
-\end{figure}
-
-\subsection{MIDI and Edit Actions}
-\label{subsec:editActions}
-
-Our system represents music in MIDI format. MIDI is a protocol for communicating information about the pitch, duration, and dynamics of individual notes. A musical work is described by specifying the vertical arrangement of notes as chords and their horizontal arrangement over time. There is a General MIDI Sound bank that maps integers to electronic instrument sounds such as \textit{grand piano} and \textit{ocarina}. Most software packages for music notation and production build user interfaces over basic MIDI editors. Composers can segment MIDI files into blocks corresponding to phrases, themes, or sections. Segmentation may represent intentions about musical form, for example a segmentation into an \textit{exposition} and a \textit{development}.
-
-During an interaction with the system, a composer is able to change a composition by editing the MIDI in several low-level or high-level ways. Composers can add a new block, edit or remove an existing block, swap the order of two blocks, merge two blocks, or split a block into two. At each iteration, the system suggests an option that may bring the work-in-progress closer to what is specified by the SharedPlan (See \S \ref{subsec:suggestedit}).
 
 \begin{table}
     \begin{tabular}{|l|l|}
@@ -291,6 +278,23 @@ During an interaction with the system, a composer is able to change a compositio
 	\caption{Summary of Atomic Edit Actions on Score}
 \end{table}
 
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.5]{midi.pdf}
+	\caption{Music represented by MIDI (top) and MusicXML (bottom)}
+	\label{fig:midi}
+\end{figure}
+
+
+
+\subsection{MIDI and Edit Actions}
+\label{subsec:editActions}
+
+Our system represents music in MIDI format. MIDI is a protocol for communicating information about the pitch, duration, and dynamics of individual notes. A musical work is described by specifying the vertical arrangement of notes as chords and their horizontal arrangement over time. There is a General MIDI Sound bank that maps integers to electronic instrument sounds such as \textit{grand piano} and \textit{ocarina}. Most software packages for music notation and production build user interfaces over basic MIDI editors. Composers can segment MIDI files into blocks corresponding to phrases, themes, or sections. Segmentation may represent intentions about musical form, for example a segmentation into an \textit{exposition} and a \textit{development}.
+
+During an interaction with the system, a composer is able to change a composition by editing the MIDI in several low-level or high-level ways. Composers can add a new block, edit or remove an existing block, swap the order of two blocks, merge two blocks, or split a block into two (See Table 1).
+
+%At each iteration, the system suggests an option that may bring the work-in-progress closer to what is specified by the SharedPlan (See \S \ref{subsec:suggestedit}).
 
 \subsection{Design Failure Modes}
 
@@ -443,7 +447,7 @@ There are several limitations in this proposal that are inherent in the design. 
 
 Harmonia is intended to serve as a base platform for multiple aspects of collaborative composition, and is modular enough such that individual functionality within the framework may be replaced with newer techniques. The area of creative agents is undergoing rapid evolution. Providing a framework to ensure shared intentionality, artistic consistency, and effective collaboration among humans should provide further acceleration. Multi-agent online improvisation such as AI Duet is another ripe area for exploration both for artistic purposes as well as for `call and response' treatment of autism and other disorders.
 
-The current automated analysis system is based on hand-crafted entropic measures specific to music information. Given the rapid advance of Recurrent Neural Nets in natural language understanding and other sequential data streams, further investigation is warranted for applying deep learning to musical evaluation. In general, a deep learning approach to \textit{analysis} of music \citep{deepgenre} is a huge and exciting obstacle in the training of automated, musically interactive agents, which could have roles in the system. If Harmonia were used by a large set of users, the resulting listening dataset would provide important training data for applying Reinforcement Learning and other methods to further enhance agent composition. A larger dataset would also be of significant benefit to music therapists who could share empirical data on effective treatments tailored to specific demographic and psychographic profiles.
+The current automated analysis system is based on hand-crafted entropic measures specific to music information. Given the rapid advance of Recurrent Neural Nets in natural language understanding and other sequential data streams, further investigation is warranted for applying deep learning to musical evaluation. In general, a deep learning approach to \textit{analysis} of music \citep{deepgenre} \citep{deepfeature} is a huge and exciting obstacle in the training of automated, musically interactive agents, which could have roles in the system. If Harmonia were used by a large set of users, the resulting listening dataset would provide important training data for applying Reinforcement Learning and other methods to further enhance agent composition. A larger dataset would also be of significant benefit to music therapists who could share empirical data on effective treatments tailored to specific demographic and psychographic profiles.
 
 There are significant limits when using MIDI for musical expression. Incorporating more complex musical encoding formats such as recorded audio, or at least MusicXML, would allow for greater range of expression but would complicate analysis. Adding vocals is an interesting challenge. Given recent developments in speech generation, is it possible to extend the idea to vocals?\footnote{\texttt{https://lyrebird.ai/}} Can a neural net be programmed to `sing' like Alicia Keys?  Commercial applications of Harmonia include the aforementioned intellectual property similarity evaluation. The analysis module may also incorporate commercial goals such as potential popularity \citep{phampredicting}.
 
