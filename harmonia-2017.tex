@@ -231,11 +231,7 @@ Composers can follow suggestions or make their own decisions. During this proces
 
 \subsection{Version Control}
 
-Version control has become an essential part of team-based software development. However, the tools for managing
-revisions of other creative work, including music composition, are nonexistent or limited in comparison. There are
-two commercial version control systems for music: the aforementioned Blend and Splice.com \footnote{\texttt{https://splice.com/}}. \texttt{git} \citep{torvalds2010git} has been referenced elsewhere \citep{oberholtzer2015computational} as a viable means for musical score version control, especially in the MIDI format.
-
-Software based version control systems are excellent for basic version control operations such as branching, committing and viewing history, but they are lacking several primitives necessary for integration in our proposed workflow. We propose the following additional commands for the workflow:
+Version control has become an essential part of team-based software development. However, the tools for managing revisions of other creative work, including composition, are nonexistent or limited in comparison. There are two commercial version control systems for music: the aforementioned Blend and Splice.com \footnote{\texttt{https://splice.com/}}. \texttt{git} \citep{torvalds2010git} has been referenced elsewhere \citep{oberholtzer2015computational} as a viable means for musical score version control, especially in the MIDI format. Software based version control systems are excellent for basic operations such as branching, committing and viewing history, but they are lacking several primitives necessary for integration in our proposed workflow. We propose the following additional commands for the workflow:
 
 \noindent \textit{For users and composers}:
 \begin{description}
@@ -247,7 +243,7 @@ Software based version control systems are excellent for basic version control o
 \noindent \textit{For composers only}:
 \begin{description}
     \item [Evaluate] - prior to committing a revision, perform an analysis of the current score against intentionality.
-    \item [EditSubplan] - create, revise or delete a sub-plan. Creating or editing a sub-plan \hl{would establish the hierarchical context to the SharedPlan. Not sure what this means}
+    \item [EditSubplan] - create, revise or delete a sub-plan. Creating or editing a sub-plan \hl{would establish the hierarchical context to the SharedPlan. TODO: Not sure what this means}
     \item [Release] - after a commit, mark a work as ready for review by the creator of the sub-plan. This closes the sub-plan. If a plan is rejected, it may be re-opened.
 \end{description}
 
@@ -256,7 +252,7 @@ The versioning aspect is particularly relevant in the music context, as intellec
 \subsection{Communication through SharedPlan and Sub-plans}
 \label{subsec:interComposer}
  
-When a composition task is created, it exists as a SharedPlan that contains an intent specification, as well as a \texttt{NULL} score. Additional descriptive keywords may be included in the form of tags, like those on YouTube or Soundcloud \footnote{\texttt{https://on.soundcloud.com/creator-guide/tracks}} ($\#$USA, $\#$lo-fi, $\#$chill, $\#$electronic, $\#120BPM$). These tags power an automated comparison between work-in-progress and goal, and helps composers pick edits that may bring a composition closer to a sound characterized by the goal keywords. We assume that an information retrieval system for querying MIDI music scores by keyword exists.
+When a composition task is created, it exists as a SharedPlan that contains an intent specification, as well as a \texttt{NULL} score. Additional descriptive keywords may be included in the form of tags, like those on YouTube or Soundcloud \footnote{\texttt{https://on.soundcloud.com/creator-guide/tracks}} (\texttt{$\#$USA}, \texttt{$\#$lo-fi}, \texttt{$\#$chill}, \texttt{$\#$electronic}, \texttt{$\#120BPM$}). These tags power an automated comparison between work-in-progress and goal, and helps composers pick edits that may bring a composition closer to a sound characterized by the goal keywords. We assume that an information retrieval system for querying MIDI music scores by keyword exists.
 
 In addition to describing global goals, the SharedPlan also mediates any inter-composer communication that takes place aside from the edits to the composition itself.  A composer may wish to express the intention of a particular edit to justify its presence or to elicit specific future directions for their material. For example, a composer may add a block of music containing an exposed melody, but may want to communicate that another composer should add a harmonic accompaniment to that section. This is done by issuing a sub-goal. Another composer who acts on an open sub-goal \textit{releases} it when they commit their work.
 
@@ -323,9 +319,7 @@ The market reality is the most modern composers use an existing Digital Audio Wo
 
 \subsection{Composer Edit / Evaluation User Interface}
 
-This is the most complex and demanding user interface as it requires the highest degree of interactivity. Rather than re-implementing the multitude of music editing features of a mature DAW, integration to existing DAWs is again preferable over creating a \textit{de novo} user interface. 
-
-The most novel aspect would be the integration of the evaluation to the editing task. Ideally the evaluation result would decorate and annotate the score; enabling the composer to address results of the evaluation while remaining in a known editing context, analogous to seeing and resolving comments in Microsoft Word or a Google Doc.
+This is the most complex and demanding user interface as it requires the highest degree of interactivity. Rather than re-implementing the multitude of music editing features of a mature DAW, integration to existing DAWs is again preferable over creating a \textit{de novo} user interface. The most novel aspect would be the integration of the evaluation to the editing task. Ideally the evaluation result would decorate and annotate the score; enabling the composer to address results of the evaluation while remaining in a known editing context, analogous to seeing and resolving comments in Microsoft Word or a Google Doc.
 
 \section{Automated Analysis of Musical Structure}
 \label{sec:analysis}
@@ -351,9 +345,9 @@ $$ D_{KL}(X^{\prime}\textrm{ }|| \textrm{ } X) =  \sum_{x \in \mathcal{X}} p_{X^
 
 Harmonia uses PIR to calculate the proximity of a musical work in progress to a characteristic piece from the category specified by the SharedPlan. Using these measures, the system gives feedback to a composer with respect to the composer's editing decisions, and provides suggestions that may bring a piece closer to the goal. It is this analysis and suggestion loop, along with interaction with the SharedPlan metadata, that characterize the main experience for an individual composer. This experience is further enriched by the fact that each time the composer enters the feedback loop, the piece and aspects of SharedPlan may have changed by other composers.
 
-We assume that music information retrieval systems exist to facilitate calculating PIR on sample pieces of music queried by genre, mood, and other metadata keywords (HipHop, Chill, Slow, Study)\footnote{\texttt{https://www.youtube.com/watch?v=xrbrQhpvn8E}}. Because we currently analyze MIDI representation of music, this retrieval is done on a corpus of MIDI and score representations of music rather than audio recordings. Some examples of existing query systems include \hl{[TODO: ADD EXISTING INFO RETRIEVAL SYSTEM]}. We calculate the PIR for the most popular $\boldsymbol{\beta}\%$ of pieces matching a specified query, and average the PIR curves to create a ``characteristic curve" that represents the typical structure of a piece of music fitting the metadata criteria. 
-\todo[inline]{Mark: HUGE PROBLEM $\#1$ HOW IS THIS AVERAGE CREATED?}
-Comparing the characteristic curve with the PIR curve of the work in progress, our system can estimate some notion of distance from the musical goal specified in the SharedPlan. Let the difference be denoted as $\Delta$. This comparison supports several important features of our system. First, not considering any edit suggestions made by our system, a composer may simply see whether their latest edit brings the piece of music closer to (lower $\Delta$) or further from (higher $\Delta$) the SharedPlan. \todo[inline]{Mark: HUGE PROBLEM $\#2$ HOW IS THIS DIFFERENCE CALCULATED?} 
+We assume that music information retrieval systems exist to facilitate calculating PIR on sample pieces of music queried by genre, mood, and other metadata keywords (HipHop, Chill, Slow, Study)\footnote{\texttt{https://www.youtube.com/watch?v=xrbrQhpvn8E}}. Because we currently analyze MIDI representation of music, this retrieval is done on a corpus of MIDI and score representations of music rather than audio recordings. We calculate the PIR for the most popular $\boldsymbol{\beta}\%$ of pieces matching a specified query (where $\boldsymbol{\beta}$  is a parameter to be specified), and average the PIR curves to create a ``characteristic curve" that represents the typical structure of a piece of music fitting the criteria. \hl{HOW IS THIS AVERAGE CREATED?}
+
+Comparing the characteristic curve with the PIR curve of the work in progress, our system can estimate a notion of distance from the musical goal specified in the SharedPlan. Let the difference be denoted as $\Delta$. This comparison supports several important features of our system. First, not considering any edit suggestions made by our system, a composer may simply see whether their latest edit brings the piece of music closer to (lower $\Delta$) or further from (higher $\Delta$) the SharedPlan. \hl{HOW IS THIS DIFFERENCE CALCULATED?}
 
 Composers may prefer to go with edits that decrease $\Delta$, or may choose to stick with their edit even if it increases $\Delta$. Reasons for going with a ``worsening" action include choosing to lay down material that further edits will re-contextualize, whether by the same composer or by others. In this case, it is important for a composer to commit their intention for the new edit (as concise text) into the SharedPlan metadata as a sub-plan. Future work involves specifying this format more explicitly, so that an automated agent may be able to act in response to this intention. It is also the case that unstructured, non-concise description of intentions by one composer may be difficult or overwhelming for another composer to deal with.
 
@@ -427,7 +421,7 @@ The question arises whether algorithmic evaluation of a composition is a potenti
 \subsection{Limitations}
 \label{subsec:limitations}
 
-There are several limitations in this proposal that are inherent in the design. This is purposeful, as addressing these limitations may result in undo expansion of intent, scope, or problem tractability. Nevertheless, it is important to be explicit about known limitations.
+There are several limitations in this proposal that are inherent in the design. This is purposeful, as addressing these limitations may result in undo expansion of intent, scope, or problem tractability. Nevertheless, it is important to be explicit about known limitations:
 
 \textit{No explicit support for improvisation.} The collaborative design is inspired from software engineering teamwork, which is a solitary activity. Unlike software, in music very fruitful results may occur in real-time improvisation by several musicians. The design does not preclude improvisation but does not account for it either. There may be interesting paths to explore, discovered during improvisation that would not be captured by this design. A composer would have to create separate branches and record improvisation sections in each branch. The design does not account for partial interchange between branches.
 
@@ -446,16 +440,9 @@ There are several limitations in this proposal that are inherent in the design. 
 
 Harmonia is intended to serve as a base platform for multiple aspects of musical creativity, while maintaining a sufficiently modular design to evolve. Specifically, the area of creative agents is undergoing rapid evolution. Providing a framework to ensure shared intentionality, artistic consistency and collaboration with humans should provide further acceleration. Multi-agent online improvisation such as AI Duet is another ripe area for exploration both for artistic purposes as well as for `call and response' treatment of autism and other disorders. 
 
-The current Evaluation methodology is based on hand-crafted entropic measures specific to music information. Given the rapid advance of Recurrent Neural Nets in natural language understanding and other sequential data streams, further investigation is warranted for applying Deep Learning to musical evaluation. In general, a Deep Learning approach to \textit{analysis} of music a huge (and exciting) obstacle in the training of automated, musically interactive agents, which could have roles in our system.
+The current automated analysis system is based on hand-crafted entropic measures specific to music information. Given the rapid advance of Recurrent Neural Nets in natural language understanding and other sequential data streams, further investigation is warranted for applying Deep Learning to musical evaluation. In general, a Deep Learning approach to \textit{analysis} of music \citep{deepgenre} is a huge (and exciting) obstacle in the training of automated, musically interactive agents, which could have roles in our system. If Harmonia were used by a large set of users, the resulting listening dataset would provide important training data for applying Reinforcement Learning and other methods to further enhance agent composition. A larger dataset would also be of significant benefit to music therapists who could share empirical data on effective treatments tailored to specific demographic and psychographic profiles.
 
-An improved Evaluation methodology would also lead to improved agent composition. If Harmonia were used by a large set of users, the resulting listening dataset would provide important training data for applying Reinforcement Learning and other methods to further enhance agent composition. A larger dataset would also be of significant benefit to music therapists who could share empirical data on effective treatments tailored to specific demographic and psychographic profiles.
-
-As mentioned previously, there are significant limits when using MIDI for musical expression. Incorporating more advanced musical encoding formats such as MusicXML or even just sounds would allow for greater range of expression such as articulation information.
-
-Adding vocals is an interesting challenge. Given recent developments in speech generation, is it possible to further the idea to vocals?\footnote{\texttt{https://lyrebird.ai/}} Can a neural net be programmed to `sing' like Alicia Keys? 
-
-Commercial applications of Harmonia include the aforementioned intellectual property similarity evaluation. The evaluation module may also incorporate commercial goals such as potential popularity \citep{phampredicting}.
-
+As mentioned previously, there are significant limits when using MIDI for musical expression. Incorporating more complex musical encoding formats such as recorded audio, or at least MusicXML, would allow for greater range of expression but would complicate analysis. Adding vocals is an interesting challenge. Given recent developments in speech generation, is it possible to further the idea to vocals?\footnote{\texttt{https://lyrebird.ai/}} Can a neural net be programmed to `sing' like Alicia Keys?  Commercial applications of Harmonia include the aforementioned intellectual property similarity evaluation. The evaluation module may also incorporate commercial goals such as potential popularity \citep{phampredicting}.
 
 \section*{Conclusion}
   
