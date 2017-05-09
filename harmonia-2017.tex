@@ -446,15 +446,15 @@ There are several limitations in this proposal that are inherent in the design. 
 \section {Future Work}
 \label{sec:future}
 
-Harmonia is intended to serve as a base platform for multiple aspects of collaborative composition, and is modular enough such that individual functionality within the framework may be replaced with newer techniques. The area of creative agents is undergoing rapid evolution. Providing a framework to ensure shared intentionality, artistic consistency, and effective collaboration among humans should provide further acceleration. Multi-agent online improvisation such as AI Duet is another ripe area for exploration both for artistic purposes as well as for `call and response' treatment of autism and other disorders.
+Harmonia is intended to serve as a base platform for multiple aspects of collaborative composition, and is modular enough such that individual functionality within the framework may be replaced with newer techniques. The area of creative agents is undergoing rapid evolution. Providing a framework to ensure shared intentionality, artistic consistency, and effective collaboration should provide further acceleration. Multi-agent online improvisation such as AI Duet is another ripe area for exploration both for artistic purposes as well as for `call and response' treatment of autism and other disorders.
 
-The current automated analysis system is based on hand-crafted entropic measures specific to music information. Given the rapid advance of Recurrent Neural Nets in natural language understanding and other sequential data streams, further investigation is warranted for applying deep learning to musical evaluation. In general, a deep learning approach to \textit{analysis} of music \citep{deepgenre} \citep{deepfeature} is a huge and exciting obstacle in the training of automated, musically interactive agents, which could have roles in the system. If Harmonia were used by a large set of users, the resulting listening dataset would provide important training data for applying Reinforcement Learning and other methods to further enhance agent composition. A larger dataset would also be of significant benefit to music therapists who could share empirical data on effective treatments tailored to specific demographic and psychographic profiles.
+The current automated analysis system is based on hand-crafted entropic measures specific to music information. Given the rapid advance of Recurrent Neural Nets in natural language understanding and other sequential data streams, further investigation is warranted for applying deep learning to musical evaluation. In general, a deep learning approach to the \textit{analysis} of music \citep{deepgenre,deepfeature} is a huge and exciting obstacle in the training of automated, musically interactive agents, which could have roles in the system. If Harmonia were used by a large set of users, the resulting listening dataset would provide important training data for applying Reinforcement Learning and other methods to further enhance agent composition. A larger dataset would also be of significant benefit to music therapists who could share empirical data on effective treatments tailored to specific demographic and psychographic profiles.
 
-There are significant limits when using MIDI for musical expression. Incorporating more complex musical encoding formats such as recorded audio, or at least MusicXML, would allow for greater range of expression but would complicate analysis. Adding vocals is an interesting challenge. Given recent developments in speech generation, is it possible to extend the idea to vocals?\footnote{\texttt{https://lyrebird.ai/}} Can a neural net be programmed to `sing' like Alicia Keys?  Commercial applications of Harmonia include the aforementioned intellectual property similarity evaluation. The analysis module may also incorporate commercial goals such as potential popularity \citep{phampredicting}.
+There are significant limits when using MIDI to encode musical expression. Incorporating more complex musical encoding formats such as recorded audio, or at least MusicXML, would allow for greater range of expression but would complicate analysis. Adding vocals is an interesting challenge. Given recent developments in speech generation, is it possible to extend the idea to vocals?\footnote{\texttt{https://lyrebird.ai/}} Can a neural net be programmed to `sing' like Alicia Keys?  Commercial applications of Harmonia include the aforementioned intellectual property similarity evaluation. The analysis module may also incorporate commercial goals such as potential popularity \citep{phampredicting}.
 
 \section*{Conclusion}
   
-Our proposal contributes two novel areas of collaborative music composition. First, we present a workflow incorporating SharedPlans with explicit intentionality, subplans, Collaborative Ideation, revision control and automated agents. Second, we present algorithmic evaluation of a composition against intention, to ensure that human and agent composers cooperate in reaching the shared objective. These contributions extend the state of the art in collaborative composition frameworks, beyond the ideation of SoundCloud and the revision control without intentionality of Blend. We see this initial proposal as a start of several interesting areas to explore leading to improved creativity, diversity and applicability of music composition as a tool for composers, music therapists and listener pleasure.
+Our proposal contributes two novel areas of collaborative music composition. First, we present a workflow incorporating SharedPlans with explicit intentionality, subplans, Collaborative Ideation, revision control, and automated agents. Second, we present algorithmic evaluation of a composition against intention to ensure that human and agent composers cooperate in reaching a shared objective. These contributions extend the state of the art in collaborative composition frameworks, beyond the ideation of SoundCloud and the revision control without intentionality of Blend. We see this initial proposal as a start of several interesting areas to explore, leading to improved creativity, diversity and applicability of music composition as a tool for composers, music therapists, and listener pleasure.
  
 \section*{Acknowledgements}
 
@@ -462,16 +462,11 @@ We are honored to be part of Professor Grosz's final class. We deeply appreciate
 
 Special thanks to \href{https://www.psychologytoday.com/experts/david-m-greenberg-phd}{Dr. David Greenberg}, who provided important insights and suggestions regarding the application of Harmonia for music therapy, to composers Daniel Pencer and Ariel Herbert-Voss, whose discussions about the proposed user interface of our system were highly valuable, and to Pao Siangliulue, for the discussion about composer communication.
 
+\appendix
 
-%%%%%%%%% OPEN ITEMS %%%%%%%%%%%%%%%%%
+\section*{Authorship}
 
-%------------------ MARK TODOs --------------------------------
-
-%1) Reduce Related Work
-
-%2) See if possible to remove the extra space after the section numbers in the refs
-
-%3) related to collaborative ideation somewhere. Maybe in MIDI and Edit Actions section.
+This project was truly a collaborative effort between Mark and David. The ideas and effort could not have been more equally shared. Given Mark's music composition expertise, he contributed most of Section 4, ``Automated Analysis of Musical Structure.", and the related work on Collaborative Ideation. David contributed most of Section 2, "System Design" except for 2.4 ``MIDI and Edit Actions". All other sections are joint creations. We have the extensive git revision history to prove it!
 
 % NOTE: Replaced the class-provided elsarticle-num-names with elsarticle-num-names-alpha
 %       to enable sorting of references.
